@@ -1,7 +1,7 @@
-nbproject/private/
-build/
-nbbuild/
-dist/
+Tesseract-Java/nbproject/private/
+Tesseract-Java/build/
+Tesseract-Java/nbbuild/
+Tesseract-Java/dist/
 nbdist/
 nbactions.xml
 .nb-gradle/
