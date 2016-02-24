@@ -5,3 +5,5 @@ dist/
 nbdist/
 nbactions.xml
 .nb-gradle/
+Tesseract-Java/nbproject/private/private.xml
+Tesseract-Java/nb_jr_remoting.cfg
