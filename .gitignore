@@ -10,3 +10,5 @@ nbdist/
 nbactions.xml
 .nb-gradle/
 
+Tesseract-Java-Preloader/nbproject/private/private.properties
+Tesseract-Java/nbproject/private/private.properties
