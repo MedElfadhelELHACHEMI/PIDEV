@@ -1,0 +1,19 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+ #header{
+ -fx-background-color: #24c5cf ;   
+   
+}
+.mainFxmlClass .pane{
+    
+    
+}
+#top{
+    
+    -fx-background-color: #393a3c;
+}
