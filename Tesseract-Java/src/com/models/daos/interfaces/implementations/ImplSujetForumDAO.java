@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import uk.ac.shef.wit.simmetrics.similaritymetrics.JaroWinkler;
 
 /**
