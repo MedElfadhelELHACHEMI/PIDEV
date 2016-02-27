@@ -32,20 +32,19 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
     @Override
     public boolean addOrganisation(Organisation org) {
-        String query = "Insert into organisation(`id`, `nom`, `adresse`,`email`,`matricule` , `photo` ) "
-                + "values (NULL, ?, ?, ?, ? ,? );";
+        String query = "insert into organisation( nom, adress,email,matricule , photo ) values ( ?, ?, ?, ? ,? )";
         try {
             PreparedStatement pSt = connection.prepareStatement(query);
-           
-            pSt.setString(2, org.getNom());
-            pSt.setString(3, org.getAdresse());
-            pSt.setString(4, org.geteMail());
-            pSt.setString(5, org.getMatricule());
-            pSt.setString(6, org.getPhoto());
-            pSt.executeUpdate();
+            System.out.println(org);
+            pSt.setString(1, org.getNom());
+            pSt.setString(2, org.getAdresse());
+            pSt.setString(3, org.geteMail());
+            pSt.setString(4, org.getMatricule());
+            pSt.setString(5, org.getPhoto());
+            pSt.execute();
             return true;
         } catch (SQLException ex) {
-           ex.getStackTrace();
+          
             return false;
         }
     }

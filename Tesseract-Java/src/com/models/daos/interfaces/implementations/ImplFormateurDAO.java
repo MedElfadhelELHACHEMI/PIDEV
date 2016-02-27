@@ -29,23 +29,23 @@ public class ImplFormateurDAO implements IFormateurDAO {
     public boolean ajouterFormateur(Formateur formateur, Integer idOrganisme) throws SQLException {
         Connection connection = DataSource.getInstance().getConnection();
 
-        String requete = "insert into utilisateur (id_organisation,pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,role,cv,etat) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,role,cv,etat) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
-        ps.setInt(1, idOrganisme);
-        ps.setString(2, formateur.getNomUtilisateur());
-        ps.setString(3, formateur.getMotDePass());
-        ps.setString(4, formateur.getNom());
-        ps.setString(5, formateur.getPrenom());
-        ps.setDate(6, formateur.getDateNaissance());
-        ps.setInt(7, formateur.getTel());
-        ps.setString(8, formateur.getAdresse());
+     
+        ps.setString(1, formateur.getNomUtilisateur());
+        ps.setString(2, formateur.getMotDePass());
+        ps.setString(3, formateur.getNom());
+        ps.setString(4, formateur.getPrenom());
+        ps.setDate(5, formateur.getDateNaissance());
+        ps.setInt(6, formateur.getTel());
+        ps.setString(7, formateur.getAdresse());
 
-        ps.setString(9, formateur.getMail());
-        ps.setString(10, formateur.getPhoto());
-        ps.setString(11, String.valueOf(Role.FOR));
+        ps.setString(8, formateur.getMail());
+        ps.setString(9, formateur.getPhoto());
+        ps.setString(10, String.valueOf(Role.FOR));
 
-        ps.setString(12, formateur.getCv());
-        ps.setString(13, String.valueOf(Etat.ATT));
+        ps.setString(11, formateur.getCv());
+        ps.setString(12, String.valueOf(Etat.ATT));
         int resultat = ps.executeUpdate();
         ps.close();
         return resultat == 1;

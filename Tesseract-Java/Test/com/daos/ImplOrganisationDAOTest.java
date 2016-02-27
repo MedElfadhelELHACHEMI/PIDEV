@@ -4,6 +4,7 @@ import com.models.daos.interfaces.DAOFactory;
 import com.models.daos.interfaces.INotificationDAO;
 import com.models.daos.interfaces.IOrganisationDAO;
 import com.models.entities.Notification;
+import com.models.entities.Organisation;
 import java.sql.Date;
 import java.sql.SQLException;
 import org.junit.Assert;
@@ -36,5 +37,11 @@ public class ImplOrganisationDAOTest {
         IOrganisationDAO iOrganisationDAO = DAOFactory.getOrganisationDAO();
 
         Assert.assertNotNull(iOrganisationDAO.getOrganisationByMatriculeNom("Oxia"));
+    }
+    @Ignore
+    @Test
+    public void addOrganisme(){
+    IOrganisationDAO iOrganisationDAO = DAOFactory.getOrganisationDAO();
+    iOrganisationDAO.addOrganisation(new Organisation());
     }
 }

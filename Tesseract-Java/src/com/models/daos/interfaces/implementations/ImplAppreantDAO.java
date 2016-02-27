@@ -29,7 +29,7 @@ public class ImplAppreantDAO implements IApprenantDAO {
 
         Connection connection = DataSource.getInstance().getConnection();
 
-        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,role,score) values (?,?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,role,mail,photo,score) values (?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, apprenant.getNomUtilisateur());
         ps.setString(2, apprenant.getMotDePass());
@@ -59,6 +59,7 @@ public class ImplAppreantDAO implements IApprenantDAO {
         while (rs.next()) {
 
             apprenant.setIdUtilisateur(rs.getInt(1));
+           
             apprenant.setNomUtilisateur(rs.getString(3));
             apprenant.setMotDePass(rs.getString(4));
             apprenant.setNom(rs.getString(5));

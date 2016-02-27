@@ -8,8 +8,10 @@ package com.controllers;
 import com.database.CryptographieMOOC;
 import com.models.daos.interfaces.DAOFactory;
 import com.models.daos.interfaces.IApprenantDAO;
+import com.models.daos.interfaces.IFormateurDAO;
 import com.models.daos.interfaces.IOrganisationDAO;
 import com.models.entities.Apprenant;
+import com.models.entities.Formateur;
 import com.models.entities.Organisation;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -75,6 +77,7 @@ public class InscriptionUtilisateurs {
     public boolean verifierLogin(String text) throws SQLException {
         IApprenantDAO aO = DAOFactory.getApprenantDAO();
         Apprenant apprenant = aO.getApprenantByLogin(text);
+        System.out.println(apprenant);
         if (apprenant.getIdUtilisateur() == 0) {
 
             return true;
@@ -89,5 +92,12 @@ public class InscriptionUtilisateurs {
         apprenant.setScore(0);
         apprenant.setMotDePass(CryptographieMOOC.getCryptage().encrypt(pwd));
         return aO.ajouterApprenant(apprenant);
+    }
+
+    public boolean inscriptionFormateur(Formateur formateur) throws SQLException, Exception {
+        IFormateurDAO formateurDAO = DAOFactory.getFormateurDAO();
+        String pwd =CryptographieMOOC.getCryptage().encrypt(formateur.getMotDePass());
+        formateur.setMotDePass(pwd);
+        return formateurDAO.ajouterFormateur(formateur,null);
     }
 }

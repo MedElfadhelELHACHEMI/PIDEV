@@ -2,7 +2,6 @@ package com.daos;
 
 import com.models.daos.interfaces.DAOFactory;
 import com.models.daos.interfaces.IInvitationDAO;
-import com.models.daos.interfaces.implementations.ImplInvitationDAO;
 import com.models.entities.Invitation;
 import com.models.enums.Etat;
 import java.sql.Date;
@@ -16,7 +15,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
-import static sun.invoke.util.ValueConversions.ignore;
 
 /**
  *

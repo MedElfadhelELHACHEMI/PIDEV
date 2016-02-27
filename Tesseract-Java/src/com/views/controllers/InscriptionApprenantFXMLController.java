@@ -7,6 +7,7 @@ package com.views.controllers;
 
 import com.controllers.InscriptionUtilisateurs;
 import com.controllers.RedirectionStrategy;
+import com.database.LoggingFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXPopup;
@@ -224,6 +225,8 @@ public class InscriptionApprenantFXMLController implements Initializable {
         File file = fc.showOpenDialog(null);
         image.setImage(new Image(new File(file.getAbsolutePath()).toURI().toString()));
         picture=file.getAbsolutePath();
+        System.out.println(picture
+        );
 
     }
 
@@ -240,10 +243,15 @@ public class InscriptionApprenantFXMLController implements Initializable {
 
     @FXML
     private void ValiderInscription(ActionEvent event) throws SQLException, Exception {
+        System.out.println("enter");
+       
             RedirectionStrategy redirectionStrategy = new RedirectionStrategy();
-        if (!(password.getText().equals("") || password2.getText().equals("") || login.getText().equals(""))) {
+        if (!(password.getText().equals("")) || !(password2.getText().equals("")) || !(login.getText().equals(""))) {
+            System.out.println("stage 1");
             if(!Objects.isNull(picture)){
-            if (!inscriptionUtilisateurs.verifierLogin(login.getText())) {
+                 System.out.println(picture);
+               boolean result =inscriptionUtilisateurs.verifierLogin(login.getText());
+            if (result) {
                 if (password.getText().equals(password2.getText())) {
                     Apprenant apprenant = new Apprenant();
                     apprenant.setNom(nom.getText());
@@ -254,7 +262,10 @@ public class InscriptionApprenantFXMLController implements Initializable {
                     apprenant.setAdresse(addresse.getText());
                     apprenant.setNomUtilisateur(login.getText());
                     apprenant.setMotDePass(password.getText());
-                    if (inscriptionUtilisateurs.inscriptionApprenant(apprenant)) {
+                   boolean resultat =inscriptionUtilisateurs.inscriptionApprenant(apprenant);
+                   
+                    if (resultat) {
+                     
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
                         alert.show();
 

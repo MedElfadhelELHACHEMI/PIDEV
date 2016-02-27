@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.models.entities.Apprenant;
+import com.models.entities.Formateur;
 import java.io.File;
 import java.net.URL;
 import java.sql.Date;
@@ -234,20 +235,25 @@ public class InscriptionFormateurFXMLController implements Initializable {
     @FXML
     private void ValiderInscription(ActionEvent event) throws SQLException, Exception {
         RedirectionStrategy redirectionStrategy = new RedirectionStrategy();
-        if (!(password.getText().equals("") || password2.getText().equals("") || login.getText().equals(""))) {
+        if (!(password.getText().equals("")) || !(password2.getText().equals("")) || !(login.getText().equals(""))) {
+               System.out.println("stage1");
             if (!Objects.isNull(picture)) {
-                if (!inscriptionUtilisateurs.verifierLogin(login.getText())) {
+                 boolean result =inscriptionUtilisateurs.verifierLogin(login.getText());
+                    System.out.println("stage2");
+                if (result) {
+                    System.out.println("stage3");
                     if (password.getText().equals(password2.getText())) {
-                        Apprenant apprenant = new Apprenant();
-                        apprenant.setNom(nom.getText());
-                        apprenant.setPrenom(prenom.getText());
-                        apprenant.setDateNaissance(Date.valueOf(birth.getValue()));
-                        apprenant.setTel(Integer.parseInt(numberPh.getText()));
-                        apprenant.setMail(mail.getText());
-                        apprenant.setAdresse(addresse.getText());
-                        apprenant.setNomUtilisateur(login.getText());
-                        apprenant.setMotDePass(password.getText());
-                        if (inscriptionUtilisateurs.inscriptionApprenant(apprenant)) {
+                        Formateur formateur = new Formateur();
+                        formateur.setNom(nom.getText());
+                        formateur.setPrenom(prenom.getText());
+                        formateur.setDateNaissance(Date.valueOf(birth.getValue()));
+                        formateur.setTel(Integer.parseInt(numberPh.getText()));
+                        formateur.setMail(mail.getText());
+                        formateur.setAdresse(addresse.getText());
+                        formateur.setNomUtilisateur(login.getText());
+                        formateur.setMotDePass(password.getText());
+                        formateur.setCv(pdf.getText());
+                        if (inscriptionUtilisateurs.inscriptionFormateur(formateur)) {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
                             alert.show();
 

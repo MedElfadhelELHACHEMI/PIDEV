@@ -61,7 +61,7 @@ public class ImplApprenantDAOTest {
     public void TEST_AJOUTER_APPRENANT_SHOULD_RETURN_TRUE() throws SQLException {
 
         IApprenantDAO apprenantDAO = DAOFactory.getApprenantDAO();
-        Apprenant apprenant = new Apprenant(25, Etat.ACC, "haikalinfo", "kakashi", "haikal", "magrahi", new Date(100), 21998090, "...", "444", "555");
+        Apprenant apprenant = new Apprenant();
         boolean test = apprenantDAO.ajouterApprenant(apprenant);
         assertTrue(test);
 

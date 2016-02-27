@@ -55,6 +55,8 @@ public class InscriptionOrganismeFXMLController implements Initializable {
     private JFXButton importImage;
     InscriptionUtilisateurs inscriptionUtilisateurs = new InscriptionUtilisateurs();
  private static String picture;
+    @FXML
+    private JFXTextField Matricule;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         logoOrganisme.setDisable(true);
@@ -76,14 +78,17 @@ public class InscriptionOrganismeFXMLController implements Initializable {
             adresseOrganisme.setText("");
             afficherMessage(event);
         } else {
-            inscriptionUtilisateurs.envoyerEMailUtilisateur("haikal.magrahi@esprit.tn", "league o", mailOrganisme.getText(), "Registration succeded  " + LocalDate.now(), "Wait for the validation of the administrator thank you !");
+           // inscriptionUtilisateurs.envoyerEMailUtilisateur("haikal.magrahi@esprit.tn", "league o", mailOrganisme.getText(), "Registration succeded  " + LocalDate.now(), "Wait for the validation of the administrator thank you !");
 
             Organisation organisation = new Organisation();
             organisation.setNom(nomOrganisme.getText());
             organisation.setPhoto(logoOrganisme.getText());
             organisation.setAdresse(adresseOrganisme.getText());
             organisation.seteMail(mailOrganisme.getText());
-            if (inscriptionUtilisateurs.inscriptionOrganisation(organisation)) {
+            organisation.setMatricule(Matricule.getText());
+            boolean result =inscriptionUtilisateurs.inscriptionOrganisation(organisation);
+            System.out.println(result);
+            if (result) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
                 alert.show();
                 redirectionStrategy.redirectAuthentification(nomOrganisme);
