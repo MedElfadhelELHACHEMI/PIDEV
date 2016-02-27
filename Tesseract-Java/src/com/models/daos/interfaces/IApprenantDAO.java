@@ -18,6 +18,10 @@ public interface IApprenantDAO {
    public List<Apprenant> getAllApprenants()throws SQLException;
    
    public boolean modifierApprenant (String login , Apprenant newApprenant)throws SQLException;
+
+    public Apprenant getApprenantsById(int i);
+
+   
    
    
     

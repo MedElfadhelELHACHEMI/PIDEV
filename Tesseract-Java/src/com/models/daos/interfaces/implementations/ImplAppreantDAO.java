@@ -138,5 +138,10 @@ public class ImplAppreantDAO implements IApprenantDAO {
         ps.close();
         return resultat == 1;
     }
+
+    @Override
+    public Apprenant getApprenantsById(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -19,5 +19,9 @@ public interface IFormateurDAO {
    public List<Formateur> getAllFormateurs()throws SQLException;
    
    public boolean modifierFormateur (String login , Formateur newFormateur)throws SQLException;
+
+    public boolean affecterOrganismeFormateur(int i, int i0);
+
+    public Object getFormateurById(int i);
     
 }

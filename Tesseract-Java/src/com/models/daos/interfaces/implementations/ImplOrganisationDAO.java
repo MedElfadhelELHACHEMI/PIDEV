@@ -105,5 +105,10 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
     public Organisation getOrganisationByNom(String nom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Object getOrganisationByMatriculeNom(String oxia) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

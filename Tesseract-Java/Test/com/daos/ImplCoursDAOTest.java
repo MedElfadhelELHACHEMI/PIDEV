@@ -34,8 +34,8 @@ public class ImplCoursDAOTest {
     public void TEST_CREATE_COURS_SHOULD_RETURN_TRUE_IF_SUCCESS() throws SQLException, Exception {
         Matiere matiere = new Matiere(1, "haikel", "yassmine");
         ICoursDAO coursDao = DAOFactory.getCoursDAO();
-        Cours cours = new Cours("java", "tuto", 25, 1, "/..", "certView");
-        boolean test = coursDao.AjouterCours(cours, matiere);
+        Cours cours = new Cours();
+        boolean test = coursDao.AjouterCours(cours);
         assertTrue(test);
 
     }
@@ -45,7 +45,7 @@ public class ImplCoursDAOTest {
     public void TEST_GET_COURS_BY_ID_SHOULD_RETURN_COURS() throws SQLException, Exception {
         Matiere matiere = new Matiere(1, "haikel", "yassmine");
         ICoursDAO coursDao = DAOFactory.getCoursDAO();
-        Cours cours = new Cours("java", "tuto", 25, 1, "/..", "certView");
+        Cours cours = new Cours();
         Cours test = coursDao.findCoursById(1);
         assertNotNull(test);
 

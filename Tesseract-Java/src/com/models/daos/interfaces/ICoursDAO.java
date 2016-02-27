@@ -21,4 +21,12 @@ public interface ICoursDAO {
     public List<Cours> findCoursByIdFromateur(int idFormateur) throws SQLException;
 
     public List<Cours> findCoursByMatiere(Matiere m1) throws SQLException;
+
+    public List findCoursByNomCours(String java);
+
+    public List getCoursValid1EnAttente();
+
+    public List getCoursValid2EnAttente();
+
+    
 }

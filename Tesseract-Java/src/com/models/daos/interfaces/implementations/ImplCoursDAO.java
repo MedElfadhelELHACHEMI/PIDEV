@@ -174,4 +174,19 @@ public class ImplCoursDAO implements ICoursDAO {
 
     }
 
+    @Override
+    public List findCoursByNomCours(String java) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List getCoursValid1EnAttente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List getCoursValid2EnAttente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

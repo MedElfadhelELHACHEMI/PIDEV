@@ -16,4 +16,9 @@ public interface IInvitationDAO {
 
     public List<Invitation> getAllInvitations() throws SQLException;
 
+    public List displayInvitationByUserIdEmetteur(int i);
+
+    
+           
+
 }

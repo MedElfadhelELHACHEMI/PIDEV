@@ -24,6 +24,9 @@ public interface IOrganisationDAO {
     public Organisation getOrganisationByid(int id);
     
     public Organisation getOrganisationByNom(String nom);
+
+    public Object getOrganisationByMatriculeNom(String oxia);
+ 
     
     
 }
