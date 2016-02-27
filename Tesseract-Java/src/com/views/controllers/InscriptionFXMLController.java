@@ -79,6 +79,11 @@ public class InscriptionFXMLController implements Initializable {
         } else {
             doScale(formateurIcone);
         }
+        try {
+            setBody(doAnimation(loadPage("/com/fxml/InscriptionFormateurFXML.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(InscriptionFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="536.0" prefWidth="541.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.InscriptionFormateurFXMLController">
+    <stylesheets>
+        <URL value="@/com/styles/inscriptionformateurfxml.css" />
+    </stylesheets>
+     <children>
+      <JFXButton fx:id="bt1" layoutX="171.0" layoutY="439.0" onAction="#goToshtep2" prefHeight="31.0" prefWidth="200.0" ripplerFill="#6480c6" style="-fx-background-color: #24c5cf;" styleClass="bt1" stylesheets="@../styles/inscriptionapprenantfxml.css" text="&lt;&lt; Step 2" textFill="WHITE">
+         <font>
+            <Font name="Georgia Bold" size="14.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="nom" focusColor="#24c5cf" layoutX="152.0" layoutY="103.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="name" unFocusColor="#24c5cf" />
+      <JFXTextField fx:id="prenom" focusColor="#24c5cf" layoutX="152.0" layoutY="146.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="family name" unFocusColor="#24c5cf" />
+      <JFXTextField fx:id="numberPh" focusColor="#24c5cf" layoutX="158.0" layoutY="237.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="phone number" unFocusColor="#24c5cf" />
+      <JFXTextField fx:id="addresse" focusColor="#24c5cf" layoutX="158.0" layoutY="277.0" maxWidth="213.0" minWidth="213.0" prefHeight="31.0" prefWidth="213.0" promptText="adress" unFocusColor="#24c5cf" />
+       <Pane fx:id="pane2" layoutX="-541.0" prefHeight="536.0" prefWidth="541.0" stylesheets="@../styles/inscriptionapprenantfxml.css">
+         <children>
+            <JFXTextField fx:id="login" focusColor="#24c5cf" layoutX="152.0" layoutY="212.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="login" unFocusColor="#24c5cf" />
+            <JFXButton layoutX="92.0" layoutY="441.0" onAction="#ValiderInscription" prefHeight="34.0" prefWidth="167.0" style="-fx-background-color: #24c5cf;" styleClass="bt1" stylesheets="@../styles/inscriptionapprenantfxml.css" text="Finish" textFill="WHITE">
+               <font>
+                  <Font name="Georgia Bold" size="14.0" />
+               </font></JFXButton>
+            <JFXButton layoutX="291.0" layoutY="441.0" onAction="#goToStep1" prefHeight="29.0" prefWidth="177.0" ripplerFill="#6480c6" style="-fx-background-color: #24c5cf;" styleClass="bt1" stylesheets="@../styles/inscriptionapprenantfxml.css" text="Step 1 &gt;&gt;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></JFXButton>
+            <JFXPasswordField fx:id="password" focusColor="#24c5cf" layoutX="152.0" layoutY="253.0" maxWidth="213.0" minWidth="200.0" prefHeight="31.0" prefWidth="213.0" promptText="password" unFocusColor="#24c5cf" />
+            <JFXPasswordField fx:id="password2" focusColor="#24c5cf" layoutX="152.0" layoutY="294.0" maxWidth="213.0" minWidth="213.0" prefHeight="31.0" prefWidth="213.0" promptText="confirm password" unFocusColor="#24c5cf" />
+            <ImageView fx:id="desktop" fitHeight="41.0" fitWidth="42.0" layoutX="238.0" layoutY="343.0" onMouseClicked="#searchDesktop" onMouseEntered="#rotationMethodDesktop" onMouseExited="#rotationExit" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/desktop.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="image" fitHeight="130.0" fitWidth="151.0" layoutX="183.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/nopicture.png" />
+               </image></ImageView>
+            <JFXTextField fx:id="mail" focusColor="#24c5cf" layoutX="152.0" layoutY="170.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="mail" unFocusColor="#24c5cf" />
+            <Label fx:id="Warning2" layoutX="183.0" layoutY="410.0" prefHeight="17.0" prefWidth="167.0" textFill="#ff1919" />
+         </children>
+      </Pane>
+      <DatePicker fx:id="birth" editable="false" layoutX="159.0" layoutY="200.0" prefHeight="25.0" prefWidth="200.0" promptText="birth day" />
+      <ImageView fitHeight="25.0" fitWidth="21.0" layoutX="411.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="Warning" layoutX="183.0" layoutY="422.0" prefHeight="17.0" prefWidth="189.0" textFill="#eb1919" />
+      <JFXTextField fx:id="addresse1" editable="false" focusColor="#24c5cf" layoutX="161.0" layoutY="319.0" maxWidth="213.0" minWidth="200.0" prefHeight="31.0" prefWidth="200.0" promptText="Curriculum vitae" unFocusColor="#24c5cf" />
+      <Button fx:id="pdf" layoutX="364.0" layoutY="322.0" mnemonicParsing="false" onAction="#chercherCV" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: #24c5cf;" text="Button" textFill="WHITE" />
+   </children>
+</AnchorPane>
