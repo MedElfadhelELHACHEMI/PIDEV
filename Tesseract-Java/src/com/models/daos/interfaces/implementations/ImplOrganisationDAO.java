@@ -23,34 +23,36 @@ import java.util.List;
  * @author BoB
  */
 public class ImplOrganisationDAO implements IOrganisationDAO {
+
     private Connection connection;
 
     public ImplOrganisationDAO() {
         connection = DataSource.getInstance().getConnection();
     }
-    
+
     @Override
     public boolean addOrganisation(Organisation org) {
-       String query = "Insert into organisation(`id`, `nom`, `adresse`, `matricule` , `photo` ) "
+        String query = "Insert into organisation(`id`, `nom`, `adresse`,`email`,`matricule` , `photo` ) "
                 + "values (NULL, ?, ?, ?, ? ,? );";
         try {
             PreparedStatement pSt = connection.prepareStatement(query);
-            pSt.setInt(1, org.getIdOrganisation());
+           
             pSt.setString(2, org.getNom());
             pSt.setString(3, org.getAdresse());
-            pSt.setString(4, org.getMatricule());
-            pSt.setString(5, org.getPhoto());
+            pSt.setString(4, org.geteMail());
+            pSt.setString(5, org.getMatricule());
+            pSt.setString(6, org.getPhoto());
             pSt.executeUpdate();
             return true;
         } catch (SQLException ex) {
-            System.out.println("error to add organsisation !!");
+           ex.getStackTrace();
             return false;
         }
     }
 
     @Override
     public boolean deleteOrganisation(int idOrg) {
-                String query="delete from organisation where id =?";
+        String query = "delete from organisation where id =?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, idOrg);
@@ -71,15 +73,15 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
     @Override
     public List<Organisation> displayOrganisation() {
         ArrayList<Organisation> liste = new ArrayList<Organisation>();
-        
+
         String query = "select * from Organisation";
-        
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultat = statement.executeQuery(query);
 
             while (resultat.next()) {
-                Organisation og = new Organisation();                
+                Organisation og = new Organisation();
                 og.setIdOrganisation(resultat.getInt(1));
                 og.setNom(resultat.getString(2));
                 og.setAdresse(resultat.getString(3));
@@ -110,5 +112,5 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
     public Object getOrganisationByMatriculeNom(String oxia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

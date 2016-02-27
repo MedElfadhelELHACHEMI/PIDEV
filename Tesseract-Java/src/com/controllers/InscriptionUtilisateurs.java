@@ -5,6 +5,13 @@
  */
 package com.controllers;
 
+import com.database.CryptographieMOOC;
+import com.models.daos.interfaces.DAOFactory;
+import com.models.daos.interfaces.IApprenantDAO;
+import com.models.daos.interfaces.IOrganisationDAO;
+import com.models.entities.Apprenant;
+import com.models.entities.Organisation;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,5 +64,30 @@ public class InscriptionUtilisateurs {
     public static boolean validerMail(String email) {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
         return matcher.find();
+    }
+
+    public boolean inscriptionOrganisation(Organisation organisation) {
+        IOrganisationDAO iOrganisationDAO = DAOFactory.getOrganisationDAO();
+        return iOrganisationDAO.addOrganisation(organisation);
+
+    }
+
+    public boolean verifierLogin(String text) throws SQLException {
+        IApprenantDAO aO = DAOFactory.getApprenantDAO();
+        Apprenant apprenant = aO.getApprenantByLogin(text);
+        if (apprenant.getIdUtilisateur() == 0) {
+
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean inscriptionApprenant(Apprenant apprenant) throws SQLException, Exception {
+        IApprenantDAO aO = DAOFactory.getApprenantDAO();
+        String pwd = apprenant.getMotDePass();
+        apprenant.setScore(0);
+        apprenant.setMotDePass(CryptographieMOOC.getCryptage().encrypt(pwd));
+        return aO.ajouterApprenant(apprenant);
     }
 }

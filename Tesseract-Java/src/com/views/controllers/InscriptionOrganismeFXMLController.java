@@ -6,8 +6,10 @@
 package com.views.controllers;
 
 import com.controllers.InscriptionUtilisateurs;
+import com.controllers.RedirectionStrategy;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.models.entities.Organisation;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +24,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -50,7 +54,7 @@ public class InscriptionOrganismeFXMLController implements Initializable {
     @FXML
     private JFXButton importImage;
     InscriptionUtilisateurs inscriptionUtilisateurs = new InscriptionUtilisateurs();
-
+ private static String picture;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         logoOrganisme.setDisable(true);
@@ -64,17 +68,29 @@ public class InscriptionOrganismeFXMLController implements Initializable {
 
     @FXML
     private void enregistrerOrganisme(ActionEvent event) throws IOException {
-        if (!InscriptionUtilisateurs.validerMail(mailOrganisme.getText())||(nomOrganisme.getText().equals(""))||(adresseOrganisme.getText().equals(""))||(logoOrganisme.getText().equals("")))
-        {
-          mailOrganisme.setText("");
-           nomOrganisme.setText("");
+        RedirectionStrategy redirectionStrategy = new RedirectionStrategy();
+        if (!InscriptionUtilisateurs.validerMail(mailOrganisme.getText()) || (nomOrganisme.getText().equals("")) || (adresseOrganisme.getText().equals("")) || (logoOrganisme.getText().equals(""))) {
+            mailOrganisme.setText("");
+            nomOrganisme.setText("");
             logoOrganisme.setText("");
-             adresseOrganisme.setText("");
-             afficherMessage(event) ;
-        }   else { inscriptionUtilisateurs.envoyerEMailUtilisateur("haikal.magrahi@esprit.tn", "league o", mailOrganisme.getText(), "Registration succeded  "+LocalDate.now(), "Wait for the validation of the administrator thank you !");}
-     
-        
-        
+            adresseOrganisme.setText("");
+            afficherMessage(event);
+        } else {
+            inscriptionUtilisateurs.envoyerEMailUtilisateur("haikal.magrahi@esprit.tn", "league o", mailOrganisme.getText(), "Registration succeded  " + LocalDate.now(), "Wait for the validation of the administrator thank you !");
+
+            Organisation organisation = new Organisation();
+            organisation.setNom(nomOrganisme.getText());
+            organisation.setPhoto(logoOrganisme.getText());
+            organisation.setAdresse(adresseOrganisme.getText());
+            organisation.seteMail(mailOrganisme.getText());
+            if (inscriptionUtilisateurs.inscriptionOrganisation(organisation)) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
+                alert.show();
+                redirectionStrategy.redirectAuthentification(nomOrganisme);
+            };
+
+        }
+
     }
 
     @FXML
@@ -94,13 +110,13 @@ public class InscriptionOrganismeFXMLController implements Initializable {
     }
 
     private void afficherMessage(ActionEvent event) throws IOException {
-     Parent root =   FXMLLoader.load(getClass().getResource("/com/fxml/ValidationFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/ValidationFXML.fxml"));
         Scene scene = new Scene(root);
-     Stage stage = new Stage() ;
-     stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-     stage.setResizable(false);
-     stage.setScene(scene);
-     stage.show();
+        Stage stage = new Stage();
+        stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

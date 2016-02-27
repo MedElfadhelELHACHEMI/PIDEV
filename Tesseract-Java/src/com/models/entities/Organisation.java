@@ -17,7 +17,7 @@ public class Organisation {
     private String adresse;
     private String matricule;
     private String photo;
-    
+    private String eMail ;
     
     public Organisation(){}
     public Organisation(int idOrganisation, String nom, String adresse, String matricule, String photo) {
@@ -66,6 +66,14 @@ public class Organisation {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
     @Override

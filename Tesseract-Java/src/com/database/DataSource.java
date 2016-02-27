@@ -31,7 +31,7 @@ public class DataSource {
     private DataSource() {
         properties = new Properties();
         try {
-            //properties.load(new FileInputStream(new File("config.properties")));
+            //properties.load(new FileInputStream(new File("config.properties")));64.62.211.131:3306/bobrebel_tesseract  ** bobrebel ** tesseract123
             url ="jdbc:mysql://64.62.211.131:3306/bobrebel_tesseract"; //properties.getProperty("url");
             login ="bobrebel"; //properties.getProperty("login");
             password = "tesseract123";//properties.getProperty("password");
