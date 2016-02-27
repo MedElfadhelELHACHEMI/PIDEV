@@ -19,7 +19,7 @@ public class TesseractJava extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Inscription.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionFXML.fxml"));
         
         Scene scene = new Scene(root);
         

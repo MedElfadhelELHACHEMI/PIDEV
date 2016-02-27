@@ -144,4 +144,14 @@ public class ImplFormateurDAO implements IFormateurDAO {
         return resultat == 1;
     }
 
+    @Override
+    public boolean affecterOrganismeFormateur(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object getFormateurById(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
