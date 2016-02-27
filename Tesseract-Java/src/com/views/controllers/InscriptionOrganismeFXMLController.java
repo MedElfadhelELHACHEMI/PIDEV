@@ -54,7 +54,7 @@ public class InscriptionOrganismeFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         logoOrganisme.setDisable(true);
-        imageOrganisme.setImage(new Image("/com/images/nopicture.jpg"));
+        imageOrganisme.setImage(new Image("/com/images/nopicture.png"));
         logoOrganisme.textProperty().addListener((observable, oldValue, newValue) -> {
             imageOrganisme.setImage(new Image(new File(logoOrganisme.getText()).toURI().toString()));
 
