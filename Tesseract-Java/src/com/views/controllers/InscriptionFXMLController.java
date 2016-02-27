@@ -78,7 +78,7 @@ public class InscriptionFXMLController implements Initializable {
     }
 
     @FXML
-    private void afficheApprenantInscription(MouseEvent event) {
+    private void afficheApprenantInscription(MouseEvent event) throws IOException {
         if (Objects.nonNull(scaleTransition)) {
 
             leaveScale();
@@ -87,7 +87,8 @@ public class InscriptionFXMLController implements Initializable {
         } else {
             doScale(apprenantIcone);
         }
-        
+         setBody(doAnimation(loadPage("/com/fxml/InscriptionApprenantFXML.fxml")));
+
 
     }
 

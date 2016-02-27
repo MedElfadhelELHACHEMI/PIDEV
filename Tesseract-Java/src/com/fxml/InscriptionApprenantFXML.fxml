@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +9,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.InscriptionApprenantFXMLController">
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="536.0" prefWidth="541.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.InscriptionApprenantFXMLController">
     <stylesheets>
-        <URL value="@inscriptionapprenantfxml.css"/>
+        <URL value="@inscriptionapprenantfxml.css" />
     </stylesheets>
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="171.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXButton layoutX="171.0" layoutY="439.0" onAction="#foToshtep2" prefHeight="31.0" prefWidth="200.0" text="&lt;&lt; Step 2" />
+      <JFXTextField fx:id="nom" focusColor="#24c5cf" layoutX="152.0" layoutY="103.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="name" unFocusColor="#24c5cf" />
+      <JFXTextField fx:id="prenom" focusColor="#24c5cf" layoutX="152.0" layoutY="163.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="family name" unFocusColor="#24c5cf" />
+      <JFXTextField fx:id="numberPh" focusColor="#24c5cf" layoutX="158.0" layoutY="291.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="phone number" unFocusColor="#24c5cf" />
+      <JFXTextField fx:id="addresse" focusColor="#24c5cf" layoutX="158.0" layoutY="351.0" maxWidth="213.0" minWidth="213.0" prefHeight="31.0" prefWidth="213.0" promptText="adress" unFocusColor="#24c5cf" />
+      <Pane fx:id="pane2" layoutX="-541.0" prefHeight="536.0" prefWidth="541.0">
+         <children>
+            <JFXTextField fx:id="login" focusColor="#24c5cf" layoutX="152.0" layoutY="212.0" maxWidth="213.0" minWidth="184.0" prefHeight="31.0" prefWidth="213.0" promptText="login" unFocusColor="#24c5cf" />
+            <JFXButton layoutX="159.0" layoutY="441.0" prefHeight="25.0" prefWidth="99.0" text="Finish" />
+            <JFXButton layoutX="263.0" layoutY="441.0" onAction="#goToStep1" prefHeight="25.0" prefWidth="99.0" text="Step 1 &gt;&gt;" />
+            <JFXPasswordField fx:id="password" focusColor="#24c5cf" layoutX="152.0" layoutY="253.0" maxWidth="213.0" minWidth="200.0" prefHeight="31.0" prefWidth="213.0" promptText="password" unFocusColor="#24c5cf" />
+            <JFXPasswordField fx:id="password2" focusColor="#24c5cf" layoutX="152.0" layoutY="294.0" maxWidth="213.0" minWidth="213.0" prefHeight="31.0" prefWidth="213.0" promptText="confirm password" unFocusColor="#24c5cf" />
+            <ImageView fx:id="desktop" fitHeight="41.0" fitWidth="42.0" layoutX="238.0" layoutY="343.0" onMouseClicked="#searchDesktop" onMouseEntered="#rotationMethodDesktop" onMouseExited="#rotationExit" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/desktop.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="151.0" layoutX="216.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <DatePicker fx:id="birth" layoutX="158.0" layoutY="236.0" prefHeight="25.0" prefWidth="200.0" promptText="birth day" />
+   </children>
 </AnchorPane>
