@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -45,10 +47,27 @@ public class InscriptionFXMLController implements Initializable {
     private ImageView apprenantIcone;
 
     private ScaleTransition scaleTransition;
+    @FXML
+    private Pane top;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+
+          if (Objects.nonNull(scaleTransition)) {
+
+            leaveScale();
+            scaleTransition = null;
+            doScale(apprenantIcone);
+        } else {
+            doScale(apprenantIcone);
+        }
+        try {
+            setBody(doAnimation(loadPage("/com/fxml/InscriptionApprenantFXML.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(InscriptionFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
     }
 
     @FXML
@@ -131,6 +150,13 @@ public class InscriptionFXMLController implements Initializable {
     AnchorPane loadPage(String resource) throws IOException{
     return  (AnchorPane)FXMLLoader.load(getClass().getResource(resource));
       
+    }
+
+    @FXML
+    private void ExitStage(MouseEvent event) {
+      Node node= (Node)event.getSource();
+    Stage stage=(Stage) node.getScene().getWindow();
+    stage.close();
     }
 
 }

@@ -2,6 +2,21 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
 
+.bt1{
+    
+    
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: gray gray gray gray;
+    
+}
+#pane1{
+     -fx-border-width: 2 2 2 2;
+    -fx-border-color: gray gray gray gray;
+    
+    
+}
+#pane2{
+  -fx-border-width: 2 2 2 2;
+    -fx-border-color: gray gray gray gray;
 }

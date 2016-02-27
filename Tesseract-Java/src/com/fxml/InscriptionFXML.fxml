@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="main" prefHeight="683.0" prefWidth="537.0" styleClass="mainFxmlClass" stylesheets="@../styles/inscriptionfxml.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.views.controllers.InscriptionFXMLController">
+<AnchorPane id="AnchorPane" fx:id="main" prefHeight="687.0" prefWidth="533.0" styleClass="mainFxmlClass" stylesheets="@../styles/inscriptionfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.InscriptionFXMLController">
    <children>
       <Pane fx:id="header" layoutY="32.0" prefHeight="115.0" prefWidth="541.0">
          <children>
@@ -40,6 +40,16 @@
          </children>
       </Pane>
       <AnchorPane fx:id="body" layoutY="147.0" prefHeight="536.0" prefWidth="541.0" />
-      <Pane fx:id="top" layoutY="-2.0" prefHeight="34.0" prefWidth="541.0" />
+      <Pane fx:id="top" layoutY="-2.0" prefHeight="34.0" prefWidth="541.0">
+         <children>
+            <ImageView fitHeight="27.0" fitWidth="25.0" layoutX="515.0" layoutY="4.0" onMouseClicked="#ExitStage" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/close.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children></Pane>
    </children>
 </AnchorPane>

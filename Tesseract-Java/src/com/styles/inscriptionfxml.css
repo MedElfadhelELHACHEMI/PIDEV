@@ -4,16 +4,38 @@
 
 .mainFxmlClass {
 
+
+
+
+
+
+
+
+
+
+
 }
- #header{
- -fx-background-color: #24c5cf ;   
-   
+#header{
+    -fx-background-color: #24c5cf ;   
+
+
+    -fx-border-width: 2 2 2 2;
+    -fx-border-color: gray gray gray gray;
+
+    -fx-effect: dropshadow(three-pass-box, #24c5cf, 10, 0.5, 0, 0);
+
 }
 .mainFxmlClass .pane{
-    
-    
+
+
 }
 #top{
-    
+
     -fx-background-color: #393a3c;
+  
+}
+#main{
+    
+    
+  
 }

@@ -21,7 +21,7 @@
       <JFXTextField fx:id="nomOrganisme" focusColor="#24c5cf" layoutX="146.0" layoutY="222.0" maxWidth="227.0" minWidth="227.0" prefHeight="31.0" prefWidth="227.0" promptText="name of the  organization" unFocusColor="#24c5cf" />
       <JFXTextField fx:id="adresseOrganisme" focusColor="#24c5cf" layoutX="146.0" layoutY="268.0" maxWidth="227.0" minWidth="227.0" prefHeight="31.0" prefWidth="227.0" promptText="adress of the organization" unFocusColor="#24c5cf" />
       <JFXTextField fx:id="mailOrganisme" focusColor="#24c5cf" layoutX="146.0" layoutY="373.0" maxWidth="227.0" minWidth="227.0" prefHeight="31.0" prefWidth="227.0" promptText="email of the organisation" unFocusColor="#24c5cf" />
-      <JFXButton fx:id="signup" layoutX="154.0" layoutY="446.0" onAction="#enregistrerOrganisme" prefHeight="42.0" prefWidth="212.0" ripplerFill="#1a1b1b" style="-fx-background-color: #24c5cf;" text="Signup" textFill="WHITE">
+      <JFXButton fx:id="signup" layoutX="167.0" layoutY="446.0" onAction="#enregistrerOrganisme" prefHeight="31.0" prefWidth="186.0" ripplerFill="#1a1b1b" style="-fx-background-color: #24c5cf;" styleClass="bt1" text="Signup" textFill="WHITE">
          <font>
             <Font name="Georgia Bold" size="14.0" />
          </font></JFXButton>
@@ -32,6 +32,6 @@
       </Label>
       <JFXTextField fx:id="logoOrganisme" focusColor="#24c5cf" layoutX="146.0" layoutY="318.0" maxWidth="227.0" minWidth="227.0" prefHeight="31.0" prefWidth="227.0" promptText="logo of the organisation" unFocusColor="#24c5cf" />
       <ImageView fx:id="imageOrganisme" fitHeight="114.0" fitWidth="134.0" layoutX="193.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true" />
-      <JFXButton fx:id="importImage" layoutX="366.0" layoutY="318.0" onAction="#getImageOrganisme" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #24c5cf;" text="Import" textFill="WHITE" />
+      <JFXButton fx:id="importImage" layoutX="366.0" layoutY="318.0" onAction="#getImageOrganisme" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: #24c5cf;" text="..." textFill="WHITE" />
    </children>
 </AnchorPane>

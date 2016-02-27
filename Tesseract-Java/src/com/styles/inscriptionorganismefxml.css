@@ -3,5 +3,11 @@
  */
 
 .mainFxmlClass {
-
+   -fx-border-width: 2 2 2 2;
+    -fx-border-color: gray gray gray gray;
+}
+.bt1{
+     -fx-border-width: 2 2 2 2;
+    -fx-border-color: gray gray gray gray;
+    
 }

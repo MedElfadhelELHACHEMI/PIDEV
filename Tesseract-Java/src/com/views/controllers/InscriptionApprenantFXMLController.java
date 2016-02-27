@@ -7,6 +7,7 @@ package com.views.controllers;
 
 import com.controllers.InscriptionUtilisateurs;
 import com.controllers.RedirectionStrategy;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
@@ -86,6 +87,8 @@ public class InscriptionApprenantFXMLController implements Initializable {
     @FXML
     private Label Warning;
     private static String picture ;
+    @FXML
+    private JFXButton bt1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
