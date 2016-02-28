@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="Anchor" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #393a3c;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.LogInFXMLController">
+   <children>
+      <Pane fx:id="MainPane" layoutX="58.0" layoutY="50.0" prefHeight="500.0" prefWidth="400.0">
+         <children>
+            <ImageView fx:id="img" fitHeight="118.0" fitWidth="272.0" layoutX="30.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/LogIn.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="mailTF" focusColor="#3f595d" layoutX="50.0" layoutY="200.0" prefWidth="300.0" promptText="Email" style="-fx-unfocus-color: #435669;" unFocusColor="#3f595d">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="pwdTF" focusColor="#3f595d" layoutX="50.0" layoutY="260.0" prefWidth="300.0" promptText="Password" unFocusColor="#3f595d">
+               <font>
+                  <Font name="Century Gothic" size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="LogInButton" layoutX="50.0" layoutY="329.0" onAction="#LogInAction" prefHeight="30.0" prefWidth="300.0" text="LOG IN" textAlignment="CENTER" />
+            <JFXCheckBox fx:id="RememberMe" checkedColor="#16929e" layoutX="50.0" layoutY="380.0" onAction="#rememberAction" />
+            <Label layoutX="95.0" layoutY="380.0" text="Remember me " textFill="#dddddd">
+               <font>
+                  <Font name="Century Gothic" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="facebookLogin" fitHeight="58.0" fitWidth="45.0" layoutX="125.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" x="50.0">
+               <image>
+                  <Image url="@../images/fb.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <ImageView fitHeight="62.0" fitWidth="45.0" layoutX="100.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/g+.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="250.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/linkedin.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="fbButton" layoutX="179.0" layoutY="440.0" mnemonicParsing="false" onAction="#fbLogIn" prefHeight="45.0" prefWidth="38.0" style="-fx-opacity: 0;" />
+            <Button fx:id="google" layoutX="97.0" layoutY="440.0" mnemonicParsing="false" onAction="#googleLogIn" prefHeight="45.0" prefWidth="45.0" style="-fx-opacity: 0;" />
+            <Button fx:id="LinkedIn" layoutX="258.0" layoutY="440.0" mnemonicParsing="false" onAction="#LinkedInLogIn" prefHeight="47.0" prefWidth="45.0" style="-fx-opacity: 0;" text="Button" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

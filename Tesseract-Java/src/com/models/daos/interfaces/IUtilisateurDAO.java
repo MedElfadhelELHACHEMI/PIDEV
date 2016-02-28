@@ -14,4 +14,6 @@ public interface IUtilisateurDAO {
     public List<Utilisateur> displayUtilisateur()throws SQLException;
     
     public Utilisateur getUtilisateurByID(int id)throws SQLException;
+     public Utilisateur getUtilisateurByMail(String mail)throws SQLException;
+     public boolean verifyPassword(Utilisateur user)throws SQLException;
 }

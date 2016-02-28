@@ -1,5 +1,6 @@
 package com.models.entities;
 
+import com.models.enums.Role;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ public  class Utilisateur {
     protected String adresse;
     protected String mail;
     protected String photo;
+    protected Role role;
   
     
    
@@ -55,6 +57,15 @@ public  class Utilisateur {
         this.adresse = adresse;
         this.mail = mail;
         this.photo = photo;
+        
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Utilisateur() {

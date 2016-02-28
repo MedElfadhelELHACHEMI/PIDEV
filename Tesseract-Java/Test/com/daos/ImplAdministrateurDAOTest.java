@@ -3,7 +3,10 @@ package com.daos;
 
 import com.models.daos.interfaces.DAOFactory;
 import com.models.daos.interfaces.IAdministrateurDAO;
+import com.models.daos.interfaces.IUtilisateurDAO;
+import com.models.daos.interfaces.implementations.ImplUtilisateurDAO;
 import com.models.entities.Administrateur;
+import com.models.entities.Utilisateur;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -69,7 +72,7 @@ public class ImplAdministrateurDAOTest {
     public void TEST_AJOUTER_ADMINISTRATEUR_SHOULD_RETURN_TRUE() throws SQLException {
 
         IAdministrateurDAO administrateurDAO = DAOFactory.getAdministrateurDAO();
-        Administrateur administrateur = new Administrateur("@secours", "admmministrateur", "unclebob", "bob", "bob", new Date(100), 123, " - ", " -  ", "  -  ");
+        Administrateur administrateur = new Administrateur("@secours", "administrateur", "unclebob", "bob", "bob", new Date(100), 123, " - ", " -  ", "  -  ");
         boolean test = administrateurDAO.ajouterAdministrateur(administrateur);
         assertTrue(test);
 
@@ -82,5 +85,14 @@ public class ImplAdministrateurDAOTest {
         IAdministrateurDAO administrateurDAO = DAOFactory.getAdministrateurDAO();
         Administrateur administrateur = administrateurDAO.getAdministrateurByLogin("administrateur");
         assertNotNull(administrateur);
+    }
+        @Ignore
+    @Test
+    public void TEST_GET_USER_BY_MAIL_SHOULD_RETURN_USER() throws SQLException {
+
+        IUtilisateurDAO x = new ImplUtilisateurDAO();
+        Utilisateur u = x.getUtilisateurByMail("correctmail");
+        System.out.println(u);
+        assertTrue(u.getIdUtilisateur()==1);
     }
 }
