@@ -5,24 +5,35 @@
  */
 package com.views.controllers;
 
+import com.database.CryptographieMOOC;
+import com.database.LoggingFacade;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.models.daos.interfaces.IUtilisateurDAO;
 import com.models.daos.interfaces.implementations.ImplUtilisateurDAO;
 import com.models.entities.Utilisateur;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 /**
  * FXML Controller class
@@ -30,7 +41,7 @@ import javafx.scene.layout.Pane;
  * @author Noor
  */
 public class LogInFXMLController implements Initializable {
-
+  static  Logger log = Logger.getLogger(LogInFXMLController.class);
     @FXML
     private AnchorPane Anchor;
     @FXML
@@ -40,11 +51,9 @@ public class LogInFXMLController implements Initializable {
     @FXML
     private JFXTextField mailTF;
     @FXML
-    private JFXTextField pwdTF;
+    private JFXPasswordField pwdTF;
     @FXML
     private JFXButton LogInButton;
-    @FXML
-    private JFXCheckBox RememberMe;
     @FXML
     private ImageView facebookLogin;
   
@@ -54,6 +63,8 @@ public class LogInFXMLController implements Initializable {
     private Button google;
     @FXML
     private Button LinkedIn;
+    @FXML
+    private Hyperlink signUp;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,7 +84,8 @@ public class LogInFXMLController implements Initializable {
 
             IUtilisateurDAO utilisateurDAO = new ImplUtilisateurDAO();
             Utilisateur user = utilisateurDAO.getUtilisateurByMail(mail);
-            //  System.out.println(user);
+            
+              System.out.println(user);
             if (user == null) {
                 mailTF.setText("Invalid Credentials");
             } else {
@@ -85,7 +97,8 @@ public class LogInFXMLController implements Initializable {
                 } else {
                     CurrentUser.id = user.getIdUtilisateur();
                     CurrentUser.role = user.getRole();
-                 //   System.out.println("here!");
+                    LoggingFacade.startLogger(CurrentUser.id);
+                    log.info("CONNECTED");
                 }
             }
 
@@ -93,9 +106,6 @@ public class LogInFXMLController implements Initializable {
 
     }
 
-    @FXML
-    private void rememberAction(ActionEvent event) {
-    }
 
     private boolean verifyFields(String mail, String pwd) {
         if (mail.equals("")) {
@@ -126,6 +136,18 @@ public class LogInFXMLController implements Initializable {
     @FXML
     private void LinkedInLogIn(ActionEvent event) {
          System.out.println("li");
+    }
+
+    @FXML
+    private void SignUpAction(ActionEvent event) throws IOException {
+        
+        Parent root=FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionFXML.fxml"));
+        Scene s=new Scene(root);
+        Stage stage=new Stage();
+        ((Node)event.getSource()).getScene().getWindow().hide();
+        stage.setScene(s);
+        stage.show() ;
+       
     }
 
 }

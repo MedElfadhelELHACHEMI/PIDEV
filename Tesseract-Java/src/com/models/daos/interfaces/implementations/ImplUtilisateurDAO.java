@@ -129,6 +129,12 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
         ResultSet resultat = ps.executeQuery();
         resultat.next();
         correctPassword = resultat.getString(4);
+        
+//        try {
+//          //  System.out.println(CryptographieMOOC.getCryptage().decrypt(correctPassword));
+//        } catch (Exception ex) {
+//            Logger.getLogger(ImplUtilisateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         CryptographieMOOC cmooc = CryptographieMOOC.getCryptage();
         typedPassword=user.getMotDePass();
         try {       
