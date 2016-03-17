@@ -1,0 +1,270 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 15, 2016, 3:32:46 PM
+    Author     : Choukou_Tracker
+*/
+
+.tt{
+    -fx-background-color: #ed9a23;
+}
+.bb{
+    -fx-background-color: blue;
+}
+.rr{
+    -fx-background-color: red;
+}
+.gg{
+    -fx-background-color:green;
+}
+.root{
+    -fx-border-width: 1 2 2 2; 
+    -fx-border-color: #222c37;
+}
+.h_menu{
+    /*-fx-background-color: linear-gradient(#1b4658,#2f657c);*/
+    -fx-background-color:#25c4cc;
+
+}
+.h_racourci{
+    -fx-background-image: url("/com/images/h_racourci_bg.png");
+}
+.btn_home{
+    -fx-background-image: url("/com/images/home.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_home:hover{
+    -fx-background-image: url("/com/images/home_hover.png");
+}
+.btn_notif{
+    -fx-background-image: url("/com/images/btn_notif.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_notif:hover{
+    -fx-background-image: url("/com/images/btn_notif_hover.png");
+}
+.btn_mail{
+    -fx-background-image: url("/com/images/btn_mail.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_mail:hover{
+    -fx-background-image: url("/com/images/btn_mail_hover.png");
+}
+.tool_menu{
+    -fx-background-color:transparent;
+    -fx-padding: 0 0 0 20 ; 
+    /*-fx-border-width: 0 0 0 200; 
+    -fx-border-color: #11a8ab;*/
+}
+.trsp{
+    -fx-background-color:transparent;
+}
+.tool_btn{
+    -fx-font-size:7px;
+
+}
+.v_menu{
+    -fx-background-color:#222c37;
+    /*-fx-border-width: 200 0 0 0; 
+    -fx-border-color: #11a8ab;*/
+}
+.plt_menu{
+    -fx-background-color:transparent;
+    /*-fx-border-width: 0 0 3 0; 
+    -fx-border-color: #11a8ab;*/
+    
+}
+.btn_close{
+    -fx-background-image: url("/com/images/close_btn.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_close:hover{
+    -fx-background-image: url("/com/images/close_btn_hover.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_reduce{
+    -fx-background-image: url("/com/images/reduce_btn.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_reduce:hover{
+    -fx-background-image: url("/com/images/reduce_btn_hover.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_maxsize{
+    -fx-background-image: url("/com/images/max_btn.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.btn_maxsize:hover{
+    -fx-background-image: url("/com/images/max_btn_hover.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+}
+.photo_profile{
+    -fx-pref-width:125;
+    -fx-pref-height:125;
+    -fx-background-radius: 50%;
+    -fx-background-insets: 0;    
+    -fx-background-color: white;
+    -fx-padding:5;
+}
+.photo_profile:hover{   
+    /*-fx-background-color: #00faff;*/
+}
+.photo_profile_bg{
+    /*-fx-background-color: #F1C40F;*/
+    -fx-padding:0 0 0 37.5;
+}
+.user_name{
+    -fx-text-fill:white;
+    /*-fx-background-color: #11a8ab;*/
+    -fx-font-size:20px;
+    
+}
+.user_grade{
+    -fx-text-fill:#25c4cc;
+    /*-fx-background-color: #11a8ab;*/
+    -fx-font-size:15px;
+    -fx-pref-width:200;
+    -fx-padding:0 0 0 10;
+}
+/*.photo_profile_image{
+    -fx-pref-width:105;
+    -fx-pref-height:105;
+    /*-fx-background-radius: 50%;*/
+    /*-fx-background-color: white;
+    -fx-border-color:white;
+    -fx-border-width: 5 5 5 5; 
+}*/
+    .btn_vmenu{
+    -fx-background-image: url("/com/images/btn_vmenu2.png");
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+    }
+    .btn_vmenu:hover{
+        -fx-rotate: -5;
+    }
+    
+    /*titled-pane base css*/
+.titled-pane 
+{  
+-fx-text-fill: white;
+-fx-font-size:17px;
+}
+.titled-pane:focused 
+{
+-fx-text-fill: #25c4cc;
+}
+.titled-pane:hover 
+{
+-fx-text-fill: #25c4cc;
+}
+.titled-pane > .title 
+{
+-fx-background-color: transparent;
+-fx-background-insets: 0, 1, 2;
+-fx-background-radius: 0;
+-fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
+
+}
+
+.titled-pane:focused > .title 
+{
+-fx-color: #25c4cc;
+}
+
+.titled-pane > .title > .arrow-button 
+{
+-fx-background-color: null;
+-fx-color: #25c4cc;
+-fx-background-insets: 0;
+-fx-background-radius: 0;
+-fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
+-fx-border-width: 0 0 0 0; 
+
+}
+
+.titled-pane > .title > .arrow-button .arrow 
+{
+-fx-background-color: white;
+-fx-background-insets: 1 0 -1 0, 0;
+-fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+-fx-shape: "M 0 0 h 7 l -3.5 4 z";
+
+}
+
+.titled-pane:collapsed > .title > .arrow-button .arrow 
+{
+-fx-rotate: -90;
+}
+
+.titled-pane > *.content 
+{
+-fx-background-color:#25c4cc;
+-fx-background-insets: 0, 0 1 1 1;
+-fx-padding: 0.167em;
+-fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+-fx-content-display: right; -fx-alignment: center-right;
+ }
+
+.titled-pane:focused > .title > .arrow-button .arrow 
+{
+-fx-background-color: white;
+}
+
+.photo{
+    
+}
+.user_menu_button {
+    -fx-background-color:transparent;
+    -fx-border:0;
+    -fx-color: black;
+    -fx-text-fill: red;
+    -fx-font-size:20;
+}
+.user_menu_item{
+    -fx-border:0;
+    -fx-color: black;
+    -fx-text-fill: red;
+    -fx-font-size:20;
+}
+.user_menu_item:hover{
+    -fx-background-color:red;
+    -fx-text-fill: red;
+    -fx-font-size:20;
+}
+/* menu button 
+.menu-button {
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-color:red;
+}
+.menu-button .label {
+    -fx-padding: 3px 18px 3px 10px;
+    -fx-text-fill: -fx-text-base-color;
+}
+.menu-button .arrow-button {
+    -fx-padding: 3px 6px 3px 0px;
+}
+.menu-button:focused{
+    -fx-background-insets: -1.4, 0, 1, 2;
+}*/
+.v_menu_btn{
+    -fx-background-color:transparent;
+    -fx-border-width: 0 0 0 0; 
+    -fx-text-fill: #222c37;
+    -fx-font-size:17px;
+}
+.v_menu_btn:hover{
+    -fx-text-fill: #fff600;
+}
