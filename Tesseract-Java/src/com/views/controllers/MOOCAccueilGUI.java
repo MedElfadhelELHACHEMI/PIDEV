@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -21,6 +22,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,7 +31,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MOOCAccueilGUI extends Stage {
-
+private AnchorPane paneMain = new AnchorPane();
     private double xOffset = 0;
     private double yOffset = 0;
     private double stage_width = 0;
@@ -195,7 +197,7 @@ public class MOOCAccueilGUI extends Stage {
         root.setOnMousePressed((MouseEvent event) -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
-            System.out.println("" + v_menu.getWidth());
+            System.out.println("--- v menu" + v_menu.getWidth()+"   "+v_menu.getHeight() +"  |||||   "+h_menu.getWidth()+"      height= "+h_menu.getHeight());
         });
         root.setOnMouseDragged((MouseEvent event) -> {
             setX(event.getScreenX() - xOffset);
@@ -271,7 +273,10 @@ public class MOOCAccueilGUI extends Stage {
         user.getItems().add(deco);
         user.getStyleClass().add("user_menu_button");
         //user.setText("username");
-
+            paneMain.setPrefHeight(700);
+            paneMain.setPrefWidth(1346);
+            b_menu.getChildren().addAll(paneMain);
+           
         //add nods
         h_menu.getChildren().addAll(plt_menu, tool_menu);
         v_menu.getChildren().addAll(btn_vmenu);
@@ -288,6 +293,7 @@ public class MOOCAccueilGUI extends Stage {
         container.setTop(h_menu);
         root.setLeft(v_menu);
         root.setCenter(container);
+        container.setCenter(b_menu);
         btn_home.setOnAction((ActionEvent event) -> {
             try {
                 Stage stage = new Stage();
@@ -355,9 +361,18 @@ public class MOOCAccueilGUI extends Stage {
         statistics = new Button("Statistics", null);
         myAccount = new Button("My Account", null);
         myRank = new Button("My Rank", null);
-
+         
         validatedCourses = new Button("Validated courses", null);
+validatedCourses.setOnAction((event)->{
+    System.out.println("here");
+            try {
+                
+                setMain(loadNode("/com/fxml/DisplayValidateCoursesFXML.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
+});
         WaitingForValidation1 = new Button("Waiting for Validation1", null);
         WaitingForValidation2 = new Button("Waiting for Validation2", null);
         addCourse = new Button("Add course", null);
@@ -439,5 +454,15 @@ public class MOOCAccueilGUI extends Stage {
     private void init_ORG() {
 
     }
+private AnchorPane loadNode(String addresse) throws IOException {
+        AnchorPane anchorPane = (AnchorPane) FXMLLoader.load(getClass().getResource(addresse));
+      
 
+        return anchorPane;
+    }
+ public void setMain(Node node) {
+ 
+        paneMain.getChildren().setAll(node);
+
+    }
 }
