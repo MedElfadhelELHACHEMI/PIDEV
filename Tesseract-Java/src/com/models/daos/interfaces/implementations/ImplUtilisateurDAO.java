@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.models.daos.interfaces.implementations;
 
 import com.database.CryptographieMOOC;
@@ -66,12 +61,59 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
             resultat.next();
 
             switch (resultat.getString(12)) {
-                case "APR":
-                    return new Apprenant(resultat.getInt(13), Etat.valueOf(resultat.getString(15)), resultat.getInt(1), resultat.getString(3), resultat.getString(4), resultat.getString(5), resultat.getString(6), resultat.getDate(7), resultat.getInt(8), resultat.getString(9), resultat.getString(10), resultat.getString(11));
-                case "frm":
-                    return new Formateur(resultat.getString(14), Etat.valueOf(resultat.getString(15)), resultat.getInt(0), resultat.getString(3), resultat.getString(4), resultat.getString(5), resultat.getString(6), resultat.getDate(7), resultat.getInt(8), resultat.getString(9), resultat.getString(10), resultat.getString(11));
-                case "adm":
-                    return new Administrateur();
+                case "APR": {
+                    Apprenant apprenant = new Apprenant();
+                    apprenant.setIdUtilisateur(resultat.getInt(1));
+                    apprenant.setNomUtilisateur(resultat.getString(3));
+                    apprenant.setMotDePass(resultat.getString(4));
+                    apprenant.setNom(resultat.getString(5));
+                    apprenant.setPrenom(resultat.getString(6));
+                    apprenant.setDateNaissance(resultat.getDate(7));
+                    apprenant.setTel(resultat.getInt(8));
+                    apprenant.setAdresse(resultat.getString(9));
+                    apprenant.setMail(resultat.getString(10));
+                    apprenant.setPhoto(resultat.getString(11));
+                    apprenant.setRole(Role.valueOf(resultat.getString(12)));
+                    apprenant.setScore(resultat.getInt(13));
+                    return apprenant;
+                }
+                case "FOR": {
+                    Formateur formateur = new Formateur();
+
+                    formateur.setIdUtilisateur(resultat.getInt(1));
+                    formateur.setIdOrganisationn(resultat.getInt(2));
+                    formateur.setNomUtilisateur(resultat.getString(3));
+                    formateur.setMotDePass(resultat.getString(4));
+                    formateur.setNom(resultat.getString(5));
+                    formateur.setPrenom(resultat.getString(6));
+                    formateur.setDateNaissance(resultat.getDate(7));
+                    formateur.setTel(resultat.getInt(8));
+                    formateur.setAdresse(resultat.getString(9));
+                    formateur.setMail(resultat.getString(10));
+                    formateur.setPhoto(resultat.getString(11));
+                    formateur.setRole(Role.valueOf(resultat.getString(12)));
+                    formateur.setScore(resultat.getInt(13));
+
+                    return formateur;
+
+                }
+                case "ADM":
+                    Administrateur administrateur = new Administrateur();
+
+                    administrateur.setIdUtilisateur(resultat.getInt(1));
+
+                    administrateur.setNomUtilisateur(resultat.getString(3));
+                    administrateur.setMotDePass(resultat.getString(4));
+                    administrateur.setNom(resultat.getString(5));
+                    administrateur.setPrenom(resultat.getString(6));
+                    administrateur.setDateNaissance(resultat.getDate(7));
+                    administrateur.setTel(resultat.getInt(8));
+                    administrateur.setAdresse(resultat.getString(9));
+                    administrateur.setMail(resultat.getString(10));
+                    administrateur.setPhoto(resultat.getString(11));
+                    administrateur.setRole(Role.valueOf(resultat.getString(12)));
+
+                    return administrateur;
                 default:
                     return new Utilisateur();
             }
@@ -94,21 +136,91 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
 
             switch (resultat.getString(12)) {
                 case "APR":
-                    Apprenant a = new Apprenant();
-                    a.setIdUtilisateur(resultat.getInt(1));
-                    return a;
+                   Apprenant apprenant = new Apprenant();
+                    apprenant.setIdUtilisateur(resultat.getInt(1));
+                    apprenant.setNomUtilisateur(resultat.getString(3));
+                    apprenant.setMotDePass(resultat.getString(4));
+                    apprenant.setNom(resultat.getString(5));
+                    apprenant.setPrenom(resultat.getString(6));
+                    apprenant.setDateNaissance(resultat.getDate(7));
+                    apprenant.setTel(resultat.getInt(8));
+                    apprenant.setAdresse(resultat.getString(9));
+                    apprenant.setMail(resultat.getString(10));
+                    apprenant.setPhoto(resultat.getString(11));
+                    apprenant.setRole(Role.valueOf(resultat.getString(12)));
+                    apprenant.setScore(resultat.getInt(13));
+                    return apprenant;
+                    
+                  
                 case "FOR":
-                    Formateur f = new Formateur();
-                    f.setIdUtilisateur(resultat.getInt(1));
-                    return f;
+                {Formateur formateur = new Formateur();
+
+                    formateur.setIdUtilisateur(resultat.getInt(1));
+                    formateur.setIdOrganisationn(resultat.getInt(2));
+                    formateur.setNomUtilisateur(resultat.getString(3));
+                    formateur.setMotDePass(resultat.getString(4));
+                    formateur.setNom(resultat.getString(5));
+                    formateur.setPrenom(resultat.getString(6));
+                    formateur.setDateNaissance(resultat.getDate(7));
+                    formateur.setTel(resultat.getInt(8));
+                    formateur.setAdresse(resultat.getString(9));
+                    formateur.setMail(resultat.getString(10));
+                    formateur.setPhoto(resultat.getString(11));
+                    formateur.setRole(Role.valueOf(resultat.getString(12)));
+                    formateur.setScore(resultat.getInt(13));
+
+                    return formateur;}
                 case "ADM":
-                    Administrateur d = new Administrateur();
-                    d.setIdUtilisateur(resultat.getInt(1));
-                    return d;
+                {  Administrateur administrateur = new Administrateur();
+
+                    administrateur.setIdUtilisateur(resultat.getInt(1));
+
+                    administrateur.setNomUtilisateur(resultat.getString(3));
+                    administrateur.setMotDePass(resultat.getString(4));
+                    administrateur.setNom(resultat.getString(5));
+                    administrateur.setPrenom(resultat.getString(6));
+                    administrateur.setDateNaissance(resultat.getDate(7));
+                    administrateur.setTel(resultat.getInt(8));
+                    administrateur.setAdresse(resultat.getString(9));
+                    administrateur.setMail(resultat.getString(10));
+                    administrateur.setPhoto(resultat.getString(11));
+                    administrateur.setRole(Role.valueOf(resultat.getString(12)));
+
+                    return administrateur;}
                 case "MCP":
-                    MembreCP m = new MembreCP();
-                    m.setIdUtilisateur(resultat.getInt(1));
-                    return m;
+                { MembreCP mcp = new MembreCP();
+                      mcp.setIdUtilisateur(resultat.getInt(1));
+
+                    mcp.setNomUtilisateur(resultat.getString(3));
+                    mcp.setMotDePass(resultat.getString(4));
+                    mcp.setNom(resultat.getString(5));
+                    mcp.setPrenom(resultat.getString(6));
+                    mcp.setDateNaissance(resultat.getDate(7));
+                    mcp.setTel(resultat.getInt(8));
+                    mcp.setAdresse(resultat.getString(9));
+                    mcp.setMail(resultat.getString(10));
+                    mcp.setPhoto(resultat.getString(11));
+                    mcp.setRole(Role.valueOf(resultat.getString(12)));}
+                case "ORG":{
+                 {Formateur formateur = new Formateur();
+
+                    formateur.setIdUtilisateur(resultat.getInt(1));
+                    formateur.setIdOrganisationn(resultat.getInt(2));
+                    formateur.setNomUtilisateur(resultat.getString(3));
+                    formateur.setMotDePass(resultat.getString(4));
+                    formateur.setNom(resultat.getString(5));
+                    formateur.setPrenom(resultat.getString(6));
+                    formateur.setDateNaissance(resultat.getDate(7));
+                    formateur.setTel(resultat.getInt(8));
+                    formateur.setAdresse(resultat.getString(9));
+                    formateur.setMail(resultat.getString(10));
+                    formateur.setPhoto(resultat.getString(11));
+                    formateur.setRole(Role.valueOf(resultat.getString(12)));
+                    formateur.setScore(resultat.getInt(13));
+
+                    return formateur;}
+                
+                }
 
             }
         } catch (SQLException ex) {
@@ -121,7 +233,7 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
 
     @Override
     public boolean verifyPassword(Utilisateur user) throws SQLException {
-        String typedPassword , correctPassword,aux=new String();
+        String typedPassword, correctPassword, aux = new String();
         String query = "select * from utilisateur where id=?";
 
         PreparedStatement ps = connection.prepareStatement(query);
@@ -129,24 +241,23 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
         ResultSet resultat = ps.executeQuery();
         resultat.next();
         correctPassword = resultat.getString(4);
-        
+
 //        try {
 //          //  System.out.println(CryptographieMOOC.getCryptage().decrypt(correctPassword));
 //        } catch (Exception ex) {
 //            Logger.getLogger(ImplUtilisateurDAO.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         CryptographieMOOC cmooc = CryptographieMOOC.getCryptage();
-        typedPassword=user.getMotDePass();
-        try {       
-           
-            aux=cmooc.encrypt(typedPassword);
+        typedPassword = user.getMotDePass();
+        try {
+
+            aux = cmooc.encrypt(typedPassword);
         } catch (Exception ex) {
             Logger.getLogger(ImplUtilisateurDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-        boolean v=correctPassword.equals(aux);
-       
-          
+
+        boolean v = correctPassword.equals(aux);
+
         ps.close();
         return v;
 

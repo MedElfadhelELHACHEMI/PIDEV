@@ -21,12 +21,12 @@ public class LoggingFacade {
         properties.put("log4j.rootLogger", "DEBUG, sql");
 
         properties.put("log4j.appender.sql", "org.apache.log4j.jdbc.JDBCAppender");
-        properties.put("log4j.appender.sql.URL", "jdbc:mysql://64.62.211.131:3306/bobrebel_tesseract");
+        properties.put("log4j.appender.sql.URL", "jdbc:mysql://localhost:3306/tesseract");
 
         properties.put("log4j.appender.sql.driver", "com.mysql.jdbc.Driver");
 
-        properties.put("log4j.appender.sql.user", "bobrebel");
-        properties.put("log4j.appender.sql.password", "tesseract123");
+        properties.put("log4j.appender.sql.user", "root");
+        properties.put("log4j.appender.sql.password", "");
 
         properties.put("log4j.appender.sql.sql", "INSERT INTO log (id_utilisateur,tache,date)VALUES (" + idUtilisateur + ",'%m', now())");
 

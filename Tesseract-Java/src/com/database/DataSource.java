@@ -29,9 +29,9 @@ public class DataSource {
         properties = new Properties();
         try {
             //properties.load(new FileInputStream(new File("config.properties")));64.62.211.131:3306/bobrebel_tesseract  ** bobrebel ** tesseract123
-            url ="jdbc:mysql://64.62.211.131:3306/bobrebel_tesseract"; //properties.getProperty("url");
-            login ="bobrebel"; //properties.getProperty("login");
-            password = "tesseract123";//properties.getProperty("password");
+            url ="jdbc:mysql://localhost:3306/tesseract"; //properties.getProperty("url");
+            login ="root"; //properties.getProperty("login");
+            password = "";//properties.getProperty("password");
             connection = DriverManager.getConnection(url,login,password);
 //        } catch (IOException ex) {
 //            Logger.getLogger(DataSource.class.getName()).log(Level.SEVERE, null, ex);

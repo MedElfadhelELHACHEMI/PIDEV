@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.models.daos.interfaces.IUtilisateurDAO;
 import com.models.daos.interfaces.implementations.ImplUtilisateurDAO;
+import com.models.entities.Apprenant;
 import com.models.entities.Utilisateur;
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +42,8 @@ import org.apache.log4j.Logger;
  * @author Noor
  */
 public class LogInFXMLController implements Initializable {
-  static  Logger log = Logger.getLogger(LogInFXMLController.class);
+
+    static Logger log = Logger.getLogger(LogInFXMLController.class);
     @FXML
     private AnchorPane Anchor;
     @FXML
@@ -56,7 +58,7 @@ public class LogInFXMLController implements Initializable {
     private JFXButton LogInButton;
     @FXML
     private ImageView facebookLogin;
-  
+
     @FXML
     private Button fbButton;
     @FXML
@@ -73,7 +75,7 @@ public class LogInFXMLController implements Initializable {
         mailTF.setStyle("-fx-text-inner-color: #d3e2e4; -fx-prompt-text-fill: #3f595d ;");
         pwdTF.setStyle("-fx-text-inner-color: #d3e2e4; -fx-prompt-text-fill: #3f595d ;");
         LogInButton.setStyle("   -fx-background-color: #0B686E; -fx-background-insets: 0,1,2; -fx-background-radius: 3,2,1;    -fx-padding: 3 30 3 30;  -fx-text-fill: white ;    -fx-font-size: 16px;");
-       
+
     }
 
     @FXML
@@ -85,7 +87,6 @@ public class LogInFXMLController implements Initializable {
             IUtilisateurDAO utilisateurDAO = new ImplUtilisateurDAO();
             Utilisateur user = utilisateurDAO.getUtilisateurByMail(mail);
             
-              System.out.println(user);
             if (user == null) {
                 mailTF.setText("Invalid Credentials");
             } else {
@@ -95,10 +96,17 @@ public class LogInFXMLController implements Initializable {
                     pwdTF.setText("wrong password");
                     System.out.println("wrong password");
                 } else {
-                    CurrentUser.id = user.getIdUtilisateur();
-                    CurrentUser.role = user.getRole();
-                    LoggingFacade.startLogger(CurrentUser.id);
+                    CurrentUser.setId(user.getIdUtilisateur());
+                    System.out.println(user.getNomUtilisateur());
+                    CurrentUser.setRole(user.getRole());
+                    CurrentUser.setUtilisateur(user);
+                    LoggingFacade.startLogger(CurrentUser.getId());
                     log.info("CONNECTED");
+                    Stage s = (Stage) LogInButton.getScene().getWindow();
+                    System.out.println("hhhhhhhhhhhh");
+
+                    s.close();
+                    MOOCAccueilGUI accueilGUI = new MOOCAccueilGUI();
                 }
             }
 
@@ -106,48 +114,43 @@ public class LogInFXMLController implements Initializable {
 
     }
 
-
     private boolean verifyFields(String mail, String pwd) {
         if (mail.equals("")) {
             mailTF.setText("enter mail first");
             return false;
         }
-        if(pwd.equals("")){
+        if (pwd.equals("")) {
             pwdTF.setText("enter password first");
             return false;
         }
         return true;
     }
 
-    
-
- 
-
     @FXML
     private void fbLogIn(ActionEvent event) {
-          System.out.println("fb");
+        System.out.println("fb");
     }
 
     @FXML
     private void googleLogIn(ActionEvent event) {
-         System.out.println("gg");
+        System.out.println("gg");
     }
 
     @FXML
     private void LinkedInLogIn(ActionEvent event) {
-         System.out.println("li");
+        System.out.println("li");
     }
 
     @FXML
     private void SignUpAction(ActionEvent event) throws IOException {
-        
-        Parent root=FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionFXML.fxml"));
-        Scene s=new Scene(root);
-        Stage stage=new Stage();
-        ((Node)event.getSource()).getScene().getWindow().hide();
+
+        Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionFXML.fxml"));
+        Scene s = new Scene(root);
+        Stage stage = new Stage();
+        ((Node) event.getSource()).getScene().getWindow().hide();
         stage.setScene(s);
-        stage.show() ;
-       
+        stage.show();
+
     }
 
 }

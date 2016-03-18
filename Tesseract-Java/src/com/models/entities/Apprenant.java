@@ -41,8 +41,11 @@ public class Apprenant extends Utilisateur {
 
     @Override
     public String toString() {
-        return "Apprenant{" + "score=" + score + ", etat=" + etat + '}';
+        
+        return "Apprenant{" + "score=" + score + ", etat=" + etat + '}'+super.toString();
     }
+
+  
 
    
 

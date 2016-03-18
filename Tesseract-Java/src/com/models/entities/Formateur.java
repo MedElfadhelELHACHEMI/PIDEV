@@ -8,8 +8,8 @@ import java.sql.Date;
 public class Formateur extends Utilisateur{
     private String cv ; 
     private Etat etat ;
-    
-
+    private int score ;
+private int idOrganisationn ;
     public Formateur() {
     }
 
@@ -39,6 +39,22 @@ public class Formateur extends Utilisateur{
         super(nomUtilisateur, motDePass, nom, prenom, dateNaissance, tel, adresse, mail, photo);
         this.cv = cv;
         this.etat = etat;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getIdOrganisationn() {
+        return idOrganisationn;
+    }
+
+    public void setIdOrganisationn(int idOrganisation) {
+        this.idOrganisationn = idOrganisation;
     }
     
     
