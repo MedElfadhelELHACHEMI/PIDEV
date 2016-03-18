@@ -151,7 +151,7 @@ public class MOOCAccueilGUI extends Stage {
 
     public MOOCAccueilGUI() {
         System.out.println("--------------" + CurrentUser.getRole());
-        Scene scene = new Scene(root, 1500, 800);
+        Scene scene = new Scene(root, 1550, 850);
         scene.getStylesheets().add("/com/styles/Gui_style.css");
         initStyle(StageStyle.UNDECORATED);
         setScene(scene);
@@ -288,23 +288,17 @@ public class MOOCAccueilGUI extends Stage {
         container.setTop(h_menu);
         root.setLeft(v_menu);
         root.setCenter(container);
-        btn_home.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    Stage stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
-                    
-                    Scene scene = new Scene(root);
-                    
-                    stage.setScene(scene);
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    stage.show();
-                    hide();
-                } catch (IOException ex) {
-                    Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        btn_home.setOnAction((ActionEvent event) -> {
+            try {
+                Stage stage = new Stage();
+                Parent root1 = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
+                Scene scene1 = new Scene(root1);
+                stage.setScene(scene1);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.show();
+                hide();
+            }catch (IOException ex) {
+                Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
