@@ -5,3 +5,56 @@
 .mainFxmlClass {
 
 }
+.panee{
+    
+    background-color: white;
+}
+#header{
+    -fx-background-color: white;
+        -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: #222c37;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+#paneCritere {
+    
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-top-style: solid;
+    -fx-border-color: #222c37;
+    -fx-background-radius: 5px;
+ -fx-border-radius: 5px;
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    
+}
+
+.label {
+    
+    -fx-font-family: Letter Gothic Std;
+    -fx-font-size: 18px;
+    
+}
+.text-field{
+   -fx-background-radius: 0px; 
+    -fx-effect: dropshadow( three-pass-box , white,0, 0.0 , 0 , 0 );
+     -fx-effect: innershadow( three-pass-box , white,0, 0.0 , 0 , 0 );
+    
+}
+.text-field text{
+    -fx-font-family: Letter Gothic Std;
+    -fx-font-size: 18px;
+    
+}
+#searchCourse{
+     -fx-background-radius: 0px; 
+    -fx-background-color: #25c4cc ;
+}
+#searchCourse:hover{
+     -fx-background-radius: 0px; 
+    -fx-background-color: aquamarine;
+}
+.text-field:focused {
+      -fx-background-color:
+        black,
+        #FFFFFF;
+}

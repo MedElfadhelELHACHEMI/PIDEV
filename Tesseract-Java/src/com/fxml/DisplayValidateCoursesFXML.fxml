@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -8,11 +11,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1346.0" style="-fx-background-color: red;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.DisplayValidateCoursesFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="710.0" prefWidth="1346.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.DisplayValidateCoursesFXMLController">
     <stylesheets>
         <URL value="@/com/styles/displayvalidatecoursesfxml.css" />
     </stylesheets>
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+      <Pane fx:id="paneCritere" layoutX="56.0" layoutY="211.0" prefHeight="437.0" prefWidth="224.0">
+         <children>
+            <Label layoutX="65.0" layoutY="16.0" prefHeight="17.0" prefWidth="96.0" text="Language" />
+            <JFXCheckBox fx:id="langEng" layoutX="61.0" layoutY="52.0" onAction="#clickEng" text="English" />
+            <JFXCheckBox fx:id="langFr" layoutX="61.0" layoutY="83.0" onAction="#clickFren" text="French" />
+            <JFXCheckBox fx:id="langArb" layoutX="61.0" layoutY="112.0" onAction="#clickArabic" text="Arabic" />
+            <Label layoutX="70.0" layoutY="159.0" text="Level" />
+            <JFXCheckBox fx:id="lvlBeg" layoutX="61.0" layoutY="192.0" onAction="#clickBeginner" text="Beginner" />
+            <JFXCheckBox fx:id="lvlMed" layoutX="61.0" layoutY="223.0" onAction="#clickMeduim" text="Meduim" />
+            <JFXCheckBox fx:id="lvlHard" layoutX="61.0" layoutY="253.0" onAction="#clickHard" text="Hard" />
+            <Label layoutX="69.0" layoutY="295.0" text="Upload date" />
+            <JFXCheckBox fx:id="uplMonth" layoutX="61.0" layoutY="334.0" onAction="#clickMonth" prefHeight="17.0" prefWidth="140.0" text="This month" />
+            <JFXCheckBox fx:id="uplYear" layoutX="61.0" layoutY="365.0" onAction="#clickYear" text="Last year" />
+         </children></Pane>
+      <Pane fx:id="header" prefHeight="160.0" prefWidth="1346.0">
+         <children>
+            <TextField fx:id="searchField" layoutX="565.0" layoutY="57.0" prefHeight="42.0" prefWidth="246.0" promptText="Search of courses" />
+            <Button fx:id="searchCourse" layoutX="810.0" layoutY="57.0" mnemonicParsing="false" onAction="#searchCourse" prefHeight="41.0" prefWidth="52.0" />
+         </children></Pane>
+      <ScrollPane layoutX="328.0" layoutY="160.0" prefHeight="550.0" prefWidth="1018.0">
+        <content>
+          <AnchorPane fx:id="body" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="1015.0" />
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
