@@ -1,0 +1,33 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+#bodyAcc{
+
+    -fx-background-color: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+
+#btsignout:hover{
+    -fx-background-color: #222c37;
+    -fx-font-color: white;
+    
+}
+#labelNom{
+
+
+    -fx-font-family: Impact;
+  
+    -fx-font-size: 18px;
+}
+.labelText{
+
+
+    -fx-font-family: Impact;
+  
+    -fx-font-size: 15px;
+}

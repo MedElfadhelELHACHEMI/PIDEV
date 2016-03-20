@@ -103,7 +103,7 @@ public class LogInFXMLController implements Initializable {
                     LoggingFacade.startLogger(CurrentUser.getId());
                     log.info("CONNECTED");
                     Stage s = (Stage) LogInButton.getScene().getWindow();
-                    System.out.println("hhhhhhhhhhhh");
+                    
 
                     s.close();
                     MOOCAccueilGUI accueilGUI = new MOOCAccueilGUI();

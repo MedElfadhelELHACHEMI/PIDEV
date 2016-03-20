@@ -23,7 +23,9 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -94,19 +96,24 @@ public class DisplayValidateCoursesFXMLController implements Initializable {
         searchCourse.setGraphic(searchIcon);
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2));
         fadeTransition.setFromValue(0);
-            fadeTransition.setToValue(0.9);
-            fadeTransition.setNode(searchField);
-            fadeTransition.setCycleCount(1);
-             FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(2));
+        fadeTransition.setToValue(0.9);
+        fadeTransition.setNode(searchField);
+        fadeTransition.setCycleCount(1);
+        FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(2));
         fadeTransition2.setFromValue(0);
-            fadeTransition2.setToValue(0.9);
-            fadeTransition2.setNode(searchCourse);
-            fadeTransition2.setCycleCount(1);
-            fadeTransition2.play();
-            
-        IServiceFormateurs isf = new IServiceFormateursImpl();
+        fadeTransition2.setToValue(0.9);
+        fadeTransition2.setNode(searchCourse);
+        fadeTransition2.setCycleCount(1);
+        fadeTransition2.play();
 
-        generateContainersCourses(isf.getCoursesACCCoach(CurrentUser.getId()));
+        IServiceFormateurs isf = new IServiceFormateursImpl();
+        try {
+            generateContainersCourses(isf.getCoursesACCCoach(CurrentUser.getId()));
+        } catch (NullPointerException e) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING, "No courses", ButtonType.OK);
+            alert.show();
+        }
 
     }
 
@@ -129,12 +136,18 @@ public class DisplayValidateCoursesFXMLController implements Initializable {
             transition.setToY(0);
             transition.setNode(cc);
             transition.setCycleCount(1);
-            
+
             body.getChildren().add(cc);
-                transition.play();
+            transition.play();
         }
 
-        cc.getStylesheets().add("/com/styles/containercours.css");
+        try {
+            cc.getStylesheets().add("/com/styles/containercours.css");
+        } catch (NullPointerException e) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING, "No courses", ButtonType.OK);
+            alert.show();
+        }
     }
 
     @FXML

@@ -44,7 +44,7 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
             pSt.execute();
             return true;
         } catch (SQLException ex) {
-          
+
             return false;
         }
     }
@@ -99,17 +99,46 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
     @Override
     public Organisation getOrganisationByid(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String query = "select * from Organisation where id =?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet resultat = statement.executeQuery();
+            while (resultat.next()) {
+                Organisation og = new Organisation();
+                og.setIdOrganisation(resultat.getInt(1));
+                og.setNom(resultat.getString(2));
+                og.setAdresse(resultat.getString(3));
+                og.setMatricule(resultat.getString(4));
+                og.setPhoto(resultat.getString(5));
+
+                return og;
+            }
+           
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return new Organisation();
+        }
+        return new Organisation();
     }
 
-    @Override
-    public Organisation getOrganisationByNom(String nom) {
+        @Override
+        public Organisation getOrganisationByNom
+        (String nom
+        
+            ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        }
 
-    @Override
-    public Object getOrganisationByMatriculeNom(String oxia) {
+        @Override
+        public Object getOrganisationByMatriculeNom
+        (String oxia
+        
+            ) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        }
 
-}
+    }

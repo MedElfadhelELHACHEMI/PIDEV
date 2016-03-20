@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +33,7 @@ public class ImplFormateurDAO implements IFormateurDAO {
 
         String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,role,cv,etat) values (?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
-     
+
         ps.setString(1, formateur.getNomUtilisateur());
         ps.setString(2, formateur.getMotDePass());
         ps.setString(3, formateur.getNom());
@@ -150,8 +152,84 @@ public class ImplFormateurDAO implements IFormateurDAO {
     }
 
     @Override
-    public Object getFormateurById(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Formateur getFormateurById(int i) {
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            String requete = "select * from utilisateur where id = ?";
+            PreparedStatement ps = connection.prepareCall(requete);
+            ps.setInt(1, i);
+            ResultSet rs = ps.executeQuery();
+            Formateur formateur = new Formateur();
+            while (rs.next()) {
+
+                formateur.setIdUtilisateur(rs.getInt(1));
+                formateur.setNomUtilisateur(rs.getString(3));
+                formateur.setMotDePass(rs.getString(4));
+                formateur.setNom(rs.getString(5));
+                formateur.setPrenom(rs.getString(6));
+                formateur.setDateNaissance(rs.getDate(7));
+                formateur.setTel(rs.getInt(8));
+                formateur.setAdresse(rs.getString(9));
+                formateur.setMail(rs.getString(10));
+                formateur.setPhoto(rs.getString(11));
+                formateur.setCv(rs.getString(14));
+                formateur.setRole(Role.valueOf(rs.getString(12)));
+
+            }
+            ps.close();
+            return formateur;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Formateur();
+    }
+
+    @Override
+    public boolean modifierProfil(String nom, String prenom, String mail, String adresse, int tel, int id) {
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+
+            String requete = "update utilisateur set nom=?,prenom=?,telephone=?,adresse=?,mail=? where id = ?";
+            Formateur newFormateur = new Formateur();
+            PreparedStatement ps = connection.prepareStatement(requete);
+
+            ps.setString(1, nom);
+            ps.setString(2, prenom);
+            ps.setInt(3, tel);
+            ps.setString(4, adresse);
+            ps.setString(5, mail);
+            ps.setInt(6, id);
+            int resultat = ps.executeUpdate();
+            ps.close();
+            return resultat == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean modifierProfilWithPwd(String nom, String prenom, String mail, String adresse, int tel, String motDePass, int id) {
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+
+            String requete = "update utilisateur set mdp=?,nom=?,prenom=?,telephone=?,adresse=?,mail=? where id = ?";
+            Formateur newFormateur = new Formateur();
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setString(1, motDePass);
+            ps.setString(2, nom);
+            ps.setString(3, prenom);
+            ps.setInt(4, tel);
+            ps.setString(5, adresse);
+            ps.setString(6, mail);
+            ps.setInt(7, id);
+            int resultat = ps.executeUpdate();
+            ps.close();
+            return resultat == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
 }

@@ -22,6 +22,10 @@ public interface IFormateurDAO {
 
     public boolean affecterOrganismeFormateur(int i, int i0);
 
-    public Object getFormateurById(int i);
+    public Formateur getFormateurById(int i);
+
+    public boolean modifierProfil(String nom, String prenom, String mail, String adresse, int tel,int id);
+
+    public boolean modifierProfilWithPwd(String nom, String prenom, String mail, String adresse, int tel, String motDePass, int id);
     
 }

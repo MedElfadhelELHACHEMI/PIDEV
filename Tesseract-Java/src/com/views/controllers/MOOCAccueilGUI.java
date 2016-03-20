@@ -31,7 +31,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class MOOCAccueilGUI extends Stage {
-private AnchorPane paneMain = new AnchorPane();
+
+    private AnchorPane paneMain = new AnchorPane();
     private double xOffset = 0;
     private double yOffset = 0;
     private double stage_width = 0;
@@ -197,7 +198,7 @@ private AnchorPane paneMain = new AnchorPane();
         root.setOnMousePressed((MouseEvent event) -> {
             xOffset = event.getSceneX();
             yOffset = event.getSceneY();
-            System.out.println("--- v menu" + v_menu.getWidth()+"   "+v_menu.getHeight() +"  |||||   "+h_menu.getWidth()+"      height= "+h_menu.getHeight());
+            System.out.println("--- v menu" + v_menu.getWidth() + "   " + v_menu.getHeight() + "  |||||   " + h_menu.getWidth() + "      height= " + h_menu.getHeight());
         });
         root.setOnMouseDragged((MouseEvent event) -> {
             setX(event.getScreenX() - xOffset);
@@ -215,8 +216,8 @@ private AnchorPane paneMain = new AnchorPane();
         btn_vmenu.setOnAction((ActionEvent e) -> {
             System.out.println("clicked  !" + v_menu.getWidth());
         });
-        System.out.println(v_menu.getPrefWidth()+"     "+v_menu.getPrefHeight());
-        System.out.println(h_menu.getPrefWidth()+"     "+h_menu.getPrefHeight());
+        System.out.println(v_menu.getPrefWidth() + "     " + v_menu.getPrefHeight());
+        System.out.println(h_menu.getPrefWidth() + "     " + h_menu.getPrefHeight());
     }
 
     public void init_stage() {
@@ -275,10 +276,10 @@ private AnchorPane paneMain = new AnchorPane();
         user.getItems().add(deco);
         user.getStyleClass().add("user_menu_button");
         //user.setText("username");
-            paneMain.setPrefHeight(700);
-            paneMain.setPrefWidth(1346);
-            b_menu.getChildren().addAll(paneMain);
-           
+        paneMain.setPrefHeight(700);
+        paneMain.setPrefWidth(1346);
+        b_menu.getChildren().addAll(paneMain);
+
         //add nods
         h_menu.getChildren().addAll(plt_menu, tool_menu);
         v_menu.getChildren().addAll(btn_vmenu);
@@ -305,7 +306,7 @@ private AnchorPane paneMain = new AnchorPane();
                 stage.initStyle(StageStyle.TRANSPARENT);
                 stage.show();
                 hide();
-            }catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
@@ -362,19 +363,30 @@ private AnchorPane paneMain = new AnchorPane();
     public void init_formateur() {
         statistics = new Button("Dashboard", null);
         myAccount = new Button("My Account", null);
-        
-         
+
         validatedCourses = new Button("Validated courses", null);
-validatedCourses.setOnAction((event)->{
-    System.out.println("here");
+        validatedCourses.setOnAction((event) -> {
+            System.out.println("here");
             try {
-                
+
                 setMain(loadNode("/com/fxml/DisplayValidateCoursesFXML.fxml"));
             } catch (IOException ex) {
                 Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-});
+        });
+        myAccount.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+
+                    setMain(loadNode("/com/fxml/MyAccountCoachFXML.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         WaitingForValidation1 = new Button("Waiting for Validation1", null);
         WaitingForValidation2 = new Button("Waiting for Validation2", null);
         addCourse = new Button("Add course", null);
@@ -402,7 +414,7 @@ validatedCourses.setOnAction((event)->{
          */
         statistics.getStyleClass().add("v_menu_btn");
         myAccount.getStyleClass().add("v_menu_btn");
-       
+
         validatedCourses.getStyleClass().add("v_menu_btn");
         WaitingForValidation1.getStyleClass().add("v_menu_btn");
         WaitingForValidation2.getStyleClass().add("v_menu_btn");
@@ -456,14 +468,15 @@ validatedCourses.setOnAction((event)->{
     private void init_ORG() {
 
     }
-private AnchorPane loadNode(String addresse) throws IOException {
+
+    private AnchorPane loadNode(String addresse) throws IOException {
         AnchorPane anchorPane = (AnchorPane) FXMLLoader.load(getClass().getResource(addresse));
-      
 
         return anchorPane;
     }
- public void setMain(Node node) {
- 
+
+    public void setMain(Node node) {
+
         paneMain.getChildren().setAll(node);
 
     }
