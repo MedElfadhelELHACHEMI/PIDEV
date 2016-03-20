@@ -111,14 +111,14 @@ public class DisplayValidateCoursesFXMLController implements Initializable {
     }
 
     private void generateContainersCourses(List<Cours> lst) {
-        X = 66;
+        X = 100;
         Y = 53;
         body.getChildren().clear();
         for (Cours cours : lst) {
             if (Y + 252 > body.getPrefHeight()) {
                 body.setPrefHeight(Y + 260);
             }
-            if (X >= 732) {
+            if (X >= 502) {
                 X = 66;
                 Y = Y + 281;
             }

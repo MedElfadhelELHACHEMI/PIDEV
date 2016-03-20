@@ -153,7 +153,7 @@ private AnchorPane paneMain = new AnchorPane();
 
     public MOOCAccueilGUI() {
         System.out.println("--------------" + CurrentUser.getRole());
-        Scene scene = new Scene(root, 1550, 850);
+        Scene scene = new Scene(root, 1300, 700);
         scene.getStylesheets().add("/com/styles/Gui_style.css");
         initStyle(StageStyle.UNDECORATED);
         setScene(scene);
@@ -215,6 +215,8 @@ private AnchorPane paneMain = new AnchorPane();
         btn_vmenu.setOnAction((ActionEvent e) -> {
             System.out.println("clicked  !" + v_menu.getWidth());
         });
+        System.out.println(v_menu.getPrefWidth()+"     "+v_menu.getPrefHeight());
+        System.out.println(h_menu.getPrefWidth()+"     "+h_menu.getPrefHeight());
     }
 
     public void init_stage() {
@@ -358,9 +360,9 @@ private AnchorPane paneMain = new AnchorPane();
     }
 
     public void init_formateur() {
-        statistics = new Button("Statistics", null);
+        statistics = new Button("Dashboard", null);
         myAccount = new Button("My Account", null);
-        myRank = new Button("My Rank", null);
+        
          
         validatedCourses = new Button("Validated courses", null);
 validatedCourses.setOnAction((event)->{
@@ -400,7 +402,7 @@ validatedCourses.setOnAction((event)->{
          */
         statistics.getStyleClass().add("v_menu_btn");
         myAccount.getStyleClass().add("v_menu_btn");
-        myRank.getStyleClass().add("v_menu_btn");
+       
         validatedCourses.getStyleClass().add("v_menu_btn");
         WaitingForValidation1.getStyleClass().add("v_menu_btn");
         WaitingForValidation2.getStyleClass().add("v_menu_btn");
@@ -412,7 +414,7 @@ validatedCourses.setOnAction((event)->{
         /**
          * *******************
          */
-        myProfile.getChildren().addAll(statistics, myAccount, myRank);
+        myProfile.getChildren().addAll(statistics, myAccount);
         myCourses.getChildren().addAll(validatedCourses);
         submitedCourses.getChildren().addAll(WaitingForValidation1, WaitingForValidation2, addCourse);
         careersManagment.getChildren().addAll(invitations, Organisations, chat);
