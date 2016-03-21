@@ -127,7 +127,7 @@ public class ImplLogDAO implements ILogDAO{
                 log.setIdLog(resultat.getInt(1));
                 log.setIdUtilisateur(resultat.getInt(2));
                 log.setTache(resultat.getString(3));
-                log.setDateTache(resultat.getDate(4));
+                log.setDateTache((Date)resultat.getDate(4));
                 listeLog.add(log);
             }
             return listeLog;

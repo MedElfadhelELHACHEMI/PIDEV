@@ -7,9 +7,13 @@ package com.controllers;
 
 import com.models.entities.Cours;
 import com.models.entities.Formateur;
+import com.models.entities.Log;
 import com.models.entities.Organisation;
+import com.models.entities.ScoreUtilisateur;
+import com.models.entities.SessionCours;
 import com.models.entities.Utilisateur;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -25,4 +29,16 @@ public interface IServiceFormateurs {
     public Utilisateur getUtilisateurById(int id);
 
     public boolean updateFormateurInformationsWithPass(Formateur formateur);
+
+    public List<SessionCours> getListCoursConsulted(int id);
+
+    public List<Log> getLoginUtilisateur(int id);
+
+    public int afficherNombreFormateurs();
+
+    public int getRankFormateur(int id);
+
+    public Map<String, Long> getValuesByMonthViews();
+
+    public List<ScoreUtilisateur> getTop5Utilisateur();
 }

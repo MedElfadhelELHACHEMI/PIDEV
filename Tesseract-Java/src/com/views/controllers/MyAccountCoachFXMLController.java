@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import com.models.entities.Formateur;
 import com.models.entities.Organisation;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,7 +20,10 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -37,6 +41,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -85,6 +91,7 @@ public class MyAccountCoachFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         System.out.println(" ----------------  "+CurrentUser.getUtilisateur().getNom());
         IServiceFormateurs isf = new IServiceFormateursImpl();
         Organisation o = isf.getOrganisationCoach(CurrentUser.getUtilisateur());
@@ -181,6 +188,17 @@ public class MyAccountCoachFXMLController implements Initializable {
 
     @FXML
     private void onClickSignout(ActionEvent event) {
+        try {
+                Stage stage = new Stage();
+                Parent root1 = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
+                Scene scene1 = new Scene(root1);
+                stage.setScene(scene1);
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.show();
+                sumit.getScene().getWindow().hide();
+            } catch (IOException ex) {
+                Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     @FXML

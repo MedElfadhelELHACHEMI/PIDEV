@@ -28,5 +28,7 @@ public interface ICoursDAO {
 
     public List getCoursValid2EnAttente();
 
+    public List<Cours> listCoursCosulterParCoach(int id);
+
     
 }

@@ -97,7 +97,7 @@ public class ImplFormateurDAO implements IFormateurDAO {
 
         List<Formateur> list = new ArrayList<>();
         Connection connection = DataSource.getInstance().getConnection();
-        String requete = "select * from utilisateur";
+        String requete = "select * from utilisateur where role = 'FOR'";
         Statement ps = connection.createStatement();
 
         ResultSet rs = ps.executeQuery(requete);
@@ -114,8 +114,9 @@ public class ImplFormateurDAO implements IFormateurDAO {
             formateur.setAdresse(rs.getString(9));
             formateur.setMail(rs.getString(10));
             formateur.setPhoto(rs.getString(11));
+            formateur.setRole(Role.FOR);
             formateur.setCv(rs.getString(14));
-            formateur.setEtat(Etat.valueOf(rs.getString(15)));
+         
             list.add(formateur);
         }
         ps.close();
@@ -230,6 +231,28 @@ public class ImplFormateurDAO implements IFormateurDAO {
             Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    @Override
+    public List<Formateur> afficherTopFormateur() throws SQLException {
+     
+        List<Formateur> list = new ArrayList<>();
+        Connection connection = DataSource.getInstance().getConnection();
+        String requete = "SELECT c.id,(select count(*) from cours s where s.id_utilisateur = c.id) as nbr from utilisateur c where c.role ='FOR' order by nbr desc ";
+        Statement ps = connection.createStatement();
+
+        ResultSet rs = ps.executeQuery(requete);
+       
+        while (rs.next()) {
+ Formateur formateur = new Formateur();
+            formateur.setIdUtilisateur(rs.getInt(1));
+         
+            formateur.setTel(rs.getInt(2));
+         
+            list.add(formateur);
+        }
+        ps.close();
+        return list;
     }
 
 }

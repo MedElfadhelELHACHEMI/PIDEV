@@ -5,16 +5,17 @@
  */
 package com.models.entities;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
  * @author haikal
  */
 public class SessionCours {
-    
+    private int idSessionCours ;
     private int id_utilisateur;
     private int id_cours;
+    private int nbreChapitre ;
     private Date date_session;
 
     public SessionCours() {
@@ -26,6 +27,23 @@ public class SessionCours {
         this.date_session = date_session;
     }
 
+    public int getNbreChapitre() {
+        return nbreChapitre;
+    }
+
+    public void setNbreChapitre(int nbreChapitre) {
+        this.nbreChapitre = nbreChapitre;
+    }
+
+    public int getIdSessionCours() {
+        return idSessionCours;
+    }
+
+    public void setIdSessionCours(int idSessionCours) {
+        this.idSessionCours = idSessionCours;
+    }
+
+    
     public int getId_utilisateur() {
         return id_utilisateur;
     }

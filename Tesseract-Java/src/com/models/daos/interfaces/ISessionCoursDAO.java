@@ -1,7 +1,8 @@
 package com.models.daos.interfaces;
 
+import com.models.entities.Cours;
 import com.models.entities.SessionCours;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -14,4 +15,6 @@ public interface ISessionCoursDAO {
     public List<SessionCours> getSessionCoursbyCoursid(int idCours);
     
     public List<SessionCours> getSessionCoursbyDate(Date date);
+
+    public List<SessionCours> listSessionCosulterParCoach(int id);
 }

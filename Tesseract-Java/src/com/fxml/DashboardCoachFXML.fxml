@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="1074.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.DashboardCoachFXMLController">
+    <stylesheets>
+        <URL value="@/com/styles/dashboardcoachfxml.css" />
+    </stylesheets>
+   <children>
+      <Pane fx:id="p1" layoutX="26.0" layoutY="24.0" prefHeight="164.0" prefWidth="241.0">
+         <children>
+            <ImageView fitHeight="108.0" fitWidth="86.0" layoutX="141.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/users-dash.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="22.0" layoutY="20.0" prefHeight="16.0" prefWidth="86.0" text="Views This week">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="105.0" prefHeight="16.0" prefWidth="86.0" text="Views last Week">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="viewThisWeek" layoutX="22.0" layoutY="45.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="viewsLastWeek" layoutX="22.0" layoutY="133.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="p2" layoutX="417.0" layoutY="24.0" prefHeight="164.0" prefWidth="241.0">
+         <children>
+            <Label layoutX="22.0" layoutY="20.0" prefHeight="16.0" prefWidth="86.0" text="Login this Week">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="105.0" prefHeight="16.0" prefWidth="86.0" text="Login last Week">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="80.0" fitWidth="79.0" layoutX="139.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/lock.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="135.0" layoutY="105.0" prefHeight="16.0" prefWidth="86.0" text="Total Login">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="logThidWeek" layoutX="22.0" layoutY="45.0" prefHeight="21.0" prefWidth="59.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="legLastWeek" layoutX="22.0" layoutY="133.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalLog" layoutX="139.0" layoutY="133.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="p3" layoutX="811.0" layoutY="24.0" prefHeight="164.0" prefWidth="241.0">
+         <children>
+            <ImageView fitHeight="86.0" fitWidth="86.0" layoutX="168.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/rank.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="22.0" layoutY="20.0" prefHeight="16.0" prefWidth="86.0" text="Total Coachs">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="105.0" prefHeight="16.0" prefWidth="86.0" text="your rank">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="totRank" layoutX="21.0" layoutY="45.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="myRank" layoutX="22.0" layoutY="133.0" prefHeight="21.0" prefWidth="65.0" text="Label">
+               <font>
+                  <Font name="Lucida Bright Regular" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="p4" layoutX="26.0" layoutY="224.0" prefHeight="330.0" prefWidth="522.0">
+         <children>
+            <BarChart fx:id="barChart" prefHeight="330.0" prefWidth="522.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </Pane>
+      <Pane fx:id="p5" layoutX="678.0" layoutY="224.0" prefHeight="330.0" prefWidth="368.0">
+         <children>
+            <LineChart fx:id="LineChart" prefHeight="330.0" prefWidth="368.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

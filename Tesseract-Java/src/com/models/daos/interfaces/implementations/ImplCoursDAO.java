@@ -203,5 +203,44 @@ public class ImplCoursDAO implements ICoursDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Cours> listCoursCosulterParCoach(int id) {
+        try {
+            List<Cours> listeCours = new ArrayList<>();
+            String requete = "select * from cours where id_utilisateur=?";
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            
+            while (resultat.next()) {
+                Cours  cours = new Cours();
+                cours.setIdCours(resultat.getInt(1));
+                cours.setIdMatiere(resultat.getInt(2));
+                cours.setIdFormateur(resultat.getInt(3));
+                cours.setNomCours(resultat.getString(4));
+                cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+                cours.setDescriptionCours(resultat.getString(6));
+                cours.setBadge(resultat.getString(7));
+                cours.setAffiche(resultat.getString(8));
+                cours.setVideo(resultat.getString(9));
+                cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+                cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+                cours.setLanguage(resultat.getString(12));
+                cours.setUploadDate(resultat.getDate(13).toLocalDate());
+                
+                listeCours.add(cours);
+                
+            }
+            if (Objects.nonNull(listeCours)) {
+                return listeCours;
+            }
+            
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplCoursDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     throw new UnsupportedOperationException();
+    }
+
 
 }

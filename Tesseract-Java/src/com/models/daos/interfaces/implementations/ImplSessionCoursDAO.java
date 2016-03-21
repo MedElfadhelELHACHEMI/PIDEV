@@ -7,13 +7,14 @@ package com.models.daos.interfaces.implementations;
 
 import com.models.daos.interfaces.ISessionCoursDAO;
 import com.database.DataSource;
+import com.models.entities.Cours;
 import com.models.entities.SessionCours;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -107,6 +108,33 @@ public class ImplSessionCoursDAO implements ISessionCoursDAO{
                 sessioncours.setId_utilisateur(resultat.getInt(1));
                 sessioncours.setId_cours(resultat.getInt(2));
                 sessioncours.setDate_session(resultat.getDate(3));
+                listeSessionCours.add(sessioncours);
+            }
+            return listeSessionCours;
+
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la recherche du log " + ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<SessionCours> listSessionCosulterParCoach(int id) {
+     
+     ArrayList<SessionCours> listeSessionCours = new ArrayList<SessionCours>();
+        String query = "SELECT * from session_cours where id_cour in (select id from cours where id_utilisateur = ?)";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                SessionCours sessioncours= new SessionCours();
+                sessioncours.setIdSessionCours(resultat.getInt(1));
+                sessioncours.setId_utilisateur(resultat.getInt(2));
+                sessioncours.setId_cours(resultat.getInt(3));
+                sessioncours.setNbreChapitre(resultat.getInt(4));
+                sessioncours.setDate_session(resultat.getDate(5));
                 listeSessionCours.add(sessioncours);
             }
             return listeSessionCours;
