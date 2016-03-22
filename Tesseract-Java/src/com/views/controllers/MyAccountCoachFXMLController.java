@@ -92,13 +92,14 @@ public class MyAccountCoachFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        System.out.println(" ----------------  "+CurrentUser.getUtilisateur().getNom());
+    
         IServiceFormateurs isf = new IServiceFormateursImpl();
         Organisation o = isf.getOrganisationCoach(CurrentUser.getUtilisateur());
         if (o.getNom() == null) {
             nomOrganisation.setText("You Don't belong to any organisation for the moment");
         } else {
             nomOrganisation.setText(o.getNom() + " is your organisation ");
+            System.out.println(o.getPhoto());
             organisationPict.setImage(new Image(new File(o.getPhoto()).toURI().toString()));
         }
         labelNom.setText("Welcome " + CurrentUser.getUtilisateur().getPrenom() + " " + CurrentUser.getUtilisateur().getNom());
@@ -120,12 +121,12 @@ public class MyAccountCoachFXMLController implements Initializable {
         //   chngePwd
         fillTextField();
         if (chngePwd.isArmed()) {
-            System.out.println("Armed");
+         
             pwdl1.setVisible(false);
             pwdl2.setVisible(false);
             pwd1.setVisible(false);
             pwd2.setVisible(false);
-            System.out.println("dis");
+          
         }
         chngePwd.setOnAction((ActionEvent event) -> {
             if (chngePwd.isSelected()) {

@@ -116,7 +116,7 @@ public class ImplFormateurDAO implements IFormateurDAO {
             formateur.setPhoto(rs.getString(11));
             formateur.setRole(Role.FOR);
             formateur.setCv(rs.getString(14));
-         
+
             list.add(formateur);
         }
         ps.close();
@@ -160,10 +160,11 @@ public class ImplFormateurDAO implements IFormateurDAO {
             PreparedStatement ps = connection.prepareCall(requete);
             ps.setInt(1, i);
             ResultSet rs = ps.executeQuery();
-            Formateur formateur = new Formateur();
+            Formateur formateur = null;
             while (rs.next()) {
-
+                formateur = new Formateur();
                 formateur.setIdUtilisateur(rs.getInt(1));
+                formateur.setIdOrganisationn(rs.getInt(2));
                 formateur.setNomUtilisateur(rs.getString(3));
                 formateur.setMotDePass(rs.getString(4));
                 formateur.setNom(rs.getString(5));
@@ -235,20 +236,20 @@ public class ImplFormateurDAO implements IFormateurDAO {
 
     @Override
     public List<Formateur> afficherTopFormateur() throws SQLException {
-     
+
         List<Formateur> list = new ArrayList<>();
         Connection connection = DataSource.getInstance().getConnection();
         String requete = "SELECT c.id,(select count(*) from cours s where s.id_utilisateur = c.id) as nbr from utilisateur c where c.role ='FOR' order by nbr desc ";
         Statement ps = connection.createStatement();
 
         ResultSet rs = ps.executeQuery(requete);
-       
+
         while (rs.next()) {
- Formateur formateur = new Formateur();
+            Formateur formateur = new Formateur();
             formateur.setIdUtilisateur(rs.getInt(1));
-         
+
             formateur.setTel(rs.getInt(2));
-         
+
             list.add(formateur);
         }
         ps.close();

@@ -26,6 +26,8 @@ public interface IOrganisationDAO {
     public Organisation getOrganisationByNom(String nom);
 
     public Object getOrganisationByMatriculeNom(String oxia);
+
+    public int getCountCoachOrganis(int idOrganisation);
  
     
     

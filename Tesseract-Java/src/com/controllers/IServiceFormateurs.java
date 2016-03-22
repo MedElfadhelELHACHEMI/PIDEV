@@ -41,4 +41,8 @@ public interface IServiceFormateurs {
     public Map<String, Long> getValuesByMonthViews();
 
     public List<ScoreUtilisateur> getTop5Utilisateur();
+
+    public List<Organisation> displayOrganisationWithoutUser(int id);
+
+    public int getNbFormateurOrganisme(Organisation org);
 }

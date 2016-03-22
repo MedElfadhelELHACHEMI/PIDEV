@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,7 +58,7 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, idOrg);
             ps.executeUpdate();
-            System.out.println("organisation supprimé");
+         
             return true;
         } catch (SQLException ex) {
             System.out.println("erreur lors de la suppression " + ex.getMessage());
@@ -84,8 +86,9 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
                 og.setIdOrganisation(resultat.getInt(1));
                 og.setNom(resultat.getString(2));
                 og.setAdresse(resultat.getString(3));
-                og.setMatricule(resultat.getString(4));
-                og.setPhoto(resultat.getString(5));
+                og.seteMail(resultat.getString(4));
+                og.setMatricule(resultat.getString(5));
+                og.setPhoto(resultat.getString(6));
 
                 liste.add(og);
             }
@@ -99,8 +102,8 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
     @Override
     public Organisation getOrganisationByid(int id) {
-
-        String query = "select * from Organisation where id =?";
+      
+        String query = "select * from organisation where id =?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -113,10 +116,10 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
                 og.setAdresse(resultat.getString(3));
                 og.setMatricule(resultat.getString(4));
                 og.setPhoto(resultat.getString(5));
-
+             
                 return og;
             }
-           
+
         } catch (SQLException ex) {
             //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
@@ -125,20 +128,34 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
         return new Organisation();
     }
 
-        @Override
-        public Organisation getOrganisationByNom
-        (String nom
-        
-            ) {
+    @Override
+    public Organisation getOrganisationByNom(String nom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public Object getOrganisationByMatriculeNom
-        (String oxia
-        
-            ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
     }
+
+    @Override
+    public Object getOrganisationByMatriculeNom(String oxia
+    ) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getCountCoachOrganis(int idOrganisation) {
+
+        try {
+            String query = "select count(*) from utilisateur where id_organisation = ?";
+            
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, idOrganisation);
+            ResultSet resultat = statement.executeQuery();
+            while (resultat.next()) {                
+                return resultat.getInt(1);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplOrganisationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return 0 ;
+    }
+
+}

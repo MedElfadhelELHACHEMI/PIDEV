@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="1093.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.CoachBrowseOrganisationsFXMLController">
+    <stylesheets>
+        <URL value="@/com/styles/coachbrowseorganisationsfxml.css" />
+    </stylesheets>
+   <children>
+      <ScrollPane layoutX="260.0" layoutY="-1.0" prefHeight="562.0" prefWidth="834.0">
+        <content>
+          <AnchorPane fx:id="body" minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="829.0" />
+        </content>
+      </ScrollPane>
+      <TextField fx:id="textField" layoutX="26.0" layoutY="205.0" prefHeight="38.0" prefWidth="226.0" promptText="Search for organisation" />
+      <Button layoutX="26.0" layoutY="255.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="31.0" prefWidth="226.0" style="-fx-background-color: #25c4cc;" text="Search" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

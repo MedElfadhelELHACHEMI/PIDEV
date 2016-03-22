@@ -107,17 +107,14 @@ public class DashboardCoachFXMLController implements Initializable {
         LocalDate start = now.with(DayOfWeek.MONDAY);
         LocalDate end = now.with(DayOfWeek.SUNDAY);
         LocalDate start0 = start.minusDays(7);
-        System.out.println("[  " + start.toString() + " , " + end.toString() + "  ]");
-        System.out.println("[  " + start.minusDays(7) + " , " + start.toString() + "  ]");
+       
         int i = 0;
         int j = 0;
         Interval interval = new Interval(new DateMidnight(start.getYear(), start.getMonth().getValue(), start.getDayOfMonth()), new DateMidnight(end.getYear(), end.getMonth().getValue(), end.getDayOfMonth()));
         Interval interval2 = new Interval(new DateMidnight(start0.getYear(), start0.getMonth().getValue(), start0.getDayOfMonth()), new DateMidnight(start.getYear(), start.getMonth().getValue(), start.getDayOfMonth()));
 
         for (SessionCours se : listCoursStat) {
-            // System.out.println( LocalDate.now().getDayOfWeek().compareTo(se.getDate_session().toLocalDate().getDayOfWeek()));
-            System.out.println(se.getDate_session().toLocalDate().toString());
-            if (!interval.contains(new DateTime(se.getDate_session().toLocalDate().getYear(), se.getDate_session().toLocalDate().getMonthValue(), se.getDate_session().toLocalDate().getDayOfMonth(), 0, 0, 0))) {
+           if (!interval.contains(new DateTime(se.getDate_session().toLocalDate().getYear(), se.getDate_session().toLocalDate().getMonthValue(), se.getDate_session().toLocalDate().getDayOfMonth(), 0, 0, 0))) {
                 i++;
 
             } else if (!interval2.contains(new DateTime(se.getDate_session().toLocalDate().getYear(), se.getDate_session().toLocalDate().getMonthValue(), se.getDate_session().toLocalDate().getDayOfMonth(), 0, 0, 0))) {
@@ -202,9 +199,9 @@ public class DashboardCoachFXMLController implements Initializable {
         final NumberAxis yAxis = new NumberAxis();
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("Total");
-        System.out.println("------------"+map.size()+"");
+       
         for (ScoreUtilisateur scc : map) {
-            System.out.println(scc);
+     
             series1.getData().add(new XYChart.Data(scc.getNom(),scc.getNumbreOfSubs()));
         }
         LineChart.getData().add(series1);

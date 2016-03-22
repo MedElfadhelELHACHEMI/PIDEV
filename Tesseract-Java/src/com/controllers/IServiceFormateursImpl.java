@@ -30,6 +30,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -54,7 +55,10 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
     @Override
     public Organisation getOrganisationCoach(Utilisateur utilisateur) {
         IOrganisationDAO dAO = DAOFactory.getOrganisationDAO();
-        return dAO.getOrganisationByid(utilisateur.getIdUtilisateur());
+       IFormateurDAO dAO1 = DAOFactory.getFormateurDAO();
+       Formateur formateur = dAO1.getFormateurById(utilisateur.getIdUtilisateur());
+     
+        return dAO.getOrganisationByid(formateur.getIdOrganisationn());
     }
 
     @Override
@@ -108,14 +112,14 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
         List<Formateur> fs = null;
         try {
             fs = formateurDAO.afficherTopFormateur();
-            System.out.println(fs);
+         
         } catch (SQLException ex) {
             Logger.getLogger(IServiceFormateursImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         int i = 0;
         for (Formateur f : fs) {
             i++;
-            System.out.println("-------formateur----" + f.getIdUtilisateur());
+           
             if (f.getIdUtilisateur() == id) {
                 return i;
             }
@@ -128,39 +132,62 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
         ISessionCoursDAO coursDAO = DAOFactory.getSessionCoursDAO();
         List<SessionCours> sc = coursDAO.listSessionCosulterParCoach(CurrentUser.getId());
         Map<String, Long> map = new HashMap<>();
-      
-        
-       map.put(Month.JANUARY.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.JANUARY.toString())).count());
-    map.put(Month.FEBRUARY.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.FEBRUARY.toString())).count());
-    map.put(Month.MARCH.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.MARCH.toString())).count());
-    map.put(Month.APRIL.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.APRIL.toString())).count());
-    map.put(Month.MAY.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.MAY.toString())).count());
-    map.put(Month.JUNE.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.JUNE.toString())).count());
-    map.put(Month.JULY.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.JULY.toString())).count());
-    map.put(Month.AUGUST.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.AUGUST.toString())).count());
-    map.put(Month.SEPTEMBER.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.SEPTEMBER.toString())).count());
-    map.put(Month.OCTOBER.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.OCTOBER.toString())).count());
-    map.put(Month.NOVEMBER.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.NOVEMBER.toString())).count());
-    map.put(Month.DECEMBER.toString(), sc.stream().filter(scours->scours.getDate_session().toLocalDate().getYear()==LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.DECEMBER.toString())).count());
-        System.out.println(map);
-               return map;
-               }
+
+        map.put(Month.JANUARY.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.JANUARY.toString())).count());
+        map.put(Month.FEBRUARY.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.FEBRUARY.toString())).count());
+        map.put(Month.MARCH.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.MARCH.toString())).count());
+        map.put(Month.APRIL.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.APRIL.toString())).count());
+        map.put(Month.MAY.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.MAY.toString())).count());
+        map.put(Month.JUNE.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.JUNE.toString())).count());
+        map.put(Month.JULY.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.JULY.toString())).count());
+        map.put(Month.AUGUST.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.AUGUST.toString())).count());
+        map.put(Month.SEPTEMBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.SEPTEMBER.toString())).count());
+        map.put(Month.OCTOBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.OCTOBER.toString())).count());
+        map.put(Month.NOVEMBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.NOVEMBER.toString())).count());
+        map.put(Month.DECEMBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.DECEMBER.toString())).count());
+       
+        return map;
+    }
 
     @Override
     public List<ScoreUtilisateur> getTop5Utilisateur() {
-          IApprenantDAO apprenantDAO = DAOFactory.getApprenantDAO();
-            List<ScoreUtilisateur> sc = null ;
+        IApprenantDAO apprenantDAO = DAOFactory.getApprenantDAO();
+        List<ScoreUtilisateur> sc = null;
         try {
-           sc = apprenantDAO.getTopUtilisateur(CurrentUser.getId());
+            sc = apprenantDAO.getTopUtilisateur(CurrentUser.getId());
         } catch (SQLException ex) {
             Logger.getLogger(IServiceFormateursImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         Map<String, Long> map = new HashMap<>();
-    sc.sort(Comparator.comparing(x->x.getNumbreOfSubs()));
-     
-        
-        
-      return sc ;
+        sc.sort(Comparator.comparing(x -> x.getNumbreOfSubs()));
+
+        return sc;
+    }
+
+    @Override
+    public List<Organisation> displayOrganisationWithoutUser(int id) {
+        IOrganisationDAO dAO = DAOFactory.getOrganisationDAO();
+        List<Organisation> lst = dAO.displayOrganisation();
+        IFormateurDAO formateurDAO = DAOFactory.getFormateurDAO();
+        Formateur formateur = formateurDAO.getFormateurById(CurrentUser.getId());
+        if (Objects.isNull(formateur) || formateur.getIdOrganisationn() == 0) {
+            return lst;
+        }
+        for (Organisation organisation : lst) {
+            if (organisation.getIdOrganisation() == formateur.getIdOrganisationn()) {
+                lst.remove(organisation);
+
+            }
+        }
+        return lst;
+    }
+
+    @Override
+    public int getNbFormateurOrganisme(Organisation org) {
+        IOrganisationDAO dAO = DAOFactory.getOrganisationDAO();
+        int count = dAO.getCountCoachOrganis(org.getIdOrganisation());
+      
+        return count;
     }
 
 }
