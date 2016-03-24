@@ -22,6 +22,10 @@ public interface IInvitationDAO {
 
     public List<Invitation> getInvitationEnAttenteById(int id);
 
+    public void modifierInvitation(Invitation invitation);
+
+    public boolean modifierInvitationRefuser(Invitation invitation);
+
     
            
 

@@ -235,4 +235,20 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
         
     }
 
+    @Override
+    public boolean accteperInvitation(Invitation invitation) {
+     IInvitationDAO dao = DAOFactory.getInvitationDAO();
+     dao.modifierInvitation(invitation);
+     IFormateurDAO dAO = DAOFactory.getFormateurDAO();
+    if(dAO.affecterOrganismeFormateur(CurrentUser.getId(), invitation.getIdOrganisation())){
+     return true;}
+    return false ;
+    }
+
+    @Override
+    public boolean refuserInvitation(Invitation invitation) {
+         IInvitationDAO dao = DAOFactory.getInvitationDAO();
+         return dao.modifierInvitationRefuser(invitation);
+    }
+
 }

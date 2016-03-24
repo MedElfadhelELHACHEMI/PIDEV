@@ -149,11 +149,23 @@ public class ImplFormateurDAO implements IFormateurDAO {
 
     @Override
     public boolean affecterOrganismeFormateur(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            String req = "update utilisateur set id_organisation =" + i0 + " where id =" + i + "";
+            PreparedStatement preparedStatement = connection.prepareStatement(req);
+            int res = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            return res == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplInvitationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
-    @Override
-    public Formateur getFormateurById(int i) {
+
+@Override
+        public Formateur getFormateurById(int i) {
         try {
             Connection connection = DataSource.getInstance().getConnection();
             String requete = "select * from utilisateur where id = ?";
@@ -180,14 +192,18 @@ public class ImplFormateurDAO implements IFormateurDAO {
             }
             ps.close();
             return formateur;
-        } catch (SQLException ex) {
-            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class  
+
+.getName()).log(Level.SEVERE, null, ex);
         }
         return new Formateur();
     }
 
     @Override
-    public boolean modifierProfil(String nom, String prenom, String mail, String adresse, int tel, int id) {
+        public boolean modifierProfil(String nom, String prenom, String mail, String adresse, int tel, int id) {
         try {
             Connection connection = DataSource.getInstance().getConnection();
 
@@ -204,14 +220,18 @@ public class ImplFormateurDAO implements IFormateurDAO {
             int resultat = ps.executeUpdate();
             ps.close();
             return resultat == 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class  
+
+.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     @Override
-    public boolean modifierProfilWithPwd(String nom, String prenom, String mail, String adresse, int tel, String motDePass, int id) {
+        public boolean modifierProfilWithPwd(String nom, String prenom, String mail, String adresse, int tel, String motDePass, int id) {
         try {
             Connection connection = DataSource.getInstance().getConnection();
 
@@ -228,14 +248,18 @@ public class ImplFormateurDAO implements IFormateurDAO {
             int resultat = ps.executeUpdate();
             ps.close();
             return resultat == 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        
+
+} catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class  
+
+.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     @Override
-    public List<Formateur> afficherTopFormateur() throws SQLException {
+        public List<Formateur> afficherTopFormateur() throws SQLException {
 
         List<Formateur> list = new ArrayList<>();
         Connection connection = DataSource.getInstance().getConnection();

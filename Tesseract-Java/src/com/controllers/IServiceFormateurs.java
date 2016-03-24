@@ -54,4 +54,8 @@ public interface IServiceFormateurs {
     public List<Invitation> afficherInvitationEnAttente(int id);
 
     public Organisation getOragnisationById(int idOrganisation);
+
+    public boolean accteperInvitation(Invitation invitation);
+
+    public boolean refuserInvitation(Invitation invitation);
 }

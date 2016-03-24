@@ -170,4 +170,33 @@ public class ImplInvitationDAO implements IInvitationDAO {
 
     }
 
+    @Override
+    public void modifierInvitation(Invitation invitation) {
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            String req = "update invitations set etat = 'ACC' where id_organisme ="+invitation.getIdOrganisation()+" and id_utilisateur= "+invitation.getIdUtilisateur()+" and etat ='ATT' and sens ='R' ";
+            PreparedStatement preparedStatement = connection.prepareStatement(req);
+            int res = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplInvitationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public boolean modifierInvitationRefuser(Invitation invitation) {
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            String req = "update invitations set etat = 'REF' where id_organisme ="+invitation.getIdOrganisation()+" and id_utilisateur= "+invitation.getIdUtilisateur()+" and etat ='ATT' and sens ='R' ";
+            PreparedStatement preparedStatement = connection.prepareStatement(req);
+            int res = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            return res==1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplInvitationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false ;
+    }
+
 }
