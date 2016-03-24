@@ -7,6 +7,7 @@ package com.views.controllers;
 
 import com.controllers.IServiceFormateurs;
 import com.controllers.IServiceFormateursImpl;
+import com.controllers.VoicerService;
 import com.database.CryptographieMOOC;
 import com.jfoenix.controls.JFXToggleButton;
 import com.models.entities.Formateur;
@@ -91,8 +92,9 @@ public class MyAccountCoachFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    
+         VoicerService vs = new VoicerService();
+        vs.getVoicer("your account");
+     
         IServiceFormateurs isf = new IServiceFormateursImpl();
         Organisation o = isf.getOrganisationCoach(CurrentUser.getUtilisateur());
         if (o.getNom() == null) {

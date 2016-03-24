@@ -7,6 +7,7 @@ package com.views.controllers;
 
 import com.controllers.IServiceFormateurs;
 import com.controllers.IServiceFormateursImpl;
+import com.controllers.VoicerService;
 import com.models.entities.Cours;
 import com.models.entities.Formateur;
 import com.models.entities.Log;
@@ -92,6 +93,8 @@ public class DashboardCoachFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            VoicerService vs = new VoicerService();
+        vs.getVoicer("your dashboard");
         generateStatViews();
         generateStatLogin();
         generateStatRank();

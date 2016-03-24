@@ -7,10 +7,13 @@ package com.views.controllers;
 
 import com.controllers.IServiceFormateurs;
 import com.controllers.IServiceFormateursImpl;
+import com.controllers.VoicerService;
 import com.models.entities.Organisation;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +37,13 @@ public class CoachBrowseOrganisationsFXMLController implements Initializable {
     private TextField textField;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     displayOrganismes(CurrentUser.getId());
+        VoicerService vs = new VoicerService();System.out.println("--1");
+        
+           try{
+    displayOrganismes(CurrentUser.getId());
+      }catch(Exception e){
+                
+             }
     }    
 
     private void displayOrganismes(int id) {
@@ -42,10 +51,21 @@ public class CoachBrowseOrganisationsFXMLController implements Initializable {
         List<Organisation> lstOrg = formateurs.displayOrganisationWithoutUser(id);
         
       
-        
+       
+         int countF =0;
         for (Organisation org : lstOrg) {
-            int countF = formateurs.getNbFormateurOrganisme(org);
-            OrganisationContainerNI containerNI = new OrganisationContainerNI(org, countF, x, y);
+             System.out.println(org);
+          
+             countF = formateurs.getNbFormateurOrganisme(org);
+                        
+
+           
+          
+            OrganisationContainerNI containerNI=null;
+          
+                containerNI = new OrganisationContainerNI(org, countF, x, y);
+       
+             
             x=x+310 ;
             if(x>672){
             x=52;
@@ -71,7 +91,10 @@ public class CoachBrowseOrganisationsFXMLController implements Initializable {
         for (Organisation org : lstOrg) {
          if(org.getNom().trim().toLowerCase().contains(textField.getText())||org.getMatricule().trim().toLowerCase().contains(textField.getText())){
             int countF = formateurs.getNbFormateurOrganisme(org);
-            OrganisationContainerNI containerNI = new OrganisationContainerNI(org, countF, x, y);
+            OrganisationContainerNI containerNI=null;
+         
+                 containerNI = new OrganisationContainerNI(org, countF, x, y);
+           
             x=x+310 ;
             if(x>672){
             x=52;

@@ -7,6 +7,7 @@ package com.views.controllers;
 
 import com.controllers.IServiceFormateurs;
 import com.controllers.IServiceFormateursImpl;
+import com.controllers.VoicerService;
 import com.jfoenix.controls.JFXCheckBox;
 import com.models.entities.Cours;
 import com.models.enums.Difficulte;
@@ -90,7 +91,8 @@ public class DisplayValidateCoursesFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+     VoicerService vs = new VoicerService();
+        vs.getVoicer("your courses");
         searchIcon = new ImageView(new Image("/com/images/search-formateur.png"));
 
         searchCourse.setGraphic(searchIcon);

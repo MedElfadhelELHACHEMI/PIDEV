@@ -18,6 +18,10 @@ public interface IInvitationDAO {
 
     public List displayInvitationByUserIdEmetteur(int i);
 
+    public boolean verifExistInvitaion(int idOrganisation, int id);
+
+    public List<Invitation> getInvitationEnAttenteById(int id);
+
     
            
 

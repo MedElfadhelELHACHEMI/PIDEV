@@ -9,12 +9,14 @@ import com.models.daos.interfaces.DAOFactory;
 import com.models.daos.interfaces.IApprenantDAO;
 import com.models.daos.interfaces.ICoursDAO;
 import com.models.daos.interfaces.IFormateurDAO;
+import com.models.daos.interfaces.IInvitationDAO;
 import com.models.daos.interfaces.ILogDAO;
 import com.models.daos.interfaces.IOrganisationDAO;
 import com.models.daos.interfaces.ISessionCoursDAO;
 import com.models.entities.Apprenant;
 import com.models.entities.Cours;
 import com.models.entities.Formateur;
+import com.models.entities.Invitation;
 import com.models.entities.Log;
 import com.models.entities.Organisation;
 import com.models.entities.ScoreUtilisateur;
@@ -23,6 +25,7 @@ import com.models.entities.Utilisateur;
 import com.models.enums.Etat;
 import com.models.enums.Role;
 import com.views.controllers.CurrentUser;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
@@ -55,9 +58,9 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
     @Override
     public Organisation getOrganisationCoach(Utilisateur utilisateur) {
         IOrganisationDAO dAO = DAOFactory.getOrganisationDAO();
-       IFormateurDAO dAO1 = DAOFactory.getFormateurDAO();
-       Formateur formateur = dAO1.getFormateurById(utilisateur.getIdUtilisateur());
-     
+        IFormateurDAO dAO1 = DAOFactory.getFormateurDAO();
+        Formateur formateur = dAO1.getFormateurById(utilisateur.getIdUtilisateur());
+
         return dAO.getOrganisationByid(formateur.getIdOrganisationn());
     }
 
@@ -112,14 +115,14 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
         List<Formateur> fs = null;
         try {
             fs = formateurDAO.afficherTopFormateur();
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(IServiceFormateursImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         int i = 0;
         for (Formateur f : fs) {
             i++;
-           
+
             if (f.getIdUtilisateur() == id) {
                 return i;
             }
@@ -145,7 +148,7 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
         map.put(Month.OCTOBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.OCTOBER.toString())).count());
         map.put(Month.NOVEMBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.NOVEMBER.toString())).count());
         map.put(Month.DECEMBER.toString(), sc.stream().filter(scours -> scours.getDate_session().toLocalDate().getYear() == LocalDate.now().getYear() && scours.getDate_session().toLocalDate().getMonth().toString().equals(Month.DECEMBER.toString())).count());
-       
+
         return map;
     }
 
@@ -175,19 +178,61 @@ public class IServiceFormateursImpl implements IServiceFormateurs {
         }
         for (Organisation organisation : lst) {
             if (organisation.getIdOrganisation() == formateur.getIdOrganisationn()) {
-                lst.remove(organisation);
 
+                System.out.println(lst + "   1   ");
+                lst.remove(organisation);
+                System.out.println(lst + "   2  ");
+                return lst;
             }
         }
-        return lst;
+        return null;
+
     }
 
     @Override
     public int getNbFormateurOrganisme(Organisation org) {
         IOrganisationDAO dAO = DAOFactory.getOrganisationDAO();
         int count = dAO.getCountCoachOrganis(org.getIdOrganisation());
-      
+
         return count;
+    }
+
+    @Override
+    public void inviteOrganisme(int idOrganisation, int id) {
+        IInvitationDAO dao = DAOFactory.getInvitationDAO();
+        Invitation invitation = new Invitation();
+        invitation.setIdOrganisation(idOrganisation);
+        invitation.setIdUtilisateur(id);
+        invitation.setSens("E");
+        invitation.setEtat("ATT");
+        invitation.setDateInvitation(Date.valueOf(LocalDate.now()));
+        try {
+            dao.createInvitation(invitation);
+        } catch (SQLException ex) {
+            Logger.getLogger(IServiceFormateursImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public boolean verifOrganisationInvitation(int idOrganisation, int id) {
+        IInvitationDAO dao = DAOFactory.getInvitationDAO();
+        boolean resultat = dao.verifExistInvitaion(idOrganisation, id);
+        return resultat;
+    }
+
+    @Override
+    public List<Invitation> afficherInvitationEnAttente(int id) {
+        IInvitationDAO dao = DAOFactory.getInvitationDAO();
+      return  dao.getInvitationEnAttenteById(CurrentUser.getId());
+
+    }
+
+    @Override
+    public Organisation getOragnisationById(int idOrganisation) {
+       
+        IOrganisationDAO dao = DAOFactory.getOrganisationDAO();
+       return  dao.getOrganisationByid(idOrganisation);
+        
     }
 
 }

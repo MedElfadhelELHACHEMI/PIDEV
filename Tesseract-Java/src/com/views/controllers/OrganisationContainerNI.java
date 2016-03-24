@@ -1,17 +1,23 @@
 package com.views.controllers;
 
+import com.controllers.IServiceFormateurs;
+import com.controllers.IServiceFormateursImpl;
 import com.models.entities.Organisation;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +33,7 @@ public class OrganisationContainerNI extends Pane {
     private Button invite;
     private Label nomOrganisation;
     private Label nbCoachOrganisation;
+    
 
     public OrganisationContainerNI(Organisation organisation, int nbCoach, int x, int y) {
         super();
@@ -38,6 +45,7 @@ public class OrganisationContainerNI extends Pane {
         setStyle("  -fx-background-color: white;\n"
                 + "    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );\n"
                 + "");
+       
     }
 
     private void genererComponents(Organisation organisation, int nb) {
@@ -92,15 +100,29 @@ public class OrganisationContainerNI extends Pane {
                 + "    -fx-font-family: Impact;\n"
                 + "  \n"
                 + "    -fx-font-size: 15px;");
-
+ IServiceFormateurs isf = new IServiceFormateursImpl();
         invite.setPrefHeight(44);
         invite.setPrefWidth(200);
         invite.setLayoutX(0);
         invite.setLayoutY(226);
         invite.setStyle("-fx-background-color: #25c4cc");
         invite.setCursor(Cursor.HAND);
+        if(!isf.verifOrganisationInvitation(organisation.getIdOrganisation(),CurrentUser.getId())){
+        invite.setDisable(true);
+        }
         invite.setGraphic(new ImageView(new Image("/com/images/add_org.png")));
+ invite.setOnAction(new EventHandler<ActionEvent>() {
 
+            @Override
+            public void handle(ActionEvent event) {
+               
+                isf.inviteOrganisme(organisation.getIdOrganisation(),CurrentUser.getId());
+                
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Your invitation", ButtonType.OK);
+            alert.show();
+     
+            }
+        });
         getChildren().addAll(affiche, nomOrganisation, nbCoachOrganisation, invite);
     }
 

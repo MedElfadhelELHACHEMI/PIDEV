@@ -7,6 +7,7 @@ package com.controllers;
 
 import com.models.entities.Cours;
 import com.models.entities.Formateur;
+import com.models.entities.Invitation;
 import com.models.entities.Log;
 import com.models.entities.Organisation;
 import com.models.entities.ScoreUtilisateur;
@@ -45,4 +46,12 @@ public interface IServiceFormateurs {
     public List<Organisation> displayOrganisationWithoutUser(int id);
 
     public int getNbFormateurOrganisme(Organisation org);
+
+    public void inviteOrganisme(int idOrganisation, int id);
+
+    public boolean verifOrganisationInvitation(int idOrganisation, int id);
+
+    public List<Invitation> afficherInvitationEnAttente(int id);
+
+    public Organisation getOragnisationById(int idOrganisation);
 }

@@ -42,7 +42,6 @@ public class ConnectionTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Ignore
      @Test
     public void hello() {
          DataSource.getInstance().getConnection() ;

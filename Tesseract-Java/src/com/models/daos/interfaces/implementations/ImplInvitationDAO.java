@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ImplInvitationDAO implements IInvitationDAO {
 
@@ -19,10 +21,10 @@ public class ImplInvitationDAO implements IInvitationDAO {
     public boolean createInvitation(Invitation i) throws SQLException {
 
         Connection connection = DataSource.getInstance().getConnection();
-        String req = "insert into invitation ( id_utilisateur, id_organisation, sens,etat,date) values (?,?,?,?,?)";
+        String req = "insert into invitations ( id_organisme,id_utilisateur,  sens,etat,date) values (?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(req);
-        preparedStatement.setInt(1, i.getIdUtilisateur());
-        preparedStatement.setInt(2, i.getIdOrganisation());
+        preparedStatement.setInt(2, i.getIdUtilisateur());
+        preparedStatement.setInt(1, i.getIdOrganisation());
         preparedStatement.setString(3, i.getSens());
         preparedStatement.setString(4, i.getEtat());
         preparedStatement.setDate(5, i.getDateInvitation());
@@ -78,7 +80,7 @@ public class ImplInvitationDAO implements IInvitationDAO {
 
     @Override
     public List<Invitation> getAllInvitations() throws SQLException {
-         List<Invitation> listInvitations = new ArrayList<Invitation>();
+        List<Invitation> listInvitations = new ArrayList<Invitation>();
         Connection connection = DataSource.getInstance().getConnection();
         String req = "select * from invitation ";
 
@@ -95,15 +97,77 @@ public class ImplInvitationDAO implements IInvitationDAO {
             listInvitations.add(invitation);
         }
         return listInvitations;
-        
-        
-        
-        
-        }
+
+    }
 
     @Override
     public List displayInvitationByUserIdEmetteur(int i) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public boolean verifExistInvitaion(int idOrganisation, int id) {
+        try {
+            List<Invitation> listInvitations = new ArrayList<Invitation>();
+            Connection connection = DataSource.getInstance().getConnection();
+            String req = "SELECT * FROM invitations where id_utilisateur=" + id + " and id_organisme=" + idOrganisation + " and etat='ATT'  and sens = 'E'";
+
+            PreparedStatement st = connection.prepareStatement(req);
+//            st.setInt(1, idOrganisation);
+//          st.setInt(2, id);
+            ResultSet resultat = st.executeQuery(req);
+
+            while (resultat.next()) {
+                Invitation invitation = new Invitation();
+                invitation.setIdUtilisateur(resultat.getInt(3));
+                invitation.setIdOrganisation(resultat.getInt(2));
+                invitation.setSens(resultat.getString(4));
+                invitation.setEtat(resultat.getString(5));
+                invitation.setDateInvitation(resultat.getDate(6));
+                listInvitations.add(invitation);
+            }
+            System.out.println("list invi" + listInvitations);
+            if (listInvitations.isEmpty()) {
+
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplInvitationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
+
+    @Override
+    public List<Invitation> getInvitationEnAttenteById(int id) {
+        List<Invitation> listInvitations = null;
+        try {
+            listInvitations = new ArrayList<Invitation>();
+            Connection connection = DataSource.getInstance().getConnection();
+            String req = "select * FROM invitations where id_utilisateur=" + id + " and etat='ATT' and sens = 'R'";
+            PreparedStatement st = connection.prepareStatement(req);
+//            st.setInt(1, idOrganisation);
+//          st.setInt(2, id);
+            ResultSet resultat = st.executeQuery();
+
+            while (resultat.next()) {
+                Invitation invitation = new Invitation();
+                invitation.setIdUtilisateur(resultat.getInt(3));
+                invitation.setIdOrganisation(resultat.getInt(2));
+                invitation.setSens(resultat.getString(4));
+                invitation.setEtat(resultat.getString(5));
+                invitation.setDateInvitation(resultat.getDate(6));
+                listInvitations.add(invitation);
+            }
+            System.out.println("list invi" + listInvitations);
+
+            return listInvitations;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplInvitationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listInvitations;
+
+    }
+
+}

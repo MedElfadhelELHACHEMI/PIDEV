@@ -97,6 +97,11 @@ public class Invitation {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Invitation{" + "idUtilisateur=" + idUtilisateur + ", idOrganisation=" + idOrganisation + ", sens=" + sens + ", etat=" + etat + ", dateInvitation=" + dateInvitation + '}';
+    }
     
     
     

@@ -111,11 +111,12 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
             ResultSet resultat = statement.executeQuery();
             while (resultat.next()) {
                 Organisation og = new Organisation();
-                og.setIdOrganisation(resultat.getInt(1));
+             og.setIdOrganisation(resultat.getInt(1));
                 og.setNom(resultat.getString(2));
                 og.setAdresse(resultat.getString(3));
-                og.setMatricule(resultat.getString(4));
-                og.setPhoto(resultat.getString(5));
+                og.seteMail(resultat.getString(4));
+                og.setMatricule(resultat.getString(5));
+                og.setPhoto(resultat.getString(6));
              
                 return og;
             }

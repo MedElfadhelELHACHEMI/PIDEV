@@ -452,6 +452,19 @@ public class MOOCAccueilGUI extends Stage {
             }
             
         });
+        
+        invitations.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+              try {
+
+                    setMain(loadNode("/com/fxml/MyInvitationsCoachFXML.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         myProfile.getChildren().addAll(statistics, myAccount);
         myCourses.getChildren().addAll(validatedCourses);
         submitedCourses.getChildren().addAll(WaitingForValidation1, WaitingForValidation2, addCourse);
