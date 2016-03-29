@@ -19,7 +19,7 @@ import javafx.scene.web.WebView;
 /**
  * FXML Controller class
  *
- * @author haikal
+ * @author haikal 
  */
 public class OrganisationMapFXMLController implements Initializable {
 
