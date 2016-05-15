@@ -28,7 +28,7 @@ public class ImplMembreCPDAO implements IMembreCPDAO {
     public boolean ajouterMembreCP(MembreCP MembreCP) throws SQLException {
         Connection connection = DataSource.getInstance().getConnection();
 
-        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,role) values (?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,roles) values (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, MembreCP.getNomUtilisateur());
         ps.setString(2, MembreCP.getMotDePass());
@@ -68,16 +68,16 @@ public class ImplMembreCPDAO implements IMembreCPDAO {
         MembreCP membreCP = new MembreCP();
         while (rs.next()) {
 
-            membreCP.setIdUtilisateur(rs.getInt(1));
-            membreCP.setNomUtilisateur(rs.getString(3));
-            membreCP.setMotDePass(rs.getString(4));
-            membreCP.setNom(rs.getString(5));
-            membreCP.setPrenom(rs.getString(6));
-            membreCP.setDateNaissance(rs.getDate(7));
-            membreCP.setTel(rs.getInt(8));
-            membreCP.setAdresse(rs.getString(9));
-            membreCP.setMail(rs.getString(10));
-            membreCP.setPhoto(rs.getString(11));
+            membreCP.setIdUtilisateur(rs.getInt("id"));
+            membreCP.setNomUtilisateur(rs.getString("pseudo"));
+            membreCP.setMotDePass(rs.getString("mdp"));
+            membreCP.setNom(rs.getString("nom"));
+            membreCP.setPrenom(rs.getString("prenom"));
+            membreCP.setDateNaissance(rs.getDate("date_naissance"));
+            membreCP.setTel(rs.getInt("telephone"));
+            membreCP.setAdresse(rs.getString("adresse"));
+            membreCP.setMail(rs.getString("mail"));
+            membreCP.setPhoto(rs.getString("photo"));
 
         }
         ps.close();
@@ -129,7 +129,7 @@ public class ImplMembreCPDAO implements IMembreCPDAO {
 
         Connection connection = DataSource.getInstance().getConnection();
 
-        String requete = "update utilisateur set pseudo=?,mdp=?,nom=?,prenom=?,date_naissance=?,telephone=?,adresse=?,mail=?,photo=?,role=? where pseudo like ?";
+        String requete = "update utilisateur set pseudo=?,mdp=?,nom=?,prenom=?,date_naissance=?,telephone=?,adresse=?,mail=?,photo=?,roles=? where pseudo like ?";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, newMembreCP.getNomUtilisateur());
         ps.setString(2, newMembreCP.getMotDePass());

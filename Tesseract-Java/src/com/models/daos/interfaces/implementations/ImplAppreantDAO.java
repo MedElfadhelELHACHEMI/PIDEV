@@ -30,7 +30,7 @@ public class ImplAppreantDAO implements IApprenantDAO {
         
         Connection connection = DataSource.getInstance().getConnection();
         
-        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,role,mail,photo,score) values (?,?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,roles,mail,photo,score) values (?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, apprenant.getNomUtilisateur());
         ps.setString(2, apprenant.getMotDePass());
@@ -101,17 +101,17 @@ public class ImplAppreantDAO implements IApprenantDAO {
         Apprenant apprenant = new Apprenant();
         while (rs.next()) {
             
-            apprenant.setIdUtilisateur(rs.getInt(1));
-            apprenant.setNomUtilisateur(rs.getString(3));
-            apprenant.setMotDePass(rs.getString(4));
-            apprenant.setNom(rs.getString(5));
-            apprenant.setPrenom(rs.getString(6));
-            apprenant.setDateNaissance(rs.getDate(7));
-            apprenant.setTel(rs.getInt(8));
-            apprenant.setAdresse(rs.getString(9));
-            apprenant.setMail(rs.getString(10));
-            apprenant.setPhoto(rs.getString(11));
-            apprenant.setScore(rs.getInt(13));
+            apprenant.setIdUtilisateur(rs.getInt("id"));
+            apprenant.setNomUtilisateur(rs.getString("pseudo"));
+            apprenant.setMotDePass(rs.getString("mdp"));
+            apprenant.setNom(rs.getString("nom"));
+            apprenant.setPrenom(rs.getString("prenom"));
+            apprenant.setDateNaissance(rs.getDate("date_naissance"));
+            apprenant.setTel(rs.getInt("telephone"));
+            apprenant.setAdresse(rs.getString("adresse"));
+            apprenant.setMail(rs.getString("mail"));
+            apprenant.setPhoto(rs.getString("photo"));
+            apprenant.setScore(rs.getInt("score"));
             list.add(apprenant);
         }
         ps.close();
@@ -122,7 +122,7 @@ public class ImplAppreantDAO implements IApprenantDAO {
     public boolean modifierApprenant(String login, Apprenant newApprenant) throws SQLException {
         Connection connection = DataSource.getInstance().getConnection();
         
-        String requete = "update utilisateur set pseudo=?,mdp=?,nom=?,prenom=?,date_naissance=?,telephone=?,adresse=?,mail=?,photo=?,role=?,score=? where pseudo like ?";
+        String requete = "update utilisateur set pseudo=?,mdp=?,nom=?,prenom=?,date_naissance=?,telephone=?,adresse=?,mail=?,photo=?,roles=?,score=? where pseudo like ?";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, newApprenant.getNomUtilisateur());
         ps.setString(2, newApprenant.getMotDePass());
