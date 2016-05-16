@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -118,5 +119,29 @@ public class ImplReponseDAO implements IReponseDAO{
         }
         return epreuves;
     }
+
+    @Override
+    public List<Reponse> findReponseByIdQuestion(int idQuestion)  throws SQLException {
+      List<Reponse> listereponse = new ArrayList<>();
+        String requete = "select * from reponse where id_question=?";
+        PreparedStatement ps = connection.prepareStatement(requete);
+        ps.setInt(1, idQuestion);
+        ResultSet resultat = ps.executeQuery();
+     
+        while (resultat.next()) {
+          Reponse reponse = new Reponse();
+             reponse.setId(resultat.getInt(1));
+             reponse.setIdQuestion(resultat.getInt(2));
+             reponse.setReponse(resultat.getString(3));
+             reponse.setJustification(resultat.getString(4));
+             reponse.setEtat(resultat.getString(5));
+             listereponse.add(reponse);
+            
+        }
+        if (Objects.nonNull(listereponse)) {
+            return listereponse;
+        }
+
+        throw new UnsupportedOperationException();  }
     
 }

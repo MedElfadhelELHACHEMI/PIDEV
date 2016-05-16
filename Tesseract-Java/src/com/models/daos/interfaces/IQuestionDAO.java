@@ -5,6 +5,7 @@
  */
 package com.models.daos.interfaces;
 import com.models.entities.Question;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,5 +19,7 @@ public interface IQuestionDAO {
     boolean updateQuestion(Question question, int id);
     Question searchQuestion(int id);
     List<Question> displayQuestion();
+
+    public List<Question> findQuestionByIdEpreuve(int Epreuve) throws SQLException ;
     
 }

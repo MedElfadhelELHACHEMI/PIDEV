@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="Pane1" prefHeight="562.0" prefWidth="1074.0" stylesheets="@../styles/AceuilApprenantfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.MoocMapFXMLController">
+   <children>
+      <WebView fx:id="webView" layoutX="4.0" layoutY="88.0" prefHeight="467.0" prefWidth="1070.0" />
+      <ImageView fitHeight="65.0" fitWidth="172.0" layoutX="7.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/geo.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="463.0" layoutY="24.0" text="YourGeoPosition">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="retourButton" layoutX="1004.0" layoutY="11.0" mnemonicParsing="false" onAction="#retourAction" prefHeight="49.0" prefWidth="60.0">
+         <graphic>
+            <ImageView fitHeight="65.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

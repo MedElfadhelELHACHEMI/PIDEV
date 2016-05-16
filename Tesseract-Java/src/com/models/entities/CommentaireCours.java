@@ -9,9 +9,18 @@ public class CommentaireCours {
     private String commentaire;
     private Date dateCommentaire;
     private Cours cours;
-
+  private int idUtilisateur;
     public CommentaireCours() {
     }
+
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+    
 
     public CommentaireCours(String commentaire, Date dateCommentaire) {
         this.commentaire = commentaire;

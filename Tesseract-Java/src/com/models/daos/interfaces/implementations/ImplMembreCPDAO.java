@@ -5,10 +5,12 @@
  */
 package com.models.daos.interfaces.implementations;
 
+import com.database.ArrayToString;
 import com.models.daos.interfaces.IMembreCPDAO;
 import com.database.DataSource;
 
 import com.models.entities.MembreCP;
+import com.models.enums.Etat;
 import com.models.enums.Role;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,10 +30,10 @@ public class ImplMembreCPDAO implements IMembreCPDAO {
     public boolean ajouterMembreCP(MembreCP MembreCP) throws SQLException {
         Connection connection = DataSource.getInstance().getConnection();
 
-        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,roles) values (?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,roles,username_canonical,email_canonical,enabled,salt,locked,expired,credentials_expired) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, MembreCP.getNomUtilisateur());
-        ps.setString(2, MembreCP.getMotDePass());
+        ps.setString(2, MembreCP.getMotDePass()+"{nosalt}");
         ps.setString(3, MembreCP.getNom());
         ps.setString(4, MembreCP.getPrenom());
         ps.setDate(5, MembreCP.getDateNaissance());
@@ -40,18 +42,16 @@ public class ImplMembreCPDAO implements IMembreCPDAO {
 
         ps.setString(8, MembreCP.getMail());
         ps.setString(9, MembreCP.getPhoto());
-        ps.setString(10, String.valueOf(Role.MCP));
-        System.out.println(MembreCP.getNomUtilisateur());
-        System.out.println(MembreCP.getMotDePass());
-        System.out.println(MembreCP.getNom());
-        System.out.println(MembreCP.getPrenom());
-        System.out.println(MembreCP.getDateNaissance());
-        System.out.println(MembreCP.getTel());
-        System.out.println(MembreCP.getAdresse());
+        ps.setString(10, ArrayToString.EnumToArray(Role.MCP));
 
-        System.out.println(MembreCP.getMail());
-        System.out.println(MembreCP.getPhoto());
-        System.out.println(String.valueOf(Role.MCP));
+        ps.setString(11, MembreCP.getNomUtilisateur());
+        ps.setString(12, MembreCP.getMail());
+        ps.setInt(13, 1);
+        ps.setString(14, "nosalt");
+        ps.setInt(15, 0);
+        ps.setInt(16, 0);
+        ps.setInt(17, 0);
+
         int resultat = ps.executeUpdate();
         ps.close();
         return resultat == 1;
@@ -138,7 +138,7 @@ public class ImplMembreCPDAO implements IMembreCPDAO {
         ps.setDate(5, newMembreCP.getDateNaissance());
         ps.setInt(6, newMembreCP.getTel());
         ps.setString(7, newMembreCP.getAdresse());
-        ps.setString(8, String.valueOf(Role.MCP));
+        ps.setString(8, ArrayToString.EnumToArray(Role.MCP));
         ps.setString(9, newMembreCP.getMail());
         ps.setString(10, newMembreCP.getPhoto());
 

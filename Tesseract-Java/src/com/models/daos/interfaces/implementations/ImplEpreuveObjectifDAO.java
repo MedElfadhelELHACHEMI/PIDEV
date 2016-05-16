@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -109,6 +110,27 @@ public class ImplEpreuveObjectifDAO implements IEpreuveObjectifDAO {
             Logger.getLogger(ImplEpreuveObjectifDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return epreuves;
+    }
+
+    @Override
+    public List<EpreuveObjectif> searchEpreuveOBJByObj(int idobj) throws SQLException{
+      
+List<EpreuveObjectif> epreuves=new ArrayList<>();
+            String request="select * from epreuve where id_objectif=? and type like '%OBJ%'";
+           PreparedStatement ps = connection.prepareStatement(request);
+               ps.setInt(1, idobj);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+             EpreuveObjectif epreuveFinal = new EpreuveObjectif();
+        epreuveFinal.setId(resultat.getInt(1));
+        epreuveFinal.setDifficulte(resultat.getString(5));
+         epreuves.add(epreuveFinal);
+        }
+        if (Objects.nonNull(epreuves)) {
+            return epreuves;
+        }
+
+        throw new UnsupportedOperationException(); 
     }
     
 }

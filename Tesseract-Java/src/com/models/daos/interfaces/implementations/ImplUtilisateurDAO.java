@@ -1,5 +1,6 @@
 package com.models.daos.interfaces.implementations;
 
+import com.database.ArrayToString;
 import com.database.CryptographieMOOC;
 import com.models.daos.interfaces.IUtilisateurDAO;
 import com.database.DataSource;
@@ -7,6 +8,7 @@ import com.models.entities.Administrateur;
 import com.models.entities.Apprenant;
 import com.models.entities.Formateur;
 import com.models.entities.MembreCP;
+import com.models.entities.Notification;
 import com.models.entities.Utilisateur;
 import com.models.enums.Etat;
 import com.models.enums.Role;
@@ -59,59 +61,56 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
             resultat.next();
-
-            switch (resultat.getString(12)) {
+            switch (ArrayToString.arrayToEnum(resultat.getString("roles")).toString()) {
                 case "APR": {
                     Apprenant apprenant = new Apprenant();
-                    apprenant.setIdUtilisateur(resultat.getInt(1));
-                    apprenant.setNomUtilisateur(resultat.getString(3));
-                    apprenant.setMotDePass(resultat.getString(4));
-                    apprenant.setNom(resultat.getString(5));
-                    apprenant.setPrenom(resultat.getString(6));
-                    apprenant.setDateNaissance(resultat.getDate(7));
-                    apprenant.setTel(resultat.getInt(8));
-                    apprenant.setAdresse(resultat.getString(9));
-                    apprenant.setMail(resultat.getString(10));
-                    apprenant.setPhoto(resultat.getString(11));
-                    apprenant.setRole(Role.valueOf(resultat.getString(12)));
-                    apprenant.setScore(resultat.getInt(13));
+                    apprenant.setIdUtilisateur(resultat.getInt("id"));
+                    apprenant.setNomUtilisateur(resultat.getString("nom"));
+                    apprenant.setMotDePass(resultat.getString("mdp"));
+                    apprenant.setNom(resultat.getString("nom"));
+                    apprenant.setPrenom(resultat.getString("prenom"));
+                    apprenant.setDateNaissance(resultat.getDate("date_naissance"));
+                    apprenant.setTel(resultat.getInt("telephone"));
+                    apprenant.setAdresse(resultat.getString("adresse"));
+                    apprenant.setMail(resultat.getString("mail"));
+                    apprenant.setPhoto(resultat.getString("photo"));
+                    apprenant.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
+                    apprenant.setScore(resultat.getInt("score"));
                     return apprenant;
                 }
                 case "FOR": {
                     Formateur formateur = new Formateur();
 
-                    formateur.setIdUtilisateur(resultat.getInt(1));
-                    formateur.setIdOrganisationn(resultat.getInt(2));
-                    formateur.setNomUtilisateur(resultat.getString(3));
-                    formateur.setMotDePass(resultat.getString(4));
-                    formateur.setNom(resultat.getString(5));
-                    formateur.setPrenom(resultat.getString(6));
-                    formateur.setDateNaissance(resultat.getDate(7));
-                    formateur.setTel(resultat.getInt(8));
-                    formateur.setAdresse(resultat.getString(9));
-                    formateur.setMail(resultat.getString(10));
-                    formateur.setPhoto(resultat.getString(11));
-                    formateur.setRole(Role.valueOf(resultat.getString(12)));
-                    formateur.setScore(resultat.getInt(13));
+                    formateur.setIdUtilisateur(resultat.getInt("id"));
+                    formateur.setIdOrganisationn(resultat.getInt("id_organisation"));
+                    formateur.setNomUtilisateur(resultat.getString("nom"));
+                    formateur.setMotDePass(resultat.getString("mdp"));
+                    formateur.setNom(resultat.getString("nom"));
+                    formateur.setPrenom(resultat.getString("prenom"));
+                    formateur.setDateNaissance(resultat.getDate("date_naissance"));
+                    formateur.setTel(resultat.getInt("telephone"));
+                    formateur.setAdresse(resultat.getString("adresse"));
+                    formateur.setMail(resultat.getString("mail"));
+                    formateur.setPhoto(resultat.getString("photo"));
+                    formateur.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
+                    formateur.setScore(resultat.getInt("score"));
 
                     return formateur;
 
                 }
                 case "ADM":
                     Administrateur administrateur = new Administrateur();
-
-                    administrateur.setIdUtilisateur(resultat.getInt(1));
-
-                    administrateur.setNomUtilisateur(resultat.getString(3));
-                    administrateur.setMotDePass(resultat.getString(4));
-                    administrateur.setNom(resultat.getString(5));
-                    administrateur.setPrenom(resultat.getString(6));
-                    administrateur.setDateNaissance(resultat.getDate(7));
-                    administrateur.setTel(resultat.getInt(8));
-                    administrateur.setAdresse(resultat.getString(9));
-                    administrateur.setMail(resultat.getString(10));
-                    administrateur.setPhoto(resultat.getString(11));
-                    administrateur.setRole(Role.valueOf(resultat.getString(12)));
+                    administrateur.setIdUtilisateur(resultat.getInt("id"));
+                    administrateur.setNomUtilisateur(resultat.getString("nom"));
+                    administrateur.setMotDePass(resultat.getString("mdp"));
+                    administrateur.setNom(resultat.getString("nom"));
+                    administrateur.setPrenom(resultat.getString("prenom"));
+                    administrateur.setDateNaissance(resultat.getDate("date_naissance"));
+                    administrateur.setTel(resultat.getInt("telephone"));
+                    administrateur.setAdresse(resultat.getString("adresse"));
+                    administrateur.setMail(resultat.getString("mail"));
+                    administrateur.setPhoto(resultat.getString("photo"));
+                    administrateur.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
 
                     return administrateur;
                 default:
@@ -133,93 +132,98 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
             ps.setString(1, mail);
             ResultSet resultat = ps.executeQuery();
             resultat.next();
-
-            switch (resultat.getString(12)) {
+            System.out.println(ArrayToString.arrayToEnum(resultat.getString("roles")).toString());
+            switch (ArrayToString.arrayToEnum(resultat.getString("roles")).toString()) {
                 case "APR":
-                   Apprenant apprenant = new Apprenant();
-                    apprenant.setIdUtilisateur(resultat.getInt(1));
-                    apprenant.setNomUtilisateur(resultat.getString(3));
-                    apprenant.setMotDePass(resultat.getString(4));
-                    apprenant.setNom(resultat.getString(5));
-                    apprenant.setPrenom(resultat.getString(6));
-                    apprenant.setDateNaissance(resultat.getDate(7));
-                    apprenant.setTel(resultat.getInt(8));
-                    apprenant.setAdresse(resultat.getString(9));
-                    apprenant.setMail(resultat.getString(10));
-                    apprenant.setPhoto(resultat.getString(11));
-                    apprenant.setRole(Role.valueOf(resultat.getString(12)));
-                    apprenant.setScore(resultat.getInt(13));
+                    Apprenant apprenant = new Apprenant();
+                    apprenant.setIdUtilisateur(resultat.getInt("id"));
+                    apprenant.setNomUtilisateur(resultat.getString("nom"));
+                    apprenant.setMotDePass(resultat.getString("mdp"));
+                    apprenant.setNom(resultat.getString("nom"));
+                    apprenant.setPrenom(resultat.getString("prenom"));
+                    apprenant.setDateNaissance(resultat.getDate("date_naissance"));
+                    apprenant.setTel(resultat.getInt("telephone"));
+                    apprenant.setAdresse(resultat.getString("adresse"));
+                    apprenant.setMail(resultat.getString("mail"));
+                    apprenant.setPhoto(resultat.getString("photo"));
+                    apprenant.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
+                    apprenant.setScore(resultat.getInt("score"));
                     return apprenant;
+
+                case "FOR": {
+                   Formateur formateur = new Formateur();
+
+                    formateur.setIdUtilisateur(resultat.getInt("id"));
+                    formateur.setIdOrganisationn(resultat.getInt("id_organisation"));
+                    formateur.setNomUtilisateur(resultat.getString("nom"));
+                    formateur.setMotDePass(resultat.getString("mdp"));
+                    formateur.setNom(resultat.getString("nom"));
+                    formateur.setPrenom(resultat.getString("prenom"));
+                    formateur.setDateNaissance(resultat.getDate("date_naissance"));
+                    formateur.setTel(resultat.getInt("telephone"));
+                    formateur.setAdresse(resultat.getString("adresse"));
+                    formateur.setMail(resultat.getString("mail"));
+                    formateur.setPhoto(resultat.getString("photo"));
+                    formateur.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
+                    formateur.setScore(resultat.getInt("score"));
+
+                    return formateur;
+                }
+                case "ADM": {
+                 Administrateur administrateur = new Administrateur();
+                    administrateur.setIdUtilisateur(resultat.getInt("id"));
+                    administrateur.setNomUtilisateur(resultat.getString("nom"));
+                    administrateur.setMotDePass(resultat.getString("mdp"));
+                    administrateur.setNom(resultat.getString("nom"));
+                    administrateur.setPrenom(resultat.getString("prenom"));
+                    administrateur.setDateNaissance(resultat.getDate("date_naissance"));
+                    administrateur.setTel(resultat.getInt("telephone"));
+                    administrateur.setAdresse(resultat.getString("adresse"));
+                    administrateur.setMail(resultat.getString("mail"));
+                    administrateur.setPhoto(resultat.getString("photo"));
+                    administrateur.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
+
+                    return administrateur;
+                }
+                case "MCP": {
+                    MembreCP mcp = new MembreCP();
+          mcp.setIdUtilisateur(resultat.getInt("id"));
+                    mcp.setNomUtilisateur(resultat.getString("nom"));
+                    mcp.setMotDePass(resultat.getString("mdp"));
+                    mcp.setNom(resultat.getString("nom"));
+                    mcp.setPrenom(resultat.getString("prenom"));
+                    mcp.setDateNaissance(resultat.getDate("date_naissance"));
+                    mcp.setTel(resultat.getInt("telephone"));
+                    mcp.setAdresse(resultat.getString("adresse"));
+                    mcp.setMail(resultat.getString("mail"));
+                    mcp.setPhoto(resultat.getString("photo"));
+                    mcp.setRole(ArrayToString.arrayToEnum(resultat.getString("roles")));
+
                     
-                  
-                case "FOR":
-                {Formateur formateur = new Formateur();
+                    
+                    return mcp ;
+                }
+                case "ORG": {
+                    {
+//                        Formateur formateur = new Formateur();
+//
+//                        formateur.setIdUtilisateur(resultat.getInt(1));
+//                        formateur.setIdOrganisationn(resultat.getInt(2));
+//                        formateur.setNomUtilisateur(resultat.getString(3));
+//                        formateur.setMotDePass(resultat.getString(4));
+//                        formateur.setNom(resultat.getString(5));
+//                        formateur.setPrenom(resultat.getString(6));
+//                        formateur.setDateNaissance(resultat.getDate(7));
+//                        formateur.setTel(resultat.getInt(8));
+//                        formateur.setAdresse(resultat.getString(9));
+//                        formateur.setMail(resultat.getString(10));
+//                        formateur.setPhoto(resultat.getString(11));
+//                        formateur.setRole(Role.valueOf(resultat.getString(12)));
+//                        formateur.setScore(resultat.getInt(13));
+//
+//                        return formateur;
+                    }
 
-                    formateur.setIdUtilisateur(resultat.getInt(1));
-                    formateur.setIdOrganisationn(resultat.getInt(2));
-                    formateur.setNomUtilisateur(resultat.getString(3));
-                    formateur.setMotDePass(resultat.getString(4));
-                    formateur.setNom(resultat.getString(5));
-                    formateur.setPrenom(resultat.getString(6));
-                    formateur.setDateNaissance(resultat.getDate(7));
-                    formateur.setTel(resultat.getInt(8));
-                    formateur.setAdresse(resultat.getString(9));
-                    formateur.setMail(resultat.getString(10));
-                    formateur.setPhoto(resultat.getString(11));
-                    formateur.setRole(Role.valueOf(resultat.getString(12)));
-                    formateur.setScore(resultat.getInt(13));
-
-                    return formateur;}
-                case "ADM":
-                {  Administrateur administrateur = new Administrateur();
-
-                    administrateur.setIdUtilisateur(resultat.getInt(1));
-
-                    administrateur.setNomUtilisateur(resultat.getString(3));
-                    administrateur.setMotDePass(resultat.getString(4));
-                    administrateur.setNom(resultat.getString(5));
-                    administrateur.setPrenom(resultat.getString(6));
-                    administrateur.setDateNaissance(resultat.getDate(7));
-                    administrateur.setTel(resultat.getInt(8));
-                    administrateur.setAdresse(resultat.getString(9));
-                    administrateur.setMail(resultat.getString(10));
-                    administrateur.setPhoto(resultat.getString(11));
-                    administrateur.setRole(Role.valueOf(resultat.getString(12)));
-
-                    return administrateur;}
-                case "MCP":
-                { MembreCP mcp = new MembreCP();
-                      mcp.setIdUtilisateur(resultat.getInt(1));
-
-                    mcp.setNomUtilisateur(resultat.getString(3));
-                    mcp.setMotDePass(resultat.getString(4));
-                    mcp.setNom(resultat.getString(5));
-                    mcp.setPrenom(resultat.getString(6));
-                    mcp.setDateNaissance(resultat.getDate(7));
-                    mcp.setTel(resultat.getInt(8));
-                    mcp.setAdresse(resultat.getString(9));
-                    mcp.setMail(resultat.getString(10));
-                    mcp.setPhoto(resultat.getString(11));
-                    mcp.setRole(Role.valueOf(resultat.getString(12)));}
-                case "ORG":{
-                 {Formateur formateur = new Formateur();
-
-                    formateur.setIdUtilisateur(resultat.getInt(1));
-                    formateur.setIdOrganisationn(resultat.getInt(2));
-                    formateur.setNomUtilisateur(resultat.getString(3));
-                    formateur.setMotDePass(resultat.getString(4));
-                    formateur.setNom(resultat.getString(5));
-                    formateur.setPrenom(resultat.getString(6));
-                    formateur.setDateNaissance(resultat.getDate(7));
-                    formateur.setTel(resultat.getInt(8));
-                    formateur.setAdresse(resultat.getString(9));
-                    formateur.setMail(resultat.getString(10));
-                    formateur.setPhoto(resultat.getString(11));
-                    formateur.setRole(Role.valueOf(resultat.getString(12)));
-                    formateur.setScore(resultat.getInt(13));
-
-                    return formateur;}
-                
                 }
 
             }
@@ -240,7 +244,9 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
         ps.setInt(1, user.getIdUtilisateur());
         ResultSet resultat = ps.executeQuery();
         resultat.next();
-        correctPassword = resultat.getString(4);
+        correctPassword = ArrayToString.getPasswordFromArray(resultat.getString("mdp"));
+                
+                System.out.println("Correct PAssword"+correctPassword);
 
 //        try {
 //          //  System.out.println(CryptographieMOOC.getCryptage().decrypt(correctPassword));
@@ -249,6 +255,7 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
 //        }
         CryptographieMOOC cmooc = CryptographieMOOC.getCryptage();
         typedPassword = user.getMotDePass();
+        System.out.println(typedPassword+"----------------");
         try {
 
             aux = cmooc.encrypt(typedPassword);
@@ -261,6 +268,11 @@ public class ImplUtilisateurDAO implements IUtilisateurDAO {
         ps.close();
         return v;
 
+    }
+
+    @Override
+    public List<Notification> displayAllNotifications(int idUtilisateur) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

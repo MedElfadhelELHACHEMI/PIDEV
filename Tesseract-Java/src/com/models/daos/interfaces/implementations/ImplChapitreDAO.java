@@ -13,6 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -157,5 +160,28 @@ public class ImplChapitreDAO implements IChapitreDAO{
         }
         return false;
     }
+
+    @Override
+    public List<Chapitre> findChapitreByIdCours(int idCours) throws SQLException {
+   List<Chapitre> listeChapitre = new ArrayList<>();
+   String requete = "select * from chapitre where id_cours=?";  
+    PreparedStatement ps = cnx.prepareStatement(requete);
+        ps.setInt(1, idCours);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+            Chapitre c = new Chapitre();
+          c.setId(resultat.getInt(1));
+                c.setIdCours(resultat.getInt(2));
+                c.setNom(resultat.getString(3));
+                c.setNumero(resultat.getInt(4));
+                c.setDescription(resultat.getString(5));
+                c.setResume(resultat.getString(6));
+              listeChapitre.add(c);
+        }
+       if (Objects.nonNull(listeChapitre)) {
+            return listeChapitre;
+        }
+
+        throw new UnsupportedOperationException();  }
 
 }

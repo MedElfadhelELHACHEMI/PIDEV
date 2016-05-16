@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1070.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.SolutionImagefxmlController">
+   <children>
+       <Label fx:id="tep" layoutX="56.0" layoutY="14.0" text="EpreuveFinale : ">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="numeroQuestionLabel" layoutX="289.0" layoutY="14.0" text="Question N°2/30">
+         <font>
+            <Font name="Bodoni MT Italic" size="17.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="tempProgressBar" layoutX="582.0" layoutY="190.0" prefHeight="28.0" prefWidth="200.0" rotate="-90.0" />
+      <Slider fx:id="volumeSlider" layoutX="652.0" layoutY="364.0" prefHeight="15.0" prefWidth="58.0" value="50.0" />
+      <Label fx:id="questionLabel" layoutX="14.0" layoutY="409.0" prefHeight="35.0" prefWidth="872.0" text="dddddddddddddddddddddddd">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
+       <RadioButton fx:id="prop3RadioButton" layoutX="71.0" layoutY="504.0" mnemonicParsing="false" text="RadioButton">
+         <toggleGroup>
+            <ToggleGroup fx:id="prop" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="prop1RadioButton" layoutX="71.0" layoutY="454.0" mnemonicParsing="false" text="RadioButton" />
+      <RadioButton fx:id="prop2RadioButton" layoutX="71.0" layoutY="480.0" mnemonicParsing="false" text="RadioButton" />
+    
+      <Button fx:id="fermerButton" layoutX="955.0" layoutY="454.0" mnemonicParsing="false" onAction="#fermerAction" prefHeight="68.0" prefWidth="66.0">
+         <graphic>
+            <ImageView fx:id="imgbutton" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/suv.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="tempLabel" layoutX="672.0" layoutY="312.0" text="20s" />
+      <Pane fx:id="pvol" layoutX="652.0" layoutY="329.0" prefHeight="28.0" prefWidth="58.0">
+         <children>
+            <ImageView fx:id="imgvol" fitHeight="26.0" fitWidth="26.0" layoutX="16.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/vol2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button fx:id="repeterButton" layoutX="848.0" layoutY="455.0" mnemonicParsing="false" onAction="#repeterAction" prefHeight="68.0" prefWidth="76.0">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/rep.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="pro1Imageview" fitHeight="16.0" fitWidth="16.0" layoutX="43.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/check.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pro2Imageview" fitHeight="16.0" fitWidth="16.0" layoutX="43.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/check.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pro3Imageview" fitHeight="16.0" fitWidth="16.0" layoutX="43.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/check.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="835.0" layoutY="94.0" style="-fx-text-fill: #ea0f16;" text="Justification :">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="just" editable="false" layoutX="724.0" layoutY="121.0" prefHeight="200.0" prefWidth="340.0" text="gggggggggggggg">
+         <font>
+            <Font name="Bodoni MT Italic" size="17.0" />
+         </font>
+      </TextArea>
+      <ImageView fx:id="vue" fitHeight="350.0" fitWidth="620.0" layoutX="14.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/m7.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -6,6 +6,7 @@
 package com.models.daos.interfaces;
 
 import com.models.entities.Reponse;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,5 +19,7 @@ public interface IReponseDAO {
     boolean updateReponse(Reponse reponse, int id);
     Reponse searchReponse(int id);
     List<Reponse> displayReponse();
+
+    public List<Reponse> findReponseByIdQuestion(int idQuestion) throws SQLException;
     
 }

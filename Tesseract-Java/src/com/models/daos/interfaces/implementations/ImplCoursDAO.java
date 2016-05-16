@@ -15,7 +15,9 @@ import com.models.enums.Etat;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -242,5 +244,281 @@ public class ImplCoursDAO implements ICoursDAO {
      throw new UnsupportedOperationException();
     }
 
+    @Override
+    public Cours findCourByIdFromateur(int idUtilisateur) throws SQLException {
+        String requete = "select * from cours where id=(SELECT id_cours FROM `session_cours` inner join `cours` on `cours`.id=`session_cours`.id_cours where `cours`.id_utilisateur=? group by id_cours order by count(id_cours) desc LIMIT 1 )";
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        ps.setInt(1, idUtilisateur);
+        ResultSet resultat = ps.executeQuery();
+        Cours cours = new Cours();
+        while (resultat.next()) {
+            cours.setIdCours(resultat.getInt(1));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDescriptionCours(resultat.getString(6));
+        }
+        if (Objects.nonNull(cours)) {
+            return cours;
+        }
 
+        throw new UnsupportedOperationException();
+
+     }
+
+    @Override
+    public Map<String, Integer> getCoursAndViews() throws SQLException {
+        String requete = "select nom, count(id_cours) from session_cours sc inner join cours c on sc.id_cours = c.id group by id_cours";
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        ResultSet resultat = ps.executeQuery();
+        Map<String, Integer> m = new HashMap();
+        while(resultat.next()){
+            m.put(resultat.getString(1), resultat.getInt(2));
+        }
+        return m; }
+
+    @Override
+    public List<Cours> getCoursAtt(int i) throws SQLException{
+   String requete="";
+        if(i==1){
+            requete = "SELECT * FROM cours WHERE validation1 = 'ATT'";
+        }
+        else if(i==2){
+            requete = "SELECT * FROM cours WHERE validation2 = 'ATT'";
+        }
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        ResultSet resultat = ps.executeQuery();
+        List<Cours> listeCours = new ArrayList<>();
+        while (resultat.next()) {
+            Cours  cours = new Cours();
+            cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
+            //cours.setUploadDate(resultat.getDate(13).toLocalDate());
+                
+                listeCours.add(cours);
+        }
+        return listeCours;  }
+
+    public void accRefCourV1(Cours c, int i) {
+        try {
+            Connection connection = DataSource.getInstance().getConnection();
+            String requete = "UPDATE cours SET validation1 = ? where id = ?";
+            PreparedStatement ps = connection.prepareStatement(requete);
+            ps.setInt(2, c.getIdCours());
+            if(i == 0){
+                ps.setString(1, "REF");
+            }
+            else if(i==1){
+                ps.setString(1, "ACC");
+            }
+            int resultat = ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    @Override
+    public Cours chercherCoursByNameCours(String chaine,int idutilisateur) throws SQLException {
+      Cours cours = new Cours();
+        String requete = "select * from cours where nom=? and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
+
+        PreparedStatement ps = cnx.prepareStatement(requete);
+          ps.setString(1, chaine);
+        ps.setInt(2, idutilisateur);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+
+            cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+             cours.setIdFormateur(resultat.getInt(3));
+             cours.setNomCours(resultat.getString(4));
+              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+              cours.setDescriptionCours(resultat.getString(6));
+              cours.setBadge(resultat.getString(7));
+              cours.setAffiche(resultat.getString(8));
+              cours.setVideo(resultat.getString(9));
+              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+               cours.setLanguage(resultat.getString(12));
+               
+        }
+        if (Objects.nonNull(cours)) {
+            return cours;
+        }
+
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<Cours> chercherCoursByNameFormateur(String chaine,int idutilisateur) throws SQLException {
+        List<Cours> listeCours = new ArrayList<>();
+        String requete = "select * from cours ,utilisateur where cours.id_utilisateur=utilisateur.id and utilisateur.nom=? and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
+          
+        PreparedStatement ps = cnx.prepareStatement(requete);
+      
+        ps.setString(1, chaine);
+        ps.setInt(2, idutilisateur);
+        ResultSet resultat = ps.executeQuery();
+
+        while (resultat.next()) {
+            Cours cours = new Cours();
+   
+            cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+             cours.setIdFormateur(resultat.getInt(3));
+             cours.setNomCours(resultat.getString(4));
+              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+              cours.setDescriptionCours(resultat.getString(6));
+              cours.setBadge(resultat.getString(7));
+              cours.setAffiche(resultat.getString(8));
+              cours.setVideo(resultat.getString(9));
+              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+               cours.setLanguage(resultat.getString(12));
+              
+
+            listeCours.add(cours);
+        }
+        if (Objects.nonNull(listeCours)) {
+            return listeCours;
+        }
+
+        throw new UnsupportedOperationException(); 
+    }
+
+       @Override
+    public List<Cours> chercherCoursByNameOrganisme(String chaine,int idutilisateur) throws SQLException {
+        List<Cours> listeCours = new ArrayList<>();
+        String requete = "select * from cours ,utilisateur,organisation where cours.id_utilisateur=utilisateur.id and utilisateur.id_organisation=organisation.id and organisation.nom=?and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
+          
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        ps.setString(1, chaine);
+        ps.setInt(2, idutilisateur);
+        ResultSet resultat = ps.executeQuery();
+
+        while (resultat.next()) {
+         Cours  cours = new Cours();
+            cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+             cours.setIdFormateur(resultat.getInt(3));
+             cours.setNomCours(resultat.getString(4));
+              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+              cours.setDescriptionCours(resultat.getString(6));
+              cours.setBadge(resultat.getString(7));
+              cours.setAffiche(resultat.getString(8));
+              cours.setVideo(resultat.getString(9));
+              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+               cours.setLanguage(resultat.getString(12));
+                
+
+            listeCours.add(cours);
+        }
+        if (Objects.nonNull(listeCours)) {
+            return listeCours;
+        }
+
+        throw new UnsupportedOperationException();     
+    }
+
+        @Override
+    public List<Cours> findAll(int idutilisateur){
+        List<Cours> listeCours =new ArrayList();
+        try {
+            String requete = "select * from cours where cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
+            
+            PreparedStatement ps = cnx.prepareStatement(requete);
+             ps.setInt(1, idutilisateur);
+           ResultSet resultat = ps.executeQuery();
+            
+            while (resultat.next()) {
+                Cours cours = new Cours();
+           cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+             cours.setIdFormateur(resultat.getInt(3));
+             cours.setNomCours(resultat.getString(4));
+              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+              cours.setDescriptionCours(resultat.getString(6));
+              cours.setBadge(resultat.getString(7));
+              cours.setAffiche(resultat.getString(8));
+              cours.setVideo(resultat.getString(9));
+              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+               cours.setLanguage(resultat.getString(12));
+               
+                
+                listeCours.add(cours);
+            }
+            return listeCours;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplCoursDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listeCours;
+    }
+
+    @Override
+    public List<Cours> chercherCoursByNameMatiere(String chaine,int idutilisateur) throws SQLException {
+         List<Cours> listeCours = new ArrayList<>();
+        String requete = "select * from cours ,matiere where cours.id_matiere=matiere.id and matiere.nom=? and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
+          
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        
+        
+        ps.setString(1, chaine);
+         ps.setInt(2, idutilisateur);
+        ResultSet resultat = ps.executeQuery();
+
+        while (resultat.next()) {
+       Cours  cours = new Cours();
+            cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+             cours.setIdFormateur(resultat.getInt(3));
+             cours.setNomCours(resultat.getString(4));
+              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+              cours.setDescriptionCours(resultat.getString(6));
+              cours.setBadge(resultat.getString(7));
+              cours.setAffiche(resultat.getString(8));
+              cours.setVideo(resultat.getString(9));
+              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+               cours.setLanguage(resultat.getString(12));
+           
+
+            listeCours.add(cours);
+        }
+        if (Objects.nonNull(listeCours)) {
+            return listeCours;
+        }
+
+        throw new UnsupportedOperationException(); 
+      
+ 
+    }
+   
+    @Override
+    public int nbChapitreByCours(Cours cours) throws SQLException {
+    int nb=0;
+        String requete = "select count(*) from chapitre where chapitre.	id_cours=?";
+
+         PreparedStatement ps = cnx.prepareStatement(requete);
+        ps.setInt(1,cours.getIdCours());
+        ResultSet resultat = ps.executeQuery();
+
+        while (resultat.next()) {
+         nb=resultat.getInt(1);
+      
+    }
+    
+      return nb;
+   
+
+}
 }

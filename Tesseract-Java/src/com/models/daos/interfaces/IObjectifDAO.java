@@ -28,6 +28,8 @@ public interface IObjectifDAO {
     public Objectif searchObjectif(String nom, int idChapitre);
     
     public boolean isNumberThere(int number, int idChapitre);
+
+    public Objectif searchOBJByChapitre(int number, int idChapitre)throws SQLException;
     
     
 

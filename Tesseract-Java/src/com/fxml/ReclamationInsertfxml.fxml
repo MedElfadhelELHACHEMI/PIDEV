@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.views.controllers.ReclamationInsertfxmlController">
+   <children>
+      <ImageView fitHeight="52.0" fitWidth="448.0" layoutX="438.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/recla.jpg" />
+         </image>
+      </ImageView>
+      <JFXComboBox fx:id="cmbtype" layoutX="402.0" layoutY="152.0" prefHeight="25.0" prefWidth="266.0" promptText="                   Type Reclamation" />
+      <TextArea fx:id="contenu" layoutX="304.0" layoutY="268.0" prefHeight="200.0" prefWidth="485.0" promptText="                                                 Contenue Reclamation" />
+      <JFXTextField fx:id="Sujet" focusColor="#2bc5d3e5" layoutX="345.0" layoutY="204.0" maxWidth="459.0" minWidth="233.0" prefHeight="31.0" prefWidth="381.0" promptText="                                          Sujet Reclamation" unFocusColor="#2bc5d3" />
+      <ImageView fx:id="imguser" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="name" layoutX="33.0" layoutY="170.0" text="Sameh Ouerghi">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="valid" layoutX="501.0" layoutY="480.0" mnemonicParsing="false" onAction="#validerAction" prefHeight="59.0" prefWidth="84.0">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/va1.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

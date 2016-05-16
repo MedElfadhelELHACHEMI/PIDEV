@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" stylesheets="@../styles/CommenterCours.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.CoordoFormateurfxmlController">
+   <children>
+      <Pane fx:id="header" prefHeight="132.0" prefWidth="1069.0">
+         <children>
+            <ImageView fx:id="img" fitHeight="125.0" fitWidth="189.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btretour" layoutX="983.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourAction" prefHeight="41.0" prefWidth="41.0">
+               <graphic>
+                  <ImageView fitHeight="43.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label fx:id="Name" layoutX="226.0" layoutY="39.0" text="Sameh Ouerghui">
+               <font>
+                  <Font name="Bodoni MT Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <ProgressBar fx:id="scoreprog" layoutX="507.0" layoutY="58.0" prefWidth="200.0" progress="0.0" />
+            <Label fx:id="sco" layoutX="725.0" layoutY="59.0" text="100%" />
+            <Hyperlink fx:id="email" layoutX="235.0" layoutY="76.0" onAction="#Contact" prefHeight="23.0" prefWidth="147.0" text="sameh@€sprlllm.tn" />
+            <Label layoutX="577.0" layoutY="29.0" text="Score">
+               <font>
+                  <Font name="Bodoni MT Bold Italic" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scroCours" layoutX="4.0" layoutY="133.0" prefHeight="420.0" prefWidth="1054.0">
+         <content>
+            <TilePane fx:id="body" prefHeight="481.0" prefWidth="1202.0">
+               <padding>
+                  <Insets left="100.0" right="50.0" />
+               </padding>
+            </TilePane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

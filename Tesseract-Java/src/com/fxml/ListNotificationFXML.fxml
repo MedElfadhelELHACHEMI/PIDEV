@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" stylesheets="@../styles/AceuilApprenantfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.ListNotificationFXMLController">
+   <children>
+      <DatePicker fx:id="recherche" layoutX="434.0" layoutY="167.0" prefHeight="25.0" prefWidth="308.0" promptText="                            Recherche par date" />
+      <ImageView fx:id="notif" fitHeight="142.0" fitWidth="146.0" layoutX="206.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/notif.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="te1" layoutX="400.0" layoutY="47.0" text="Liste Notification">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="48.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="RechercherButton" layoutX="756.0" layoutY="160.0" onAction="#RechercherNotiButton" prefHeight="39.0" prefWidth="52.0">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/search-formateur.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TableView fx:id="NotifTable" layoutX="344.0" layoutY="226.0" prefHeight="328.0" prefWidth="526.0">
+        <columns>
+          <TableColumn fx:id="NameNotfi" prefWidth="238.0" text="Notification" />
+          <TableColumn fx:id="dateNotif" prefWidth="287.0" text="Date" />
+        </columns>
+      </TableView>
+      <Button fx:id="confirmerNotifButton" layoutX="87.0" layoutY="281.0" mnemonicParsing="false" onAction="#confirmerAction" prefHeight="39.0" prefWidth="167.0" text="Confirmer Notification">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/check.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="genButton" layoutX="87.0" layoutY="351.0" mnemonicParsing="false" onAction="#genererPDFAction" prefHeight="39.0" prefWidth="167.0" text="Exporter en PDF">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/filetype_pdf.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btretour" layoutX="87.0" layoutY="420.0" mnemonicParsing="false" onAction="#retourAction" prefHeight="39.0" prefWidth="167.0" text=" Retour">
+         <font>
+            <Font name="Bodoni MT Italic" size="20.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="22.0" fitWidth="35.0" layoutX="94.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/close_btn_hover.png" />
+         </image>
+      </ImageView>
+      <ProgressIndicator fx:id="p" layoutX="513.0" layoutY="314.0" prefHeight="150.0" prefWidth="150.0" progress="0.0" />
+      <Region fx:id="veil" layoutX="343.0" layoutY="228.0" prefHeight="328.0" prefWidth="526.0" />
+   </children>
+</AnchorPane>

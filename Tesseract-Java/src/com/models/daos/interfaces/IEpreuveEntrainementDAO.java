@@ -6,6 +6,7 @@
 package com.models.daos.interfaces;
 
 import com.models.entities.EpreuveEntrainement;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,5 +19,7 @@ public interface IEpreuveEntrainementDAO {
     boolean updateEpreuveEntrainement(EpreuveEntrainement epreuveEntrainement, int id);
     EpreuveEntrainement searchEpreuveEntrainement(int id);
     List<EpreuveEntrainement> displayEpreuveEntrainement();
+
+    public List<EpreuveEntrainement> searchEpreuveEntrainementByCours(int idcours)throws SQLException;
     
 }

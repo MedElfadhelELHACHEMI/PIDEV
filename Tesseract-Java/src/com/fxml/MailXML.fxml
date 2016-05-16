@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" stylesheets="@../styles/AceuilApprenantfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.MailFXMLController">
+   <children>
+      <ImageView fitHeight="117.0" fitWidth="396.0" layoutX="306.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/email.png" />
+         </image>
+      </ImageView>
+      <JFXTextField fx:id="mailRecp" alignment="CENTER" focusColor="#24c5cf" layoutX="334.0" layoutY="136.0" maxWidth="408.0" minWidth="263.0" prefHeight="31.0" prefWidth="356.0" promptText="                                       Votre Adresse Mail" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="Pass" focusColor="#24c5cf" layoutX="337.0" layoutY="180.0" maxWidth="350.0" minWidth="253.0" prefHeight="31.0" prefWidth="350.0" promptText="                                       Votre Mot de passe" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font></JFXPasswordField>
+      <JFXTextField fx:id="mailDest" focusColor="#24c5cf" layoutX="337.0" layoutY="217.0" maxWidth="350.0" minWidth="230.0" prefHeight="31.0" prefWidth="350.0" promptText="                                       Mail du destinateur" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="sujet" focusColor="#24c5cf" layoutX="337.0" layoutY="258.0" maxWidth="350.0" minWidth="267.0" prefHeight="31.0" prefWidth="350.0" promptText="                                               Sujet" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font></JFXTextField>
+      <TextArea fx:id="contenue" layoutX="348.0" layoutY="360.0" prefHeight="145.0" prefWidth="336.0" promptText="                                      Contenue">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font></TextArea>
+      <JFXTextField fx:id="pj" editable="false" focusColor="#24c5cf" layoutX="340.0" layoutY="305.0" maxWidth="350.0" minWidth="253.0" prefHeight="31.0" prefWidth="344.0" promptText="                                        Piece Jointe" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font></JFXTextField>
+      <Button fx:id="btPJ" layoutX="713.0" layoutY="308.0" mnemonicParsing="false" onAction="#chercherPiece" style="-fx-background-color: #24c5cf;" text="...." />
+      <Button fx:id="btEnvoyer" layoutX="941.0" layoutY="251.0" mnemonicParsing="false" onAction="#SendMailActionPerformed" prefHeight="43.0" prefWidth="62.0">
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/mail.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btretour" layoutX="948.0" layoutY="346.0" mnemonicParsing="false" onAction="#retourAction" prefHeight="61.0" prefWidth="73.0">
+         <graphic>
+            <ImageView fitHeight="48.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/ret.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

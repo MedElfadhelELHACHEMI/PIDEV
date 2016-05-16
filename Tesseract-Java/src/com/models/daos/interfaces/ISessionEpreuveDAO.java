@@ -6,6 +6,7 @@
 package com.models.daos.interfaces;
 
 import com.models.entities.SessionEpreuve;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public interface ISessionEpreuveDAO {
     public List<SessionEpreuve> getSessionEpreuvebyidEpreuve(int idEpreuve);
     
     public List<SessionEpreuve> getSessoEpreuvebynote(float note);
+
+    public List<SessionEpreuve> getSessionEpreuvebyidCoursUtil(int idCours, int idUtilisateur)throws SQLException;
     
     
 }

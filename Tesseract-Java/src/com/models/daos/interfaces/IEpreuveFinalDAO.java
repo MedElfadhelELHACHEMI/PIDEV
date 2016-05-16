@@ -6,6 +6,7 @@
 package com.models.daos.interfaces;
 
 import com.models.entities.EpreuveFinal;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,5 +19,7 @@ public interface IEpreuveFinalDAO {
     boolean updateEpreuveFinal(EpreuveFinal epreuveFinal, int id);
     EpreuveFinal searchEpreuveFinal(int id);
     List<EpreuveFinal> displayEpreuveFinal();
+
+    public EpreuveFinal searchEpreuveFinalByCours(int idcours)throws SQLException;
     
 }

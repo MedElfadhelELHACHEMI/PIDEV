@@ -159,4 +159,30 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
          return 0 ;
     }
 
+    @Override
+    public Organisation getOrganisationByName(String nom) throws SQLException {
+     Organisation og = new Organisation();
+
+        String query = "select * from Organisation where nom=?";
+
+     PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, nom);
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                
+                og.setIdOrganisation(resultat.getInt(1));
+                og.setNom(resultat.getString(2));
+                og.setAdresse(resultat.getString(3));
+                og.seteMail(resultat.getString(4));
+                og.setMatricule(resultat.getString(5));
+                og.setPhoto(resultat.getString(6));
+
+              
+            }
+            return og;
+       
+    }
+
+
 }

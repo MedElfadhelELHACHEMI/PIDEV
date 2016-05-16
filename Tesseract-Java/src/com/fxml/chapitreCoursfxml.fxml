@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.views.controllers.ChapitreCoursfxmlController">
+   <children>
+      <ImageView fx:id="imgChap" fitHeight="138.0" fitWidth="200.0" layoutX="452.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="Nomchapit" disable="true" layoutX="512.0" layoutY="227.0" prefHeight="17.0" prefWidth="65.0" text="Java">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="27.0" />
+         </font>
+      </Label>
+      <Button fx:id="pdf" layoutX="446.0" layoutY="331.0" mnemonicParsing="false" onAction="#pdfAction" prefHeight="59.0" prefWidth="65.0">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/filetype_pdf.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="Video" layoutX="572.0" layoutY="331.0" mnemonicParsing="false" onAction="#VideoAction" prefHeight="59.0" prefWidth="65.0">
+         <graphic>
+            <ImageView fitHeight="51.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/corcv.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="suivant" disable="true" layoutX="644.0" layoutY="462.0" mnemonicParsing="false" onAction="#suivantAction" prefHeight="50.0" prefWidth="118.0">
+         <graphic>
+            <ImageView fx:id="imgnext" fitHeight="42.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/nex.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="ret" layoutX="998.0" layoutY="30.0" mnemonicParsing="false" onAction="#retourAction">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="prev" disable="true" layoutX="236.0" layoutY="462.0" mnemonicParsing="false" onAction="#previousAction" prefHeight="50.0" prefWidth="216.0">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/pre.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fx:id="imgUser" fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

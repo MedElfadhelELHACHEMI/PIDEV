@@ -4,6 +4,7 @@ import com.models.entities.Cours;
 import com.models.entities.Matiere;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import javafx.collections.ObservableList;
 
 public interface ICoursDAO {
@@ -30,5 +31,23 @@ public interface ICoursDAO {
 
     public List<Cours> listCoursCosulterParCoach(int id);
 
+    public Cours findCourByIdFromateur(int idUtilisateur)throws SQLException;
+
+    public Map<String, Integer> getCoursAndViews()throws SQLException;
+
+    public List<Cours> getCoursAtt(int i)throws SQLException;
+void accRefCourV1(Cours c, int i) ;
+
+    public Cours chercherCoursByNameCours(String chaine, int idutilisateur)throws SQLException;
+
+    public List<Cours> chercherCoursByNameFormateur(String chaine, int idutilisateur)throws SQLException;
+
+    public List<Cours> chercherCoursByNameOrganisme(String chaine, int idutilisateur)throws SQLException;
+
+    public List<Cours> findAll(int idutilisateur)throws SQLException;
+
+    public List<Cours> chercherCoursByNameMatiere(String chaine, int idutilisateur)throws SQLException;
+
+    public int nbChapitreByCours(Cours cours)throws SQLException;
     
 }

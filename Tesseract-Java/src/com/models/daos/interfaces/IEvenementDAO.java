@@ -1,5 +1,6 @@
 package com.models.daos.interfaces;
 import com.models.entities.Evenement;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,4 +20,12 @@ public interface IEvenementDAO {
     public Evenement getEvenementByid(int id)throws SQLException;
     
     public Evenement getEvenementByNom(String nom)throws SQLException;
+
+    public List<Evenement> displayEvenement(int id)throws SQLException ;
+
+    public List<Evenement> displayByDate(Date date, int id)throws SQLException ;
+
+    public List<Evenement> displayEvenementUtilisateur(int id)throws SQLException ;
+
+    public List<Evenement> getEvenementByNomOrganisation(String nom, int id)throws SQLException ;
 }

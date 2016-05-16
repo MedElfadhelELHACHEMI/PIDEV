@@ -107,6 +107,7 @@ public class MyAccountCoachFXMLController implements Initializable {
         labelNom.setText("Welcome " + CurrentUser.getUtilisateur().getPrenom() + " " + CurrentUser.getUtilisateur().getNom());
   try {
             profimImg.setImage(new Image(new File(CurrentUser.getUtilisateur().getPhoto()).toURI().toString()));
+           
         } catch (NullPointerException e) {
 
             Alert alert = new Alert(Alert.AlertType.WARNING, "No Picture", ButtonType.OK);
@@ -119,6 +120,7 @@ public class MyAccountCoachFXMLController implements Initializable {
 
         circle.setStyle(" -fx-border-top-style: solid;\n"
                 + "    -fx-border-color: black;");
+    
         body.getChildren().add(circle);
         //   chngePwd
         fillTextField();

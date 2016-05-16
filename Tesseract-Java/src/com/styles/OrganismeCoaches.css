@@ -1,0 +1,384 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 2, 2016, 4:47:34 PM
+    Author     : Choukou_Tracker
+*/
+
+.container{
+    /*-fx-padding:20 100 0 100;*/
+    -fx-background-color:white;
+    -fx-border-width: 1;
+    -fx-border-color: #e5e6e9 #dfe0e4 #d0d1d5 #d0d1d5;
+}
+.header{
+    -fx-background-color:#222c37;
+    -fx-padding:10 10 10 10;
+    -fx-border-color: #e5e6e9 #dfe0e4 #d0d1d5 #d0d1d5;
+}
+.tf_search{
+    -fx-background-color:#e6eff8;
+    -fx-border-color:#25c4cc;
+    -fx-border-width:2;
+    
+}
+.btn_search{
+    -fx-background-color:#25c4cc;
+    -fx-border-color:#25c4cc;
+    -fx-text-fill:white;
+    -fx-background-insets:0;
+}
+.hb_result{
+    -fx-border-color:#25c4cc;
+    -fx-border-width:1.5 0 0 0;
+    -fx-padding:10 0 0 0;
+    -fx-border-style:dotted;
+}
+.hb_inpt{
+    -fx-background-color:#222c37;
+    -fx-padding:0 0 0 0;
+
+}
+.nbr_lb{
+    -fx-padding:18 0 0 0;
+    -fx-font-weight: bold;
+    -fx-text-fill:#25c4cc;
+}
+.btn_next{
+    -fx-background-image: url('/com/images/bg_next.png');
+    -fx-background-color:#25c4cc;
+    -fx-border-color:#e6eff8;
+    -fx-border-width:0 0 0 0.5;
+    -fx-border-width:0;
+    -fx-border-radius: 0 5 5 0;
+    -fx-background-radius:0 5 5 0;
+    -fx-background-insets:0;
+}
+.btn_back{
+    -fx-background-image: url('/com/images/bg_back.png');
+    -fx-background-color:#25c4cc;
+    -fx-border-color:#e6eff8;
+    -fx-border-width:0 0.5 0 0;
+    -fx-border-radius: 5 0 0 5;
+    -fx-background-radius:5 0 0 5;
+    -fx-background-insets:0;
+}
+.btn_back:hover , .btn_next:hover ,btn_back:focused ,btn_next:focused {
+    -fx-background-color:#fff600;
+    -fx-background-insets:0;
+}
+.shd{
+    -fx-effect: innershadow(one-pass-box, black, 10, 0, 0, 0);
+}
+/*____________________________Coach Item______________________________________*/
+.item{
+    -fx-background-color: #fff;
+    -fx-padding: 4 4 4 4 ; 
+    -fx-border-width: 2;
+    -fx-border-color: #e5e6e9 #dfe0e4 #d0d1d5 #d0d1d5;
+}
+.item:hover{
+    -fx-background-color: #dae7f5;
+}
+.name{
+    -fx-font-weight: bold;
+    -fx-text-fill:#25c4cc; 
+    -fx-font-size:18px;
+    -fx-background-color: transparent;
+}
+.data_mail{
+    -fx-padding:0 0 0 20;
+    -fx-background-image: url('/com/images/web.png');
+    -fx-background-size:16 16;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+}
+.data_adress{
+    -fx-padding:0 0 0 20;
+    -fx-background-image: url('/com/images/map-point.png');
+    -fx-background-size:16 16;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+}
+.data_date{
+    -fx-padding:0 0 0 20;
+    -fx-background-image: url('/com/images/dates.png');
+    -fx-background-size:16 16;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+}
+.data_tel{
+    -fx-padding:0 0 0 20;
+    -fx-background-image: url('/com/images/telephone.png');
+    -fx-background-size:16 16;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+}
+.nbrc{
+    -fx-padding:0 0 0 80;
+    -fx-background-image: url('/com/images/book.png');
+    -fx-background-size:24 24;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-padding:10;
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+    -fx-font-size:25px;
+    -fx-text-alignment:left;
+}
+.btn_add{
+    -fx-background-image: url('/com/images/add_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #25c4cc; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+.btn_view{
+    -fx-background-image: url('/com/images/view_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #25c4cc; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+.lb_mat{
+    -fx-background-color:#FF6B24;
+    -fx-text-fill:#fff;
+    -fx-padding:1.5;
+}
+.btn_cv{
+    -fx-background-image: url('/com/images/file_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #25c4cc; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+.btn_add:hover ,.btn_search:hover ,.btn_cv:hover{
+    -fx-background-color:#222c37;
+}
+.groupe_icon{
+    -fx-background-image: url('/com/images/group.png');
+    -fx-background-size:32 32;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+}
+.req_info{
+    -fx-font-weight: bold;
+    -fx-text-fill:#25c4cc;
+    -fx-text-alignment:left;
+}
+.req_info_cnt{
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+    -fx-text-alignment:center;
+}
+.btn_accpt{
+    -fx-background-color:#08C333;
+    -fx-font-weight: bold;
+    -fx-text-fill:white;
+    -fx-border-width: 0;
+}
+.btn_cv{
+    -fx-background-color:#25c4cc;
+    -fx-font-weight: bold;
+    -fx-text-fill:white;
+    -fx-border-width: 0;
+    -fx-margin: 0 0 0 0; 
+}
+.btn_refuse{
+    -fx-background-color:#ff4f19; 
+    -fx-font-weight: bold;
+    -fx-text-fill:white;
+    -fx-border-width: 0;
+}
+.btn_accpt:hover{
+    -fx-background-color:white;
+    -fx-text-fill:#08C333;
+    -fx-border-color:#08C333;
+    -fx-border-width: 3;
+}
+.btn_refuse:hover{
+    -fx-background-color:white; 
+    -fx-text-fill:#ff4f19;
+    -fx-border-color:#ff4f19;
+    -fx-border-width: 3;
+}
+.btn_cv:hover{
+    -fx-background-color:white; 
+    -fx-text-fill:#25c4cc;
+    -fx-border-color:#25c4cc;
+    -fx-border-width: 3;
+}
+.wait{
+    -fx-background-image: url('/com/images/wait.png');
+    -fx-background-size:32 32;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-padding:10 0 30 38;
+    -fx-font-weight: bold;
+    -fx-text-fill:#7a8894;
+}
+.acc{
+    -fx-background-image: url('/com/images/accp.png');
+    -fx-background-size:32 32;
+    -fx-background-position:left center;
+    -fx-background-repeat:no-repeat;
+    -fx-padding:20 0 0 38;
+    -fx-font-weight: bold;
+    -fx-text-fill:#08C333;
+}
+
+.courseTitle-label{
+    -fx-font-weight: bold;
+    -fx-text-fill:#25c4cc;
+    -fx-text-alignment:left;
+}
+.courseDescription-text{
+    -fx-text-fill:#25c4cc;
+    -fx-text-alignment:left;
+}
+
+.show-video-btn{
+    -fx-background-image: url('/com/images/view_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #222c37; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+    
+}
+
+.accept-btn{
+    -fx-background-image: url('/com/images/tick_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #222c37; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+    -fx-margin:2 0 2 0;
+}
+
+.refuse-btn{
+    -fx-background-image: url('/com/images/refuse_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #222c37; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+    -fx-margin:2 0 2 0;
+}
+.show-video-btn:hover{
+    -fx-background-image: url('/com/images/view_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #646b73; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+    
+}
+
+.accept-btn:hover{
+    -fx-background-image: url('/com/images/tick_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #646b73; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+    -fx-margin:2 0 2 0;
+}
+
+.refuse-btn:hover{
+    -fx-background-image: url('/com/images/refuse_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #646b73; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+    -fx-margin:2 0 2 0;
+}
+.show-content-btn{
+    -fx-background-image: url('/com/images/content_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #222c37; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+.show-content-btn:hover{
+    -fx-background-image: url('/com/images/content_icn.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #646b73; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+
+.cv-btn{
+    -fx-background-image: url('/com/images/pdf-document.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #222c37; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+.cv-btn:hover{
+    -fx-background-image: url('/com/images/pdf-document.png');
+    -fx-background-size:24 24;
+    -fx-background-position:center center;
+    -fx-background-repeat:no-repeat;
+    -fx-font-weight: bold;
+    -fx-text-fill:#fff;
+    -fx-background-color: #646b73; 
+    -fx-border-width: 0;
+    -fx-padding:3 3 3 30;
+}
+

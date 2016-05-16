@@ -83,10 +83,10 @@ public class LogInFXMLController implements Initializable {
         String mail = mailTF.getText();
         String pwd = pwdTF.getText();
         if (verifyFields(mail, pwd)) {
-
+            System.out.println(mail);
             IUtilisateurDAO utilisateurDAO = new ImplUtilisateurDAO();
             Utilisateur user = utilisateurDAO.getUtilisateurByMail(mail);
-            
+         
             if (user == null) {
                 mailTF.setText("Invalid Credentials");
             } else {
@@ -102,6 +102,7 @@ public class LogInFXMLController implements Initializable {
                     CurrentUser.setUtilisateur(user);
                     LoggingFacade.startLogger(CurrentUser.getId());
                     log.info("CONNECTED");
+                    
                     Stage s = (Stage) LogInButton.getScene().getWindow();
                     
 

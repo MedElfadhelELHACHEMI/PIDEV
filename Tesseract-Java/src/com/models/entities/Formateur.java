@@ -3,12 +3,15 @@ package com.models.entities;
 
 import com.models.enums.Etat;
 import java.sql.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 
 public class Formateur extends Utilisateur{
     private String cv ; 
     private Etat etat ;
     private int score ;
+        private String skype;
 private int idOrganisationn ;
     public Formateur() {
     }
@@ -56,7 +59,17 @@ private int idOrganisationn ;
     public void setIdOrganisationn(int idOrganisation) {
         this.idOrganisationn = idOrganisation;
     }
-    
+
+    public String getSkype() {
+        return skype;
+    }
+
+    public void setSkype(String skype) {
+        this.skype = skype;
+    }
+    public StringProperty scoreProperty() {
+        return new SimpleStringProperty(new Integer(score).toString());
+    }
     
 
    

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1070.0" stylesheets="@../styles/CommenterCours.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.ConEpreuveFinalFXMLController">
+   <children>
+      <ImageView fx:id="img" fitHeight="218.0" fitWidth="440.0" layoutX="276.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/btn_vmenu2.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="294.0" layoutY="256.0" text="Cours : ">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="304.0" layoutY="309.0" text="User :">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="lCours" layoutX="482.0" layoutY="259.0" text="vvvvvvvvvvvvvvvvvvv">
+         <font>
+            <Font name="Bodoni MT Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lname" layoutX="466.0" layoutY="314.0" text="vvvvvvvvvvvvvvvvvvvvvv">
+         <font>
+            <Font name="Bodoni MT Italic" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="val" layoutX="420.0" layoutY="465.0" mnemonicParsing="false" onAction="#validerAction" prefHeight="66.0" prefWidth="282.0">
+         <graphic>
+            <ImageView fitHeight="58.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/strr.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="ret" layoutX="975.0" layoutY="50.0" mnemonicParsing="false" onAction="#retourAction">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="textTyoeEp" layoutX="312.0" layoutY="363.0" text="Type">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="29.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="tyEpEntenaiment" layoutX="504.0" layoutY="368.0" prefWidth="150.0" />
+      <Label fx:id="textDiff" layoutX="297.0" layoutY="416.0" text="Difficulté">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="22.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="choixDiff" layoutX="504.0" layoutY="417.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

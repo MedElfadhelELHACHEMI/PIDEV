@@ -1,5 +1,6 @@
 package com.models.daos.interfaces;
 
+import com.models.entities.Notification;
 import com.models.entities.Utilisateur;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,4 +20,6 @@ public interface IUtilisateurDAO {
     public Utilisateur getUtilisateurByMail(String mail) throws SQLException;
 
     public boolean verifyPassword(Utilisateur user) throws SQLException;
+
+    public List<Notification> displayAllNotifications(int idUtilisateur);
 }

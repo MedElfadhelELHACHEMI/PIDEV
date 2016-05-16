@@ -19,7 +19,7 @@ import javafx.scene.web.WebView;
 /**
  * FXML Controller class
  *
- * @author haikal 
+ * @author haikal
  */
 public class OrganisationMapFXMLController implements Initializable {
 
@@ -48,6 +48,8 @@ public class OrganisationMapFXMLController implements Initializable {
     }
 
     public void setOrganisation(Organisation organisation) {
+        
+       
        OrganisationMapFXMLController.organisation = organisation;
           String replace = organisation.getAdresse().replace(' ', '+');
         String replace2 = organisation.getNom().replace(' ', '+');

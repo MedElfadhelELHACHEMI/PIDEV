@@ -87,7 +87,7 @@ public class InscriptionApprenantFXMLController implements Initializable {
     private Label Warning2;
     @FXML
     private Label Warning;
-    private static String picture ;
+    private static String picture;
     @FXML
     private JFXButton bt1;
 
@@ -143,46 +143,53 @@ public class InscriptionApprenantFXMLController implements Initializable {
     private void generateListeners() {
         nom.textProperty().addListener((observable, oldValue, newValue) -> {
             verif(Color.PINK, Color.valueOf("#24c5cf"), nom, newValue);
-            if(!nom.getText().matches("[a-zA-Z]+")) {Warning.setText("invalide name");
-                         nom.setText("");
-            }else{
-            Warning.setText("");
+            if (!nom.getText().matches("[a-zA-Z]+")) {
+                Warning.setText("invalide name");
+                nom.setText("");
+            } else {
+                Warning.setText("");
             }
 
         });
         prenom.textProperty().addListener((observable, oldValue, newValue) -> {
             verif(Color.PINK, Color.valueOf("#24c5cf"), prenom, newValue);
-            if(!prenom.getText().matches("[a-zA-Z]+")) {Warning.setText(" invalide Lastname");
-                         prenom.setText("");
-            }else{
-            Warning.setText("");
+            if (!prenom.getText().matches("[a-zA-Z]+")) {
+                Warning.setText(" invalide Lastname");
+                prenom.setText("");
+            } else {
+                Warning.setText("");
             }
 
         });
         numberPh.textProperty().addListener((observable, oldValue, newValue) -> {
             verif(Color.PINK, Color.valueOf("#24c5cf"), numberPh, newValue);
-              if(!numberPh.getText().matches("[1-9]+")) {Warning.setText(" invalide number");
-                         numberPh.setText("");
-            }else{
-            Warning.setText("");
+            if (!numberPh.getText().matches("[1-9]+")) {
+                Warning.setText(" invalide number");
+                numberPh.setText("");
+            } else {
+                Warning.setText("");
             }
 
         });
         addresse.textProperty().addListener((observable, oldValue, newValue) -> {
             verif(Color.PINK, Color.valueOf("#24c5cf"), addresse, newValue);
-    
-                 if(!addresse.getText().matches("[a-zA-Z]+")) {Warning.setText("adress must be CountryName,City,code civil ex :Tunis,Ariana,2081");
-                         addresse.setText("");
-            }else{
-            Warning.setText("");
+
+            if (!addresse.getText().matches("[a-zA-Z]+")) {
+                Warning.setText("adress must be CountryName,City,code civil ex :Tunis,Ariana,2081");
+                addresse.setText("");
+            } else {
+                Warning.setText("");
             }
 
         });
         login.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                if(inscriptionUtilisateurs.verifierLogin(newValue)){ Warning2.setText("choose another one");}else{
-                    
-                    Warning2.setText("");}
+                if (inscriptionUtilisateurs.verifierLogin(newValue)) {
+                    Warning2.setText("choose another one");
+                } else {
+
+                    Warning2.setText("");
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(InscriptionApprenantFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -190,21 +197,19 @@ public class InscriptionApprenantFXMLController implements Initializable {
         });
         password.textProperty().addListener((observable, oldValue, newValue) -> {
             verif(Color.PINK, Color.valueOf("#24c5cf"), password, newValue);
-            if(password.getText().length()<8) Warning2.setText("lenght should be > 8");
-            else  Warning2.setText("");
+            if (password.getText().length() < 8) {
+                Warning2.setText("lenght should be > 8");
+            } else {
+                Warning2.setText("");
+            }
 
         });
         password2.textProperty().addListener((observable, oldValue, newValue) -> {
             verif(Color.PINK, Color.valueOf("#24c5cf"), password2, newValue);
-        
-             
-            
 
         });
 
     }
-
-  
 
     @FXML
     private void rotationMethodDesktop(MouseEvent event) {
@@ -213,7 +218,7 @@ public class InscriptionApprenantFXMLController implements Initializable {
 
     @FXML
     private void searchDesktop(MouseEvent event) {
-      
+
         FileChooser fc = new FileChooser();
         fc.setTitle("researching the image");
         fc.getExtensionFilters().addAll(
@@ -224,7 +229,7 @@ public class InscriptionApprenantFXMLController implements Initializable {
         );
         File file = fc.showOpenDialog(null);
         image.setImage(new Image(new File(file.getAbsolutePath()).toURI().toString()));
-        picture=file.getAbsolutePath();
+        picture = file.getAbsolutePath();
         System.out.println(picture
         );
 
@@ -244,46 +249,53 @@ public class InscriptionApprenantFXMLController implements Initializable {
     @FXML
     private void ValiderInscription(ActionEvent event) throws SQLException, Exception {
         System.out.println("enter");
-       
-            RedirectionStrategy redirectionStrategy = new RedirectionStrategy();
+
+        RedirectionStrategy redirectionStrategy = new RedirectionStrategy();
         if (!(password.getText().equals("")) || !(password2.getText().equals("")) || !(login.getText().equals(""))) {
             System.out.println("stage 1");
-            if(!Objects.isNull(picture)){
-                 System.out.println(picture);
-               boolean result =inscriptionUtilisateurs.verifierLogin(login.getText());
-            if (result) {
-                if (password.getText().equals(password2.getText())) {
-                    Apprenant apprenant = new Apprenant();
-                    apprenant.setNom(nom.getText());
-                    apprenant.setPrenom(prenom.getText());
-                    apprenant.setDateNaissance(Date.valueOf(birth.getValue()));
-                    apprenant.setTel(Integer.parseInt(numberPh.getText()));
-                    apprenant.setMail(mail.getText());
-                    apprenant.setAdresse(addresse.getText());
-                    apprenant.setNomUtilisateur(login.getText());
-                    apprenant.setMotDePass(password.getText());
-                   boolean resultat =inscriptionUtilisateurs.inscriptionApprenant(apprenant);
-                   
-                    if (resultat) {
-                     
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
-                        alert.show();
+            if (!Objects.isNull(picture)) {
+                System.out.println(picture);
+                boolean result = inscriptionUtilisateurs.verifierLogin(login.getText());
+                if (result) {
+                    if (password.getText().equals(password2.getText())) {
+                        Apprenant apprenant = new Apprenant();
+                        apprenant.setNom(nom.getText());
+                        apprenant.setPrenom(prenom.getText());
+                        apprenant.setDateNaissance(Date.valueOf(birth.getValue()));
+                        apprenant.setTel(Integer.parseInt(numberPh.getText()));
+                        apprenant.setMail(mail.getText());
+                        apprenant.setAdresse(addresse.getText());
+                        apprenant.setNomUtilisateur(login.getText());
+                        apprenant.setMotDePass(password.getText());
+                        boolean resultat = inscriptionUtilisateurs.inscriptionApprenant(apprenant);
 
-                        redirectionStrategy.redirectAuthentification(birth);
+                        if (resultat) {
+
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
+                            alert.show();
+
+                           // redirectionStrategy.redirectAuthentification(birth);
+                            Parent parent = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
+                            Stage stage = new Stage();
+                            Scene s = new Scene(parent);
+                            stage.setScene(s);
+                           // birth.getScene().getWindow().hide();
+                        }
+
+                    } else {
+                        Warning2.setText("Check your passwords");
+                        password.setText("");
+                        password2.setText("");
+
                     }
 
-                }else{Warning2.setText("Check your passwords");
-                password.setText("");
-                password2.setText("");
-                
                 }
-
-            }}else{
-           Warning2.setText("you need a picture");
-             rotateTransition = new RotateTransition(Duration.seconds(1), desktop);
-        rotateTransition.setByAngle(360);
-        rotateTransition.setCycleCount(1);
-        rotateTransition.play();
+            } else {
+                Warning2.setText("you need a picture");
+                rotateTransition = new RotateTransition(Duration.seconds(1), desktop);
+                rotateTransition.setByAngle(360);
+                rotateTransition.setCycleCount(1);
+                rotateTransition.play();
             }
 
         }

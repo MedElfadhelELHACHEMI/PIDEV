@@ -188,5 +188,25 @@ public class ImplMatiereDAO implements IMatiereDAO{
     
     }
 
+    @Override
+    public String getNameMatiere(Cours cours) throws SQLException {
+      
+        String name =null;
+        String requete = "select nom from matiere where id=?";
+        
+            PreparedStatement ps = cnx.prepareStatement(requete);
+            ps.setInt(1, cours.getIdMatiere());
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+              name=resultat.getString(1);
+            }
+          if (Objects.nonNull(name)) {
+            return name;
+        }
+
+        throw new UnsupportedOperationException();
+   
+    }
+
    
     }

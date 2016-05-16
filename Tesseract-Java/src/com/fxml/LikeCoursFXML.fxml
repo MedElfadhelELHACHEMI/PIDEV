@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1070.0" stylesheets="@../styles/LikeCoursfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.LikeCoursFXMLController">
+   <children>
+      <ImageView fx:id="img" fitHeight="136.0" fitWidth="372.0" layoutX="377.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/aa.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="ret" layoutX="980.0" layoutY="53.0" mnemonicParsing="false" onAction="#retourAction">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="409.0" layoutY="181.0" text="Cours : ">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="415.0" layoutY="229.0" text="User : ">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lCours" layoutX="577.0" layoutY="184.0" text="vvvvvvvvvv">
+         <font>
+            <Font name="Bodoni MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lname" layoutX="581.0" layoutY="232.0" text="xxxxxxxx">
+         <font>
+            <Font name="Bodoni MT Italic" size="19.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textCom" layoutX="352.0" layoutY="281.0" prefHeight="200.0" prefWidth="409.0" promptText="                             your comment">
+         <font>
+            <Font name="Bodoni MT Italic" size="17.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="betEnreg" layoutX="529.0" layoutY="492.0" mnemonicParsing="false" onAction="#EnregAction">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/cov.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

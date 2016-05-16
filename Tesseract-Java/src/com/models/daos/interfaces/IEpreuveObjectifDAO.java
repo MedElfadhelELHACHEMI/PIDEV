@@ -6,6 +6,7 @@
 package com.models.daos.interfaces;
 
 import com.models.entities.EpreuveObjectif;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,5 +19,7 @@ public interface IEpreuveObjectifDAO {
     boolean updateEpreuveObjectif(EpreuveObjectif epreuveObjectif, int id);
     EpreuveObjectif searchEpreuveObjectif(int id);
     List<EpreuveObjectif> displayEpreuveObjectif();
+
+    public List<EpreuveObjectif> searchEpreuveOBJByObj(int idobj) throws SQLException;
     
 }

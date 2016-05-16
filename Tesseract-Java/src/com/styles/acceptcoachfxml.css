@@ -1,0 +1,19 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.btn_cancel_call{
+    -fx-background-color: transparent;
+    -fx-border-width: none;
+    -fx-background-image: url('/com/images/end_call.png');
+    -fx-background-size: 64 64;
+    -fx-background-position: left center;
+    
+}
+.btn_cancel_call_bg{
+    -fx-background-color: #333;
+    -fx-padding: 0 0 0 502;
+}

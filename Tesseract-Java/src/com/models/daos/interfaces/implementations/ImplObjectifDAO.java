@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -157,6 +158,32 @@ public class ImplObjectifDAO implements IObjectifDAO{
             Logger.getLogger(ImplChapitreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    @Override
+    public Objectif searchOBJByChapitre(int number, int idChapitre) throws SQLException {
+        Objectif c = new Objectif();
+        String request = "SELECT * FROM objectif WHERE id_chapitre=? and numero=?";
+        PreparedStatement ps;
+        
+            ps = cnx.prepareStatement(request);
+            ps.setInt(1, idChapitre);
+            ps.setInt(2, number);
+            ResultSet res=ps.executeQuery();
+            while (res.next()){
+                c.setId(res.getInt(1));
+                c.setIdChapitre(res.getInt(2));
+                c.setNom(res.getString(4));
+                c.setNumero(res.getInt(3));
+                c.setDescription(res.getString(5));
+                c.setDifficulte(Difficulte.valueOf(res.getString(6)));
+                
+            }
+             if (Objects.nonNull(c)) {
+            return c;
+        }
+       
+       throw new UnsupportedOperationException(); 
     }
 
 }

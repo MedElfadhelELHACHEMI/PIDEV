@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -9,8 +10,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="body" prefHeight="560.0" prefWidth="1096.0" style="-fx-background-color: gray;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.views.controllers.MyInvitationsCoachFXMLController">
+<AnchorPane id="AnchorPane" fx:id="body02" prefHeight="560.0" prefWidth="1096.0" style="-fx-background-color: #f4f4f4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.MyInvitationsCoachFXMLController">
     <stylesheets>
         <URL value="@/com/styles/myinvitationscoachfxml.css" />
     </stylesheets>
+   <children>
+      <AnchorPane fx:id="goupe" layoutX="-1.0" prefHeight="560.0" prefWidth="1096.0" style="-fx-background-color: #f4f4f4;">
+         <children>
+            <AnchorPane fx:id="header01" layoutX="76.0" layoutY="35.0" prefHeight="107.0" prefWidth="967.0" style="-fx-background-color: #222c37;">
+               <children>
+                  <TextField fx:id="txtfsearch" layoutX="223.0" layoutY="9.0" prefHeight="34.0" prefWidth="405.0" style="-fx-border-color: #25c4cc; -fx-border-width: 2px;" />
+                  <Button fx:id="btchercher" layoutX="624.0" layoutY="9.0" mnemonicParsing="false" onAction="#chercherInvitation" prefHeight="33.0" prefWidth="62.0" text="Search" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <ImageView fitHeight="1.0" fitWidth="962.0" layoutX="5.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ligne-994.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="preced" layoutX="832.0" layoutY="72.0" mnemonicParsing="false" onAction="#preced" prefHeight="36.0" prefWidth="56.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="next" layoutX="888.0" layoutY="72.0" mnemonicParsing="false" onAction="#next" prefHeight="36.0" prefWidth="58.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Label fx:id="pagination" layoutX="19.0" layoutY="77.0" prefHeight="26.0" prefWidth="103.0" text="Label" />
+                  <VBox fx:id="body" layoutY="116.0" prefHeight="399.0" prefWidth="966.0" style="-fx-background-color: white; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

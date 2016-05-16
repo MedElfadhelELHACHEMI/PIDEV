@@ -146,7 +146,7 @@ public class Cours {
      * @return the affiche
      */
     public String getAffiche() {
-        return affiche.get();
+        return "C:\\wamp\\www\\symf\\Tesseract-Symfony\\Tesseract-Symfony\\web\\uploads\\pictures\\"+affiche.get();
     }
 
     public void setAffiche(String affiche) {

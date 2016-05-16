@@ -6,6 +6,7 @@ import com.models.entities.Cours;
 import com.models.entities.Formateur;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 public interface IFormateurDAO {
 
@@ -27,6 +28,28 @@ public interface IFormateurDAO {
 
     public boolean modifierProfilWithPwd(String nom, String prenom, String mail, String adresse, int tel, String motDePass, int id);
 
-    List<Formateur> afficherTopFormateur()throws SQLException;
+    List<Formateur> afficherTopFormateur() throws SQLException;
+
+    public String getNameFormateur(Cours cours) throws SQLException;
+
+    public String getNameOrganisme(Cours cours) throws SQLException;
+
+    public Formateur getFormateur(Cours cours) throws SQLException;
+
+    public Formateur getFormateurByName(String nom) throws SQLException;
+
+    public ObservableList<Formateur> findAllAtt() ;
+
+   
+
+    public void rejeterFormateur(int idUtilisateur)throws SQLException;
+
+    public void accepterFormateur(int idUtilisateur)throws SQLException;
+
+    public List<Formateur> getFormateurAndScore()throws SQLException;
+
+    public List<Formateur> getAllFormateursAtt()throws SQLException;
+
+    public void accRefFormateur(Formateur f, int i);
 
 }

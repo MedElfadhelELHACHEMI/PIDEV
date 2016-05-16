@@ -13,6 +13,8 @@ import com.models.daos.interfaces.implementations.ImplEpreuveFinalDAO;
 import com.models.daos.interfaces.implementations.ImplEpreuveObjectifDAO;
 import com.models.daos.interfaces.implementations.ImplEvenementDAO;
 import com.models.daos.interfaces.implementations.ImplFormateurDAO;
+import com.models.daos.interfaces.implementations.ImplIInscriptionChallengeDAO;
+import com.models.daos.interfaces.implementations.ImplIInscriptionEvenementDAO;
 import com.models.daos.interfaces.implementations.ImplInvitationDAO;
 import com.models.daos.interfaces.implementations.ImplLogDAO;
 import com.models.daos.interfaces.implementations.ImplMatiereDAO;
@@ -133,4 +135,10 @@ public interface DAOFactory {
         return new ImplEvenementDAO();
     }
 
+    public static IInscriptionChallengeDAO getInscriptionChallengeDAO(){
+return new ImplIInscriptionChallengeDAO();
+    }
+    public static IInscriptionEvenementDAO getInscriptionEvenementDAO(){
+    return new ImplIInscriptionEvenementDAO();
+    }
 }

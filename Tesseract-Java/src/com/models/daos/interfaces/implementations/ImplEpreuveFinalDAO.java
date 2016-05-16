@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -112,6 +113,25 @@ public class ImplEpreuveFinalDAO implements IEpreuveFinalDAO {
             Logger.getLogger(ImplEpreuveFinalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return epreuves;
+    }
+
+    @Override
+    public EpreuveFinal searchEpreuveFinalByCours(int idcours) throws SQLException{
+       EpreuveFinal epreuveFinal = new EpreuveFinal();
+
+            String request="select * from epreuve where id_cours=? and type like '%FIN%'";
+           PreparedStatement ps = connection.prepareStatement(request);
+               ps.setInt(1, idcours);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+        epreuveFinal.setId(resultat.getInt(1));
+        epreuveFinal.setDureeExamen(resultat.getInt(6));
+        }
+        if (Objects.nonNull(epreuveFinal)) {
+            return epreuveFinal;
+        }
+
+        throw new UnsupportedOperationException(); 
     }
     
 }

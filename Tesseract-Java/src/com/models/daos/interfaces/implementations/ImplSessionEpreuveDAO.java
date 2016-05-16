@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -142,6 +143,33 @@ public class ImplSessionEpreuveDAO implements ISessionEpreuveDAO{
             System.out.println("erreur lors de la recherche du log " + ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public List<SessionEpreuve> getSessionEpreuvebyidCoursUtil(int idCours, int idUtilisateur) throws SQLException{
+              ArrayList<SessionEpreuve> listeSessionEpreuve = new ArrayList<SessionEpreuve>();
+        String query = "select * from session_epreuve ,epreuve where session_epreuve.id_epreuve=epreuve.id and session_epreuve.id_utilisateur=? and epreuve.id_cours=?";
+        
+      
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, idUtilisateur);
+            ps.setInt(2, idCours);
+            ResultSet resultat = ps.executeQuery();
+            while (resultat.next()) {
+                SessionEpreuve sessionEpreuve = new SessionEpreuve();
+             sessionEpreuve.setId_utilisateur(resultat.getInt(2));
+                sessionEpreuve.setId_epreuve(resultat.getInt(3));
+                sessionEpreuve.setNote(resultat.getFloat(4));
+                sessionEpreuve.setNbr_tentative(resultat.getInt(5));
+                sessionEpreuve.setDate_Session(resultat.getDate(6));
+                listeSessionEpreuve.add(sessionEpreuve);
+            }
+        if (Objects.nonNull(listeSessionEpreuve)) {
+            return listeSessionEpreuve;
+        }
+
+        throw new UnsupportedOperationException();
+
     }
     
 }

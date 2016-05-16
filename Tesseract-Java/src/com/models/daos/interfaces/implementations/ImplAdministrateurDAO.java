@@ -5,6 +5,7 @@
  */
 package com.models.daos.interfaces.implementations;
 
+import com.database.ArrayToString;
 import com.models.daos.interfaces.IAdministrateurDAO;
 import com.database.DataSource;
 import com.models.entities.Administrateur;
@@ -28,8 +29,9 @@ public class ImplAdministrateurDAO implements IAdministrateurDAO {
     public boolean ajouterAdministrateur(Administrateur administrateur) throws SQLException {
         Connection connection = DataSource.getInstance().getConnection();
         System.out.println(administrateur.getNomUtilisateur());
-        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,role,mail_sercours) values (?,?,?,?,?,?,?,?,?,?,?)";
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,roles,mail_sercours,username_canonical,email_canonical,enabled,salt,locked,expired,credentials_expired) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(requete);
+       
         ps.setString(1, administrateur.getNomUtilisateur());
         ps.setString(2, administrateur.getMotDePass());
         ps.setString(3, administrateur.getNom());
@@ -37,7 +39,7 @@ public class ImplAdministrateurDAO implements IAdministrateurDAO {
         ps.setDate(5, administrateur.getDateNaissance());
         ps.setInt(6, administrateur.getTel());
         ps.setString(7, administrateur.getAdresse());
-        ps.setString(8, String.valueOf(Role.ADM));
+        ps.setString(8, ArrayToString.EnumToArray(administrateur.getRole()));
         ps.setString(9, administrateur.getMail());
         ps.setString(10, administrateur.getPhoto());
         ps.setString(11, administrateur.getMailSecours());
@@ -57,17 +59,17 @@ public class ImplAdministrateurDAO implements IAdministrateurDAO {
         Administrateur administrateur = new Administrateur();
         while (rs.next()) {
 
-            administrateur.setIdUtilisateur(rs.getInt(1));
-            administrateur.setNomUtilisateur(rs.getString(3));
-            administrateur.setMotDePass(rs.getString(4));
-            administrateur.setNom(rs.getString(5));
-            administrateur.setPrenom(rs.getString(6));
-            administrateur.setDateNaissance(rs.getDate(7));
-            administrateur.setTel(rs.getInt(8));
-            administrateur.setAdresse(rs.getString(9));
-            administrateur.setMail(rs.getString(10));
-            administrateur.setPhoto(rs.getString(11));
-            administrateur.setMailSecours(rs.getString(16));
+          administrateur.setIdUtilisateur(rs.getInt("id"));
+            administrateur.setNomUtilisateur(rs.getString("pseudo"));
+            administrateur.setMotDePass(rs.getString("mdp"));
+            administrateur.setNom(rs.getString("nom"));
+            administrateur.setPrenom(rs.getString("prenom"));
+            administrateur.setDateNaissance(rs.getDate("date_naissance"));
+            administrateur.setTel(rs.getInt("telephone"));
+            administrateur.setAdresse(rs.getString("adresse"));
+            administrateur.setMail(rs.getString("mail"));
+            administrateur.setPhoto(rs.getString("photo"));
+            administrateur.setMailSecours(rs.getString("mail_sercours"));
 
         }
         ps.close();
@@ -95,18 +97,17 @@ public class ImplAdministrateurDAO implements IAdministrateurDAO {
         ResultSet rs = ps.executeQuery(requete);
         Administrateur administrateur = new Administrateur();
         while (rs.next()) {
-
-            administrateur.setIdUtilisateur(rs.getInt(1));
-            administrateur.setNomUtilisateur(rs.getString(3));
-            administrateur.setMotDePass(rs.getString(4));
-            administrateur.setNom(rs.getString(5));
-            administrateur.setPrenom(rs.getString(6));
-            administrateur.setDateNaissance(rs.getDate(7));
-            administrateur.setTel(rs.getInt(8));
-            administrateur.setAdresse(rs.getString(9));
-            administrateur.setMail(rs.getString(10));
-            administrateur.setPhoto(rs.getString(11));
-            administrateur.setMailSecours(rs.getString(16));
+            administrateur.setIdUtilisateur(rs.getInt("id"));
+            administrateur.setNomUtilisateur(rs.getString("pseudo"));
+            administrateur.setMotDePass(rs.getString("mdp"));
+            administrateur.setNom(rs.getString("nom"));
+            administrateur.setPrenom(rs.getString("prenom"));
+            administrateur.setDateNaissance(rs.getDate("date_naissance"));
+            administrateur.setTel(rs.getInt("telephone"));
+            administrateur.setAdresse(rs.getString("adresse"));
+            administrateur.setMail(rs.getString("mail"));
+            administrateur.setPhoto(rs.getString("photo"));
+            administrateur.setMailSecours(rs.getString("mail_sercours"));
             list.add(administrateur);
         }
         ps.close();
@@ -117,7 +118,7 @@ public class ImplAdministrateurDAO implements IAdministrateurDAO {
     public boolean modifierAdministrateur(String login, Administrateur newAdministrateur) throws SQLException {
         Connection connection = DataSource.getInstance().getConnection();
 
-        String requete = "update utilisateur set pseudo=?,mdp=?,nom=?,prenom=?,date_naissance=?,telephone=?,adresse=?,mail=?,photo=?,role=?,mail_secours=? where pseudo like ?";
+        String requete = "update utilisateur set pseudo=?,mdp=?,nom=?,prenom=?,date_naissance=?,telephone=?,adresse=?,mail=?,photo=?,roles=?,mail_secours=? where pseudo like ?";
         PreparedStatement ps = connection.prepareStatement(requete);
         ps.setString(1, newAdministrateur.getNomUtilisateur());
         ps.setString(2, newAdministrateur.getMotDePass());
@@ -126,7 +127,7 @@ public class ImplAdministrateurDAO implements IAdministrateurDAO {
         ps.setDate(5, newAdministrateur.getDateNaissance());
         ps.setInt(6, newAdministrateur.getTel());
         ps.setString(7, newAdministrateur.getAdresse());
-        ps.setString(8, String.valueOf(Role.ADM));
+        ps.setString(8, ArrayToString.EnumToArray(Role.ADM));
         ps.setString(9, newAdministrateur.getMail());
         ps.setString(10, newAdministrateur.getPhoto());
         ps.setString(11, newAdministrateur.getMailSecours());

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.validation.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" stylesheets="@../styles/ApprenantProfil.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.views.controllers.ApprenantProfilFXMLController">
+   <children>
+      <ImageView fx:id="imgUser" fitHeight="167.0" fitWidth="196.0" layoutX="27.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTextField fx:id="Name" editable="false" focusColor="#24c5cf" layoutX="449.0" layoutY="79.0" maxWidth="255.0" minWidth="184.0" prefHeight="31.0" prefWidth="255.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="l1" layoutX="299.0" layoutY="98.0" prefHeight="17.0" prefWidth="139.0" text="Last Name">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="l2" layoutX="299.0" layoutY="145.0" text="first name">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="23.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="LastN" editable="false" focusColor="#24c5cf" layoutX="454.0" layoutY="136.0" maxWidth="248.0" minWidth="232.0" prefHeight="31.0" prefWidth="248.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="12.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="l3" layoutX="281.0" layoutY="194.0" prefHeight="29.0" prefWidth="121.0" text="      Login">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="23.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="Login" editable="false" focusColor="#24c5cf" layoutX="452.0" layoutY="186.0" maxWidth="248.0" minWidth="236.0" prefHeight="31.0" prefWidth="248.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="l4" layoutX="294.0" layoutY="249.0" text="Date of birth">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="Birth" editable="false" focusColor="#24c5cf" layoutX="454.0" layoutY="242.0" maxWidth="248.0" minWidth="204.0" prefHeight="31.0" prefWidth="248.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="l5" layoutX="319.0" layoutY="300.0" text="Phone">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="Phone" editable="false" focusColor="#24c5cf" layoutX="454.0" layoutY="296.0" maxWidth="248.0" minWidth="234.0" prefHeight="31.0" prefWidth="248.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="l6" layoutX="311.0" layoutY="355.0" text="Address">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="Add" focusColor="#24c5cf" layoutX="454.0" layoutY="351.0" maxWidth="248.0" minWidth="237.0" prefHeight="31.0" prefWidth="248.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label fx:id="l7" layoutX="321.0" layoutY="407.0" text="Email">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="Emai" focusColor="#24c5cf" layoutX="458.0" layoutY="399.0" maxWidth="241.0" minWidth="241.0" prefHeight="31.0" prefWidth="241.0" unFocusColor="#24c5cf">
+         <font>
+            <Font name="Bodoni MT Italic" size="16.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="945.0" layoutY="273.0" text="MyGeoPosition">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="ButMap" layoutX="928.0" layoutY="208.0" mnemonicParsing="false" onAction="#MapAction" prefHeight="45.0" prefWidth="94.0">
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/map3.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="l8" layoutX="323.0" layoutY="460.0" text="Score">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="Score" layoutX="458.0" layoutY="467.0" prefHeight="18.0" prefWidth="241.0" progress="0.0" />
+      <Button fx:id="btretour" layoutX="970.0" layoutY="485.0" mnemonicParsing="false" onAction="#retourAction">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/re.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

@@ -45,7 +45,7 @@ public class Organisation {
     }
 
     public String getPhoto() {
-        return photo;
+        return "C:\\wamp\\www\\symf\\Tesseract-Symfony\\Tesseract-Symfony\\web\\uploads\\pictures\\"+photo;
     }
 
     public void setIdOrganisation(int idOrganisation) {

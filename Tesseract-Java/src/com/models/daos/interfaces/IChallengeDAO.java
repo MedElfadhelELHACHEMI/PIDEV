@@ -1,5 +1,6 @@
 package com.models.daos.interfaces;
 import com.models.entities.Challenge;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -18,4 +19,14 @@ public interface IChallengeDAO {
     public Challenge getChallengeByid(int id);
     
     public Challenge getChallengeByNom(String nom);
+
+    public List<Challenge> displayChallengeByFormateur(int idChl);
+
+    public List<Challenge> displayChallenge(int id);
+
+    public List<Challenge> displayChallengeUtilisateur(int id);
+
+    public List<Challenge> getChallengeByNomOrganisation(String nom, int id);
+
+    public List<Challenge> displayChallengeByDate(Date date, int id);
 }

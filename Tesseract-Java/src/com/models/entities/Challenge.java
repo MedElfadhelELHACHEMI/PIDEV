@@ -7,6 +7,8 @@ import java.sql.Date;
 public class Challenge {
    private int idChallenge ;
    private int idOrganisation ;
+   private int idUtilisateur ;
+   private int  durée ;
    private String nom ; 
    private String description ;
    private String theme ;
@@ -36,6 +38,22 @@ public class Challenge {
         this.theme = theme;
         this.dateChallenge = dateChallenge;
      
+    }
+
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+
+    public void setDurée(int durée) {
+        this.durée = durée;
+    }
+
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public int getDurée() {
+        return durée;
     }
 
     public int getIdChallenge() {

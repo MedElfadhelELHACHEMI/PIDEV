@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public   class RedirectionStrategy {
      public  void  redirectAuthentification(Node node) throws IOException{
      
-          Parent parent = FXMLLoader.load(getClass().getResource("AuthentificationFXML.fxml"));
+          Parent parent = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
           Stage stage = new Stage();
           Scene s = new Scene(parent);
           stage.setScene(s);

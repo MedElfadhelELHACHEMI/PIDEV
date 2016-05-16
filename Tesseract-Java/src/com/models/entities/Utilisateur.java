@@ -1,9 +1,12 @@
 package com.models.entities;
 
+import com.database.ArrayToString;
 import com.models.enums.Role;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public  class Utilisateur {
 
@@ -19,7 +22,14 @@ public  class Utilisateur {
     protected String mail;
     protected String photo;
     protected Role role;
-  
+    protected String username_canonical ;
+    protected String email_canonical ;
+    protected int enabled ;
+    protected String slat ;
+    protected int locked ; 
+    protected int expires_at ;
+    protected int credentials_expired  ;
+    
     
    
     protected List<SujetForum> sujetForumList;
@@ -156,7 +166,7 @@ public  class Utilisateur {
     }
 
     public String getPhoto() {
-        return photo;
+        return "C:\\wamp\\www\\symf\\Tesseract-Symfony\\Tesseract-Symfony\\web\\uploads\\pictures\\"+photo;
     }
 
     public void setPhoto(String photo) {
@@ -281,6 +291,65 @@ public  class Utilisateur {
         this.sessionEpreuveList = sessionEpreuveList;
     }
 
+    public String getUsername_canonical() {
+        return username_canonical;
+    }
+
+    public void setUsername_canonical(String username_canonical) {
+        this.username_canonical = username_canonical;
+    }
+
+    public String getEmail_canonical() {
+        return email_canonical;
+    }
+
+    public void setEmail_canonical(String email_canonical) {
+        this.email_canonical = email_canonical;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getSlat() {
+        return slat;
+    }
+
+    public void setSlat(String slat) {
+        this.slat = slat;
+    }
+
+    public int getLocked() {
+        return locked;
+    }
+
+    public void setLocked(int locked) {
+        this.locked = locked;
+    }
+
+    public int getExpires_at() {
+        return expires_at;
+    }
+
+    public void setExpires_at(int expires_at) {
+        this.expires_at = expires_at;
+    }
+
+    public int getCredentials_expired() {
+        return credentials_expired;
+    }
+
+    public void setCredentials_expired(int credentials_expired) {
+        this.credentials_expired = credentials_expired;
+    }
+
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(prenom.substring(0, 1).toUpperCase() + prenom.substring(1)+ ' '+ nom.substring(0, 1).toUpperCase() + nom.substring(1));
+    }
     
     @Override
     public String toString() {

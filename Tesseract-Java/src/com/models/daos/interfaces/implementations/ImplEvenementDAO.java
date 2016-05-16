@@ -163,5 +163,136 @@ public class ImplEvenementDAO implements IEvenementDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Evenement> displayEvenement(int id) throws SQLException{
+        ArrayList<Evenement> liste = new ArrayList<Evenement>();
+java.util.Date date_util = new java.util.Date();
+  java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+        String query = "select * from evenement  where id NOT IN(select id_evenement from inscription_evenement where id_utilisateur=?) and  date >?";
+
+        try {
+             PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+             ps.setDate(2,date_sql );
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Evenement evn = new Evenement();
+                evn.setIdEvenement(resultat.getInt(1));
+                evn.setIdOrganisation(resultat.getInt(2));
+                evn.setNom(resultat.getString(3));
+                evn.setDescription(resultat.getString(4));
+                evn.setNbrMax(resultat.getInt(5));
+                evn.setAffiche(resultat.getString(6));
+                evn.setDateEvenement(resultat.getDate(7));
+
+                liste.add(evn);
+            }
+            return liste;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Evenement> displayByDate(Date date, int id) throws SQLException {
+        ArrayList<Evenement> liste = new ArrayList<>();
+ java.util.Date date_util = new java.util.Date();
+  java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+        String query = "select * from evenement where  date ='" +date+" 00:00:00' and id IN(select id_evenement from inscription_evenement where id_utilisateur=?)" ;
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+           ps.setInt(1, id);
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Evenement evn = new Evenement();
+                evn.setIdEvenement(resultat.getInt(1));
+                evn.setIdOrganisation(resultat.getInt(2));
+                evn.setNom(resultat.getString(3));
+                evn.setDescription(resultat.getString(4));
+                evn.setNbrMax(resultat.getInt(5));
+                evn.setAffiche(resultat.getString(6));
+                evn.setDateEvenement(resultat.getDate(7));
+
+                liste.add(evn);
+            }
+            return liste;
+        } catch (SQLException ex) {
+
+            return null;
+        }
+    }
+
+    @Override
+    public List<Evenement> displayEvenementUtilisateur(int id) throws SQLException{
+        ArrayList<Evenement> liste = new ArrayList<Evenement>();
+java.util.Date date_util = new java.util.Date();
+  java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+        String query = "select * from evenement  where id IN(select id_evenement from inscription_evenement where id_utilisateur=?) and  date >?";
+
+        try {
+             PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+             ps.setDate(2,date_sql );
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Evenement evn = new Evenement();
+                evn.setIdEvenement(resultat.getInt(1));
+                evn.setIdOrganisation(resultat.getInt(2));
+                evn.setNom(resultat.getString(3));
+                evn.setDescription(resultat.getString(4));
+                evn.setNbrMax(resultat.getInt(5));
+                evn.setAffiche(resultat.getString(6));
+                evn.setDateEvenement(resultat.getDate(7));
+
+                liste.add(evn);
+            }
+            return liste;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Evenement> getEvenementByNomOrganisation(String nom, int id) {
+       ArrayList<Evenement> liste = new ArrayList<>();
+        try {
+            java.util.Date date_util = new java.util.Date();
+            java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+            String query = "select * from evenement,organisation where organisation.id = evenement.id_organisation and organisation.nom=? and  evenement.id NOT IN(select id_evenement from inscription_evenement where id_utilisateur=?) and date >?";
+            
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, nom);
+            ps.setInt(2, id);
+            ps.setDate(3,date_sql );
+            ResultSet resultat = ps.executeQuery();
+            
+           while (resultat.next()) { 
+                 Evenement evn = new Evenement();
+           evn.setIdEvenement(resultat.getInt(1));
+                evn.setIdOrganisation(resultat.getInt(2));
+                evn.setNom(resultat.getString(3));
+                evn.setDescription(resultat.getString(4));
+                evn.setNbrMax(resultat.getInt(5));
+                evn.setAffiche(resultat.getString(6));
+                evn.setDateEvenement(resultat.getDate(7));
+                 liste.add(evn);
+           }
+            return liste;
+        } catch (SQLException ex) {
+            Logger.getLogger(ImplEvenementDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return liste;
+    }
+
+  
+
     
     }

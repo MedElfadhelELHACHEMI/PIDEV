@@ -5,6 +5,7 @@
  */
 package com.models.daos.interfaces;
 import com.models.entities.Organisation;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -28,6 +29,8 @@ public interface IOrganisationDAO {
     public Object getOrganisationByMatriculeNom(String oxia);
 
     public int getCountCoachOrganis(int idOrganisation);
+
+    public Organisation getOrganisationByName(String nom) throws SQLException ;
  
     
     

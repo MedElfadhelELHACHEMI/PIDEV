@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.InscrireCoursfxmlController">
+   <children>
+      <ImageView fx:id="img" fitHeight="194.0" fitWidth="498.0" layoutX="324.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/insrr.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="butEnreg" layoutX="448.0" layoutY="444.0" mnemonicParsing="false" onAction="#Enregistrer" prefHeight="30.0" prefWidth="179.0">
+         <graphic>
+            <ImageView fitHeight="79.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/vall.jpeg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="ret" layoutX="991.0" layoutY="28.0" mnemonicParsing="false" onAction="#retourAction">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="265.0" layoutY="324.0" text="Cours : ">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="262.0" text="User :">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="lCours1" layoutX="476.0" layoutY="327.0" text="vvvvvvvvvvvvvvvvvvv">
+         <font>
+            <Font name="Bodoni MT Italic" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lname" layoutX="469.0" layoutY="271.0" text="vvvvvvvvvvvvvvvvvvvvvv">
+         <font>
+            <Font name="Bodoni MT Italic" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

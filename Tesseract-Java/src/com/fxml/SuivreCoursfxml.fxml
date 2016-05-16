@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="pane1" prefHeight="562.0" prefWidth="1074.0" stylesheets="@../styles/CommenterCours.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.SuivreCoursfxmlController">
+   <children>
+      <ScrollPane layoutX="3.0" layoutY="158.0" prefHeight="402.0" prefWidth="1065.0">
+         <content>
+            <TilePane fx:id="tile" prefHeight="652.0" prefWidth="1071.0">
+               <padding>
+                  <Insets left="150.0" right="150.0" />
+               </padding></TilePane>
+         </content>
+      </ScrollPane>
+      <Pane fx:id="p" layoutX="3.0" layoutY="-1.0" prefHeight="160.0" prefWidth="1065.0">
+         <children>
+            <ImageView fx:id="img" fitHeight="91.0" fitWidth="504.0" layoutX="269.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/aa.jpeg" />
+               </image>
+            </ImageView>
+            <Button fx:id="ret" layoutX="995.0" layoutY="50.0" mnemonicParsing="false" onAction="#retourAction">
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

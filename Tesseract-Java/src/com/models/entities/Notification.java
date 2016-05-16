@@ -9,7 +9,7 @@ public class Notification {
     private int idUtilisateur;
     private String notification;
     private Date dateNotification;
-
+private String vue;
     public Notification() {
     }
 
@@ -22,6 +22,14 @@ public class Notification {
 
     public int getIdNotification() {
         return idNotification;
+    }
+
+    public String getVue() {
+        return vue;
+    }
+
+    public void setVue(String vue) {
+        this.vue = vue;
     }
 
     public void setIdNotification(int idNotification) {

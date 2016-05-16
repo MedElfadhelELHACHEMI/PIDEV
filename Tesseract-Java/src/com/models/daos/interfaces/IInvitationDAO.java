@@ -25,7 +25,7 @@ public interface IInvitationDAO {
     public void modifierInvitation(Invitation invitation);
 
     public boolean modifierInvitationRefuser(Invitation invitation);
-
+   
     
            
 

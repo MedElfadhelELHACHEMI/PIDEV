@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -111,5 +112,26 @@ public class ImplEpreuveEntrainementDAO implements IEpreuveEntrainementDAO{
         }
         return epreuves;
     }
+
+    @Override
+    public List<EpreuveEntrainement> searchEpreuveEntrainementByCours(int idcours) throws SQLException{
+      
+ List<EpreuveEntrainement> epreuves=new ArrayList<>();
+            String request="select * from epreuve where id_cours=? and type like '%ENT%'";
+           PreparedStatement ps = connection.prepareStatement(request);
+               ps.setInt(1, idcours);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+             EpreuveEntrainement epreuveFinal = new EpreuveEntrainement();
+        epreuveFinal.setId(resultat.getInt(1));
+        epreuveFinal.setDifficulte(resultat.getString(5));
+        epreuves.add(epreuveFinal);
+        }
+        if (Objects.nonNull(epreuves)) {
+            return epreuves;
+        }
+
+        throw new UnsupportedOperationException(); 
+    } 
     
 }

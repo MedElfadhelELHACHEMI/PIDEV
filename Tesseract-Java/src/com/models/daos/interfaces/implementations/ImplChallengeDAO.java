@@ -135,4 +135,144 @@ public class ImplChallengeDAO implements IChallengeDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Challenge> displayChallengeByFormateur(int idChl) {
+        ArrayList<Challenge> liste = new ArrayList<Challenge>();
+ java.util.Date date_util = new java.util.Date();
+  java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+        String query = "select * from challenge where id_utilisateur=? and date >?";
+
+        try {
+       PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, idChl);
+             ps.setDate(2,date_sql );
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Challenge ch = new Challenge();
+               ch.setIdChallenge(resultat.getInt(1));
+                ch.setIdOrganisation(resultat.getInt(2));
+                ch.setNom(resultat.getString(3));
+                ch.setDescription(resultat.getString(4));
+                ch.setTheme(resultat.getString(5));
+                ch.setDateChallenge(resultat.getDate(6));
+                ch.setIdUtilisateur(resultat.getInt(7));
+                ch.setDurée(resultat.getInt(8));
+
+                liste.add(ch);
+            }
+            return liste;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return null;
+        }
+    }
+        @Override
+    public List<Challenge> displayChallengeByDate(Date date,int id) {
+        ArrayList<Challenge> liste = new ArrayList<Challenge>();
+
+        String query = "select * from challenge where  date ='" +date+" 00:00:00' and id IN(select id_challenge from inscription_challenge where id_utilisateur=?)";
+
+        try {
+       PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+           
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Challenge ch = new Challenge();
+               ch.setIdChallenge(resultat.getInt(1));
+                ch.setIdOrganisation(resultat.getInt(2));
+                ch.setNom(resultat.getString(3));
+                ch.setDescription(resultat.getString(4));
+                ch.setTheme(resultat.getString(5));
+                ch.setDateChallenge(resultat.getDate(6));
+                ch.setIdUtilisateur(resultat.getInt(7));
+                ch.setDurée(resultat.getInt(8));
+
+                liste.add(ch);
+            }
+            return liste;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return null;
+        }
+    }
+ 
+
+    @Override
+    public List<Challenge>  getChallengeByNomOrganisation(String nom,int id) {
+          ArrayList<Challenge> liste = new ArrayList<Challenge>();
+       
+ java.util.Date date_util = new java.util.Date();
+  java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+        String query = "select * from challenge,organisation where organisation.id = challenge.id_organisation and organisation.nom=? and challenge.id NOT IN(select id_challenge from inscription_challenge where id_utilisateur=?)  and date >?";
+
+        try {
+       PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, nom);
+            ps.setInt(2, id);
+             ps.setDate(3,date_sql );
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Challenge ch = new Challenge();
+               ch.setIdChallenge(resultat.getInt(1));
+                ch.setIdOrganisation(resultat.getInt(2));
+                ch.setNom(resultat.getString(3));
+                ch.setDescription(resultat.getString(4));
+                ch.setTheme(resultat.getString(5));
+                ch.setDateChallenge(resultat.getDate(6));
+                ch.setIdUtilisateur(resultat.getInt(7));
+                ch.setDurée(resultat.getInt(8));
+        liste.add(ch);
+               
+            }
+            return liste;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return liste;
+        }  
+    }
+    @Override
+    public List<Challenge> displayChallengeUtilisateur(int id) {
+        ArrayList<Challenge> liste = new ArrayList<Challenge>();
+java.util.Date date_util = new java.util.Date();
+  java.sql.Date date_sql = new java.sql.Date(date_util.getTime());
+        String query = "select * from challenge where id IN(select id_challenge from inscription_challenge where id_utilisateur=?) and  date >?";
+
+        try {
+          PreparedStatement ps = connection.prepareStatement(query);
+             ps.setInt(1, id);
+             ps.setDate(2,date_sql );
+            ResultSet resultat = ps.executeQuery();
+
+            while (resultat.next()) {
+                Challenge ch = new Challenge();
+                ch.setIdChallenge(resultat.getInt(1));
+                ch.setIdOrganisation(resultat.getInt(2));
+                ch.setNom(resultat.getString(3));
+                ch.setDescription(resultat.getString(4));
+                ch.setTheme(resultat.getString(5));
+                ch.setDateChallenge(resultat.getDate(6));
+                ch.setIdUtilisateur(resultat.getInt(7));
+                ch.setDurée(resultat.getInt(8));
+                liste.add(ch);
+            }
+            return liste;
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<Challenge> displayChallenge(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

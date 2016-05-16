@@ -26,4 +26,6 @@ public interface IMatiereDAO {
 
     public Matiere findMatiereByName(String nomMatiere) throws SQLException;
 
+    public String getNameMatiere(Cours cours)throws SQLException;
+
 }
