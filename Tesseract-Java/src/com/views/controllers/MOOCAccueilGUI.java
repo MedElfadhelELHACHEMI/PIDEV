@@ -816,20 +816,20 @@ public class MOOCAccueilGUI extends Stage {
     }
 
     public void init_formateur() {
-        try {
-            ImageView profimImg = new ImageView();
-            profimImg.setFitHeight(50);
-            profimImg.setFitWidth(50);
-            profimImg.setImage(new Image(new File(CurrentUser.getUtilisateur().getPhoto()).toURI().toString()));
-        } catch (NullPointerException e) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING, "No Picture", ButtonType.OK);
-            alert.show();
-        }
+//        try {
+//            ImageView profimImg = new ImageView();
+//            profimImg.setFitHeight(50);
+//            profimImg.setFitWidth(50);
+//            profimImg.setImage(new Image(new File(CurrentUser.getUtilisateur().getPhoto()).toURI().toString()));
+//        } catch (Exception e) {
+//
+//            Alert alert = new Alert(Alert.AlertType.WARNING, "No Picture", ButtonType.OK);
+//            alert.show();
+//        }
         Circle circle = new Circle(50);
         circle.setLayoutX(50);
         circle.setLayoutY(50);
-        circle.setFill(new ImagePattern(new Image(new File(CurrentUser.getUtilisateur().getPhoto()).toURI().toString())));
+//        circle.setFill(new ImagePattern(new Image(new File(CurrentUser.getUtilisateur().getPhoto()).toURI().toString())));
         circle.setStyle(" -fx-border-top-style: solid;\n"
                 + "    -fx-border-color: black;");
         Label l = new Label(CurrentUser.getUtilisateur().getNomUtilisateur());
@@ -877,6 +877,13 @@ public class MOOCAccueilGUI extends Stage {
         WaitingForValidation1 = new Button("Waiting for Validation1", null);
         WaitingForValidation2 = new Button("Waiting for Validation2", null);
         addCourse = new Button("Add course", null);
+         addCourse.setOnAction((ActionEvent event) -> {
+            try {
+                setMain(loadNode("/com/fxml/addCourseFXML.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         Button sendRec = new Button("Send a reclaim", null);
         invitations = new Button("My invitations", null);
         Organisations = new Button("Check Organisations", null);
@@ -895,7 +902,7 @@ public class MOOCAccueilGUI extends Stage {
          */
         tlpMyProfile = new TitledPane("My profile", myProfile);
         tlpMyCourses = new TitledPane("My courses", myCourses);
-        tlpSubmitedCourses = new TitledPane("Submited courses", submitedCourses);
+        tlpSubmitedCourses = new TitledPane("Submitted courses", submitedCourses);
         tlpCareersManagment = new TitledPane("Career Managment", careersManagment);
         TitledPane tlpRecl = new TitledPane("Send reclaim", recl);
         /**

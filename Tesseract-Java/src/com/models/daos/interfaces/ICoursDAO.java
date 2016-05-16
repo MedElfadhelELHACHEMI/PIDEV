@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 
 public interface ICoursDAO {
 
+    public Cours findCourseByName(String courseName) throws SQLException;
+
     public boolean AjouterCours(Cours c1) throws SQLException;
 
     public boolean deleteCoursById(int idCours) throws SQLException;
@@ -31,23 +33,24 @@ public interface ICoursDAO {
 
     public List<Cours> listCoursCosulterParCoach(int id);
 
-    public Cours findCourByIdFromateur(int idUtilisateur)throws SQLException;
+    public Cours findCourByIdFromateur(int idUtilisateur) throws SQLException;
 
-    public Map<String, Integer> getCoursAndViews()throws SQLException;
+    public Map<String, Integer> getCoursAndViews() throws SQLException;
 
-    public List<Cours> getCoursAtt(int i)throws SQLException;
-void accRefCourV1(Cours c, int i) ;
+    public List<Cours> getCoursAtt(int i) throws SQLException;
 
-    public Cours chercherCoursByNameCours(String chaine, int idutilisateur)throws SQLException;
+    void accRefCourV1(Cours c, int i);
 
-    public List<Cours> chercherCoursByNameFormateur(String chaine, int idutilisateur)throws SQLException;
+    public Cours chercherCoursByNameCours(String chaine, int idutilisateur) throws SQLException;
 
-    public List<Cours> chercherCoursByNameOrganisme(String chaine, int idutilisateur)throws SQLException;
+    public List<Cours> chercherCoursByNameFormateur(String chaine, int idutilisateur) throws SQLException;
 
-    public List<Cours> findAll(int idutilisateur)throws SQLException;
+    public List<Cours> chercherCoursByNameOrganisme(String chaine, int idutilisateur) throws SQLException;
 
-    public List<Cours> chercherCoursByNameMatiere(String chaine, int idutilisateur)throws SQLException;
+    public List<Cours> findAll(int idutilisateur) throws SQLException;
 
-    public int nbChapitreByCours(Cours cours)throws SQLException;
-    
+    public List<Cours> chercherCoursByNameMatiere(String chaine, int idutilisateur) throws SQLException;
+
+    public int nbChapitreByCours(Cours cours) throws SQLException;
+
 }

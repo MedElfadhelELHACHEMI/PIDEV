@@ -32,16 +32,16 @@ public class ImplObjectifDAO implements IObjectifDAO{
     }
     @Override
     public boolean addObjectif(Objectif o) {
-        String request ="INSERT INTO objectif (id_chapitre, numero, nom, description, difficulte) VALUES(?,?,?,?,?)";
+        String request ="INSERT INTO objectif ( nom) VALUES(?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
             System.out.println(o.getIdChapitre());
-            ps.setInt(1, o.getIdChapitre());
-            ps.setInt(2, o.getNumero());
-            ps.setString(3, o.getNom());
-            ps.setString(4, o.getDescription());
-            System.out.println(o.getDifficulte().toString());
-            ps.setObject(5, o.getDifficulte().toString());
+//            ps.setInt(1, o.getIdChapitre());
+//            ps.setInt(2, o.getNumero());
+            ps.setString(1, o.getNom());
+//            ps.setString(4, o.getDescription());
+//            System.out.println(o.getDifficulte().toString());
+//            ps.setObject(5, o.getDifficulte().toString());
             int add = ps.executeUpdate();
             ps.close();
             return add==1;

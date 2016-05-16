@@ -5,6 +5,7 @@
  */
 package com.models.entities;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.models.enums.Difficulte;
 import javafx.beans.property.*;
 
@@ -12,7 +13,7 @@ import javafx.beans.property.*;
  *
  * @author Bacem
  */
-public class Objectif {
+public class Objectif extends RecursiveTreeObject<Objectif> {
     private final IntegerProperty id;
     private final IntegerProperty idChapitre;
     private final StringProperty nom;

@@ -38,15 +38,18 @@ public class ImplCoursDAO implements ICoursDAO {
 
     @Override
     public boolean AjouterCours(Cours c1) throws SQLException {
-
-        String req = "insert into cours (nom,difficulte,description,id_matiere,badge,affiche) values (?,?,?,?,?,?)";
+        
+        String req = "insert into cours (nom,description,id_matiere,badge,affiche,video,validation1,validation2) values (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setString(1, c1.getNomCours());
-        ps.setObject(2, c1.getDifficulte().toString());
-        ps.setString(3, c1.getDescriptionCours());
-        ps.setInt(4, c1.getIdMatiere());
-        ps.setString(5, c1.getBadge());
-        ps.setString(6, c1.getAffiche());
+
+        ps.setString(2, c1.getDescriptionCours());
+        ps.setInt(3, c1.getIdMatiere());
+        ps.setString(4, c1.getBadge());
+        ps.setString(5, c1.getAffiche());
+        ps.setString(6, c1.getVideo());
+        ps.setString(7, String.valueOf( Etat.ATT));
+        ps.setString(8, String.valueOf( Etat.ATT) );
         int ajout = ps.executeUpdate();
         ps.close();
         return (ajout == 1);
@@ -66,14 +69,14 @@ public class ImplCoursDAO implements ICoursDAO {
     }
 
     @Override
-    public ObservableList<Cours> findAll(){
+    public ObservableList<Cours> findAll() {
         ObservableList<Cours> listeCours = FXCollections.observableArrayList();
         try {
             String requete = "select * from cours";
-            
+
             Statement statement = cnx.createStatement();
             ResultSet resultat = statement.executeQuery(requete);
-            
+
             while (resultat.next()) {
                 Cours cours = new Cours();
                 cours.setIdCours(resultat.getInt(1));
@@ -84,7 +87,7 @@ public class ImplCoursDAO implements ICoursDAO {
                 cours.setDescriptionCours(resultat.getString(6));
                 cours.setAffiche(resultat.getString(8));
                 cours.setBadge(resultat.getString(7));
-                
+
                 listeCours.add(cours);
             }
             return listeCours;
@@ -94,6 +97,7 @@ public class ImplCoursDAO implements ICoursDAO {
         return listeCours;
     }
 // problÃ¨me bacem
+
     @Override
     public Cours findCoursById(int idCours) throws SQLException {
         Cours cours = new Cours();
@@ -115,6 +119,7 @@ public class ImplCoursDAO implements ICoursDAO {
 
     }
 // problÃ¨me  bacem
+
     @Override
     public List<Cours> findCoursByIdFromateur(int idFormateur) throws SQLException {
         List<Cours> listeCours = new ArrayList<>();
@@ -122,25 +127,25 @@ public class ImplCoursDAO implements ICoursDAO {
         PreparedStatement ps = cnx.prepareStatement(requete);
         ps.setInt(1, idFormateur);
         ResultSet resultat = ps.executeQuery();
-     
+
         while (resultat.next()) {
-           Cours  cours = new Cours();
+            Cours cours = new Cours();
             cours.setIdCours(resultat.getInt(1));
             cours.setIdMatiere(resultat.getInt(2));
-             cours.setIdFormateur(resultat.getInt(3));
-             cours.setNomCours(resultat.getString(4));
-              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
-              cours.setDescriptionCours(resultat.getString(6));
-              cours.setBadge(resultat.getString(7));
-              cours.setAffiche(resultat.getString(8));
-              cours.setVideo(resultat.getString(9));
-              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
-              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
-               cours.setLanguage(resultat.getString(12));
-                cours.setUploadDate(resultat.getDate(13).toLocalDate());
-                     
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
+            cours.setUploadDate(resultat.getDate(13).toLocalDate());
+
             listeCours.add(cours);
-            
+
         }
         if (Objects.nonNull(listeCours)) {
             return listeCours;
@@ -213,9 +218,9 @@ public class ImplCoursDAO implements ICoursDAO {
             PreparedStatement ps = cnx.prepareStatement(requete);
             ps.setInt(1, id);
             ResultSet resultat = ps.executeQuery();
-            
+
             while (resultat.next()) {
-                Cours  cours = new Cours();
+                Cours cours = new Cours();
                 cours.setIdCours(resultat.getInt(1));
                 cours.setIdMatiere(resultat.getInt(2));
                 cours.setIdFormateur(resultat.getInt(3));
@@ -229,19 +234,18 @@ public class ImplCoursDAO implements ICoursDAO {
                 cours.setValidation2(Etat.valueOf(resultat.getString(11)));
                 cours.setLanguage(resultat.getString(12));
                 cours.setUploadDate(resultat.getDate(13).toLocalDate());
-                
+
                 listeCours.add(cours);
-                
+
             }
             if (Objects.nonNull(listeCours)) {
                 return listeCours;
             }
-            
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(ImplCoursDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-     throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -262,7 +266,7 @@ public class ImplCoursDAO implements ICoursDAO {
 
         throw new UnsupportedOperationException();
 
-     }
+    }
 
     @Override
     public Map<String, Integer> getCoursAndViews() throws SQLException {
@@ -270,25 +274,25 @@ public class ImplCoursDAO implements ICoursDAO {
         PreparedStatement ps = cnx.prepareStatement(requete);
         ResultSet resultat = ps.executeQuery();
         Map<String, Integer> m = new HashMap();
-        while(resultat.next()){
+        while (resultat.next()) {
             m.put(resultat.getString(1), resultat.getInt(2));
         }
-        return m; }
+        return m;
+    }
 
     @Override
-    public List<Cours> getCoursAtt(int i) throws SQLException{
-   String requete="";
-        if(i==1){
+    public List<Cours> getCoursAtt(int i) throws SQLException {
+        String requete = "";
+        if (i == 1) {
             requete = "SELECT * FROM cours WHERE validation1 = 'ATT'";
-        }
-        else if(i==2){
+        } else if (i == 2) {
             requete = "SELECT * FROM cours WHERE validation2 = 'ATT'";
         }
         PreparedStatement ps = cnx.prepareStatement(requete);
         ResultSet resultat = ps.executeQuery();
         List<Cours> listeCours = new ArrayList<>();
         while (resultat.next()) {
-            Cours  cours = new Cours();
+            Cours cours = new Cours();
             cours.setIdCours(resultat.getInt(1));
             cours.setIdMatiere(resultat.getInt(2));
             cours.setIdFormateur(resultat.getInt(3));
@@ -301,10 +305,11 @@ public class ImplCoursDAO implements ICoursDAO {
             cours.setValidation2(Etat.valueOf(resultat.getString(11)));
             cours.setLanguage(resultat.getString(12));
             //cours.setUploadDate(resultat.getDate(13).toLocalDate());
-                
-                listeCours.add(cours);
+
+            listeCours.add(cours);
         }
-        return listeCours;  }
+        return listeCours;
+    }
 
     public void accRefCourV1(Cours c, int i) {
         try {
@@ -312,10 +317,9 @@ public class ImplCoursDAO implements ICoursDAO {
             String requete = "UPDATE cours SET validation1 = ? where id = ?";
             PreparedStatement ps = connection.prepareStatement(requete);
             ps.setInt(2, c.getIdCours());
-            if(i == 0){
+            if (i == 0) {
                 ps.setString(1, "REF");
-            }
-            else if(i==1){
+            } else if (i == 1) {
                 ps.setString(1, "ACC");
             }
             int resultat = ps.executeUpdate();
@@ -323,32 +327,33 @@ public class ImplCoursDAO implements ICoursDAO {
         } catch (SQLException ex) {
             Logger.getLogger(ImplFormateurDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
+
     @Override
-    public Cours chercherCoursByNameCours(String chaine,int idutilisateur) throws SQLException {
-      Cours cours = new Cours();
+    public Cours chercherCoursByNameCours(String chaine, int idutilisateur) throws SQLException {
+        Cours cours = new Cours();
         String requete = "select * from cours where nom=? and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
 
         PreparedStatement ps = cnx.prepareStatement(requete);
-          ps.setString(1, chaine);
+        ps.setString(1, chaine);
         ps.setInt(2, idutilisateur);
         ResultSet resultat = ps.executeQuery();
         while (resultat.next()) {
 
             cours.setIdCours(resultat.getInt(1));
             cours.setIdMatiere(resultat.getInt(2));
-             cours.setIdFormateur(resultat.getInt(3));
-             cours.setNomCours(resultat.getString(4));
-              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
-              cours.setDescriptionCours(resultat.getString(6));
-              cours.setBadge(resultat.getString(7));
-              cours.setAffiche(resultat.getString(8));
-              cours.setVideo(resultat.getString(9));
-              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
-              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
-               cours.setLanguage(resultat.getString(12));
-               
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
+
         }
         if (Objects.nonNull(cours)) {
             return cours;
@@ -358,32 +363,31 @@ public class ImplCoursDAO implements ICoursDAO {
     }
 
     @Override
-    public List<Cours> chercherCoursByNameFormateur(String chaine,int idutilisateur) throws SQLException {
+    public List<Cours> chercherCoursByNameFormateur(String chaine, int idutilisateur) throws SQLException {
         List<Cours> listeCours = new ArrayList<>();
         String requete = "select * from cours ,utilisateur where cours.id_utilisateur=utilisateur.id and utilisateur.nom=? and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
-          
+
         PreparedStatement ps = cnx.prepareStatement(requete);
-      
+
         ps.setString(1, chaine);
         ps.setInt(2, idutilisateur);
         ResultSet resultat = ps.executeQuery();
 
         while (resultat.next()) {
             Cours cours = new Cours();
-   
+
             cours.setIdCours(resultat.getInt(1));
             cours.setIdMatiere(resultat.getInt(2));
-             cours.setIdFormateur(resultat.getInt(3));
-             cours.setNomCours(resultat.getString(4));
-              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
-              cours.setDescriptionCours(resultat.getString(6));
-              cours.setBadge(resultat.getString(7));
-              cours.setAffiche(resultat.getString(8));
-              cours.setVideo(resultat.getString(9));
-              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
-              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
-               cours.setLanguage(resultat.getString(12));
-              
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
 
             listeCours.add(cours);
         }
@@ -391,34 +395,33 @@ public class ImplCoursDAO implements ICoursDAO {
             return listeCours;
         }
 
-        throw new UnsupportedOperationException(); 
+        throw new UnsupportedOperationException();
     }
 
-       @Override
-    public List<Cours> chercherCoursByNameOrganisme(String chaine,int idutilisateur) throws SQLException {
+    @Override
+    public List<Cours> chercherCoursByNameOrganisme(String chaine, int idutilisateur) throws SQLException {
         List<Cours> listeCours = new ArrayList<>();
         String requete = "select * from cours ,utilisateur,organisation where cours.id_utilisateur=utilisateur.id and utilisateur.id_organisation=organisation.id and organisation.nom=?and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
-          
+
         PreparedStatement ps = cnx.prepareStatement(requete);
         ps.setString(1, chaine);
         ps.setInt(2, idutilisateur);
         ResultSet resultat = ps.executeQuery();
 
         while (resultat.next()) {
-         Cours  cours = new Cours();
+            Cours cours = new Cours();
             cours.setIdCours(resultat.getInt(1));
             cours.setIdMatiere(resultat.getInt(2));
-             cours.setIdFormateur(resultat.getInt(3));
-             cours.setNomCours(resultat.getString(4));
-              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
-              cours.setDescriptionCours(resultat.getString(6));
-              cours.setBadge(resultat.getString(7));
-              cours.setAffiche(resultat.getString(8));
-              cours.setVideo(resultat.getString(9));
-              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
-              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
-               cours.setLanguage(resultat.getString(12));
-                
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
 
             listeCours.add(cours);
         }
@@ -426,35 +429,34 @@ public class ImplCoursDAO implements ICoursDAO {
             return listeCours;
         }
 
-        throw new UnsupportedOperationException();     
+        throw new UnsupportedOperationException();
     }
 
-        @Override
-    public List<Cours> findAll(int idutilisateur){
-        List<Cours> listeCours =new ArrayList();
+    @Override
+    public List<Cours> findAll(int idutilisateur) {
+        List<Cours> listeCours = new ArrayList();
         try {
             String requete = "select * from cours where cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
-            
+
             PreparedStatement ps = cnx.prepareStatement(requete);
-             ps.setInt(1, idutilisateur);
-           ResultSet resultat = ps.executeQuery();
-            
+            ps.setInt(1, idutilisateur);
+            ResultSet resultat = ps.executeQuery();
+
             while (resultat.next()) {
                 Cours cours = new Cours();
-           cours.setIdCours(resultat.getInt(1));
-            cours.setIdMatiere(resultat.getInt(2));
-             cours.setIdFormateur(resultat.getInt(3));
-             cours.setNomCours(resultat.getString(4));
-              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
-              cours.setDescriptionCours(resultat.getString(6));
-              cours.setBadge(resultat.getString(7));
-              cours.setAffiche(resultat.getString(8));
-              cours.setVideo(resultat.getString(9));
-              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
-              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
-               cours.setLanguage(resultat.getString(12));
-               
-                
+                cours.setIdCours(resultat.getInt(1));
+                cours.setIdMatiere(resultat.getInt(2));
+                cours.setIdFormateur(resultat.getInt(3));
+                cours.setNomCours(resultat.getString(4));
+                cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+                cours.setDescriptionCours(resultat.getString(6));
+                cours.setBadge(resultat.getString(7));
+                cours.setAffiche(resultat.getString(8));
+                cours.setVideo(resultat.getString(9));
+                cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+                cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+                cours.setLanguage(resultat.getString(12));
+
                 listeCours.add(cours);
             }
             return listeCours;
@@ -465,32 +467,30 @@ public class ImplCoursDAO implements ICoursDAO {
     }
 
     @Override
-    public List<Cours> chercherCoursByNameMatiere(String chaine,int idutilisateur) throws SQLException {
-         List<Cours> listeCours = new ArrayList<>();
+    public List<Cours> chercherCoursByNameMatiere(String chaine, int idutilisateur) throws SQLException {
+        List<Cours> listeCours = new ArrayList<>();
         String requete = "select * from cours ,matiere where cours.id_matiere=matiere.id and matiere.nom=? and cours.id  NOT IN (select id_cours from session_cours where id_utilisateur=?)";
-          
+
         PreparedStatement ps = cnx.prepareStatement(requete);
-        
-        
+
         ps.setString(1, chaine);
-         ps.setInt(2, idutilisateur);
+        ps.setInt(2, idutilisateur);
         ResultSet resultat = ps.executeQuery();
 
         while (resultat.next()) {
-       Cours  cours = new Cours();
+            Cours cours = new Cours();
             cours.setIdCours(resultat.getInt(1));
             cours.setIdMatiere(resultat.getInt(2));
-             cours.setIdFormateur(resultat.getInt(3));
-             cours.setNomCours(resultat.getString(4));
-              cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
-              cours.setDescriptionCours(resultat.getString(6));
-              cours.setBadge(resultat.getString(7));
-              cours.setAffiche(resultat.getString(8));
-              cours.setVideo(resultat.getString(9));
-              cours.setValidation1(Etat.valueOf(resultat.getString(10)));
-              cours.setValidation2(Etat.valueOf(resultat.getString(11)));
-               cours.setLanguage(resultat.getString(12));
-           
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+            cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
 
             listeCours.add(cours);
         }
@@ -498,27 +498,55 @@ public class ImplCoursDAO implements ICoursDAO {
             return listeCours;
         }
 
-        throw new UnsupportedOperationException(); 
-      
- 
+        throw new UnsupportedOperationException();
+
     }
-   
+
     @Override
     public int nbChapitreByCours(Cours cours) throws SQLException {
-    int nb=0;
+        int nb = 0;
         String requete = "select count(*) from chapitre where chapitre.	id_cours=?";
 
-         PreparedStatement ps = cnx.prepareStatement(requete);
-        ps.setInt(1,cours.getIdCours());
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        ps.setInt(1, cours.getIdCours());
         ResultSet resultat = ps.executeQuery();
 
         while (resultat.next()) {
-         nb=resultat.getInt(1);
-      
-    }
-    
-      return nb;
-   
+            nb = resultat.getInt(1);
 
-}
+        }
+
+        return nb;
+
+    }
+
+    public Cours findCourseByName(String courseName) throws SQLException {
+
+        Cours cours = new Cours();
+        String requete = "select * from cours where nom=?";
+
+        PreparedStatement ps = cnx.prepareStatement(requete);
+        ps.setString(1, courseName);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+            cours.setIdCours(resultat.getInt(1));
+            cours.setIdMatiere(resultat.getInt(2));
+            cours.setIdFormateur(resultat.getInt(3));
+            cours.setNomCours(resultat.getString(4));
+//            cours.setDifficulte(Difficulte.valueOf(resultat.getString(5)));
+            cours.setDescriptionCours(resultat.getString(6));
+            cours.setBadge(resultat.getString(7));
+            cours.setAffiche(resultat.getString(8));
+            cours.setVideo(resultat.getString(9));
+            cours.setValidation1(Etat.valueOf(resultat.getString(10)));
+            cours.setValidation2(Etat.valueOf(resultat.getString(11)));
+            cours.setLanguage(resultat.getString(12));
+        }
+        if (Objects.nonNull(cours)) {
+            return cours;
+        }
+
+        throw new UnsupportedOperationException();
+
+    }
 }

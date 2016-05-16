@@ -3,9 +3,12 @@ package com.daos;
 import com.models.daos.interfaces.DAOFactory;
 import com.models.daos.interfaces.ICoursDAO;
 import com.models.daos.interfaces.IMatiereDAO;
+import com.models.daos.interfaces.IObjectifDAO;
 
 import com.models.entities.Cours;
 import com.models.entities.Matiere;
+import com.models.entities.Objectif;
+import com.models.enums.Etat;
 import java.sql.SQLException;
 import java.util.List;
 import org.junit.After;
@@ -32,10 +35,26 @@ public class ImplCoursDAOTest {
     @Ignore
     @Test
     public void TEST_CREATE_COURS_SHOULD_RETURN_TRUE_IF_SUCCESS() throws SQLException, Exception {
-        Matiere matiere = new Matiere(1, "haikel", "yassmine");
+
         ICoursDAO coursDao = DAOFactory.getCoursDAO();
         Cours cours = new Cours();
+        cours.setIdMatiere(1);
+        cours.setVideo("dfghjk");
+
         boolean test = coursDao.AjouterCours(cours);
+        assertTrue(test);
+
+    }
+
+  //  @Ignore
+    @Test
+    public void TEST_CREATE_OBJECTIF_SHOULD_RETURN_TRUE_IF_SUCCESS() throws SQLException, Exception {
+
+        IObjectifDAO dAO = DAOFactory.getObjectifDAO();
+        Objectif x = new Objectif();
+        x.setNom("testiiing");
+
+        boolean test = dAO.addObjectif(x);
         assertTrue(test);
 
     }
