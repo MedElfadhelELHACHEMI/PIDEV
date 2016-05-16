@@ -96,7 +96,7 @@ public class SignUp extends Canvas implements Runnable {
             left[0] = Image.createImage("/com/gui/images/icons/left.png");
             left[1] = Image.createImage("/com/gui/images/icons/selectedLeft.png");
 
-            errorCred = Image.createImage("/com/gui/images/icons/errorLogin.png");
+            errorCred = Image.createImage("/com/gui/images/icons/errorSignup.png");
 
             select = j = k = l = m = o = 0;
             i = 1;
@@ -260,13 +260,21 @@ public class SignUp extends Canvas implements Runnable {
             } else if (screen == 1) {
                 if (select == 0) {
                     if (keyCode != -8) {
-                        prenom += getKeyName(keyCode);
+                        if(keyCode==32){
+                            prenom += " ";
+                        }else{
+                            prenom += getKeyName(keyCode);
+                        }
                     } else if (keyCode == -8 && prenom.length() > 0) {
                         prenom = prenom.substring(0, prenom.length() - 1);
                     }
                 } else if (select == 1) {
                     if (keyCode != -8) {
+                        if(keyCode==32){
+                            nom +=" ";
+                        }else{
                         nom += getKeyName(keyCode);
+                        }
                     } else if (keyCode == -8 && nom.length() > 0) {
                         nom = nom.substring(0, nom.length() - 1);
                     }
@@ -280,7 +288,11 @@ public class SignUp extends Canvas implements Runnable {
                     }
                 } else if (select == 3) {
                     if (keyCode != -8) {
-                        adresse += getKeyName(keyCode);
+                        if(keyCode==32){
+                            adresse+=" ";
+                        }else{
+                            adresse += getKeyName(keyCode);
+                        }
                     } else if (keyCode == -8 && adresse.length() > 0) {
                         adresse = adresse.substring(0, adresse.length() - 1);
                     }
@@ -339,18 +351,26 @@ public class SignUp extends Canvas implements Runnable {
                 }
         }
     }
+    
 
     public void run() {
         if (Thread.currentThread().getName().equals("signup")) {
             String str = "http://localhost/tesseractj2me/tesseract_php/insertAppr.php?username=" + username.trim() 
                     + "&password=" + pwd.trim() 
-                    + "&nom=" + nom.trim() 
-                    + "&prenom=" + prenom.trim() 
+                    + "&nom=" + nom 
+                    + "&prenom=" + prenom 
                     + "&role=" + role.trim() 
                     + "&email=" + email.trim() 
-                    + "&adresse=" + adresse.trim() 
+                    + "&adresse=" + adresse 
                     + "&telephone=" + tel.trim()
                     + "&date=" +date.trim();
+            for(int z=0;z<str.length();z++){
+                if(str.charAt(z)==' '){
+                    String str1=str.substring(0,z-1);
+                    String str2=str.substring(z+1, str.length());
+                    str=str1+"%20"+str2;
+                }
+            }
             System.out.println(str);
             verif = false;
             try {
