@@ -46,7 +46,7 @@ public class ImplCoursDAOTest {
 
     }
 
-  //  @Ignore
+    @Ignore
     @Test
     public void TEST_CREATE_OBJECTIF_SHOULD_RETURN_TRUE_IF_SUCCESS() throws SQLException, Exception {
 
@@ -92,14 +92,16 @@ public class ImplCoursDAOTest {
 
     }
 
-    @Ignore
+    //@Ignore
     @Test
-    public void TEST_GET_COURS_BY_VAL1_SHOULD_RETURN_LIST() throws SQLException, Exception {
+    public void TEST_GET_COURS_BY_VAL1_ATT_SHOULD_RETURN_LIST() throws SQLException, Exception {
 
         ICoursDAO coursDao = DAOFactory.getCoursDAO();
 
-        List test = coursDao.getCoursValid1EnAttente();
-        assertEquals(3, test.size());
+        List test = coursDao.getCoursValid1EnAttente(11);
+        System.out.println(test.get(0));
+        System.out.println(test.get(1));
+        assertEquals(2, test.size());
 
     }
 

@@ -190,7 +190,7 @@ public class MOOCAccueilGUI extends Stage {
     private TitledPane tlp_frm_cours;
     private TitledPane tlp_frm_org;
     private TitledPane tlp_frm_forum;
-        //____________________________________________
+    //____________________________________________
 
     //admin____________________________
     //vbox
@@ -875,9 +875,16 @@ public class MOOCAccueilGUI extends Stage {
             }
         });
         WaitingForValidation1 = new Button("Waiting for Validation1", null);
+        WaitingForValidation1.setOnAction((ActionEvent event) -> {
+            try {
+                setMain(loadNode("/com/fxml/WaitingForValidation1FXML.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         WaitingForValidation2 = new Button("Waiting for Validation2", null);
         addCourse = new Button("Add course", null);
-         addCourse.setOnAction((ActionEvent event) -> {
+        addCourse.setOnAction((ActionEvent event) -> {
             try {
                 setMain(loadNode("/com/fxml/addCourseFXML.fxml"));
             } catch (IOException ex) {
@@ -1205,7 +1212,7 @@ public class MOOCAccueilGUI extends Stage {
 //            
 //            ap.getChildren().add(caseNo);
 //            y = y + 106;
-      //  }
+        //  }
 
     }
 }

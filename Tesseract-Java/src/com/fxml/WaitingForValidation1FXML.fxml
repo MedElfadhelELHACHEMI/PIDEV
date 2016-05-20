@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.validation.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="body" prefHeight="562" prefWidth="1800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.views.controllers.WaitingForValidation1FXMLController">
+    <children>
+        <Label fx:id="title" layoutX="145.0" layoutY="14.0" prefHeight="37.0" prefWidth="264.0" text="Pending Courses" textFill="#454e51">
+            <font>
+                <Font name="Myanmar Text Bold" size="30.0" />
+            </font>
+        </Label>
+      <TableView fx:id="content" layoutX="66.0" layoutY="87.0" prefHeight="400.0" prefWidth="800.0">
+         <columns>
+            <TableColumn fx:id="name" prefWidth="277.0" text="Course Name" />
+            <TableColumn fx:id="vid" prefWidth="426.0" text="Summary Video" />
+         </columns>
+      </TableView>
+    </children>
+</AnchorPane>

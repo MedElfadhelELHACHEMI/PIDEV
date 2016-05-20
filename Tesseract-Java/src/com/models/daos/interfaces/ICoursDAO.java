@@ -27,7 +27,7 @@ public interface ICoursDAO {
 
     public List findCoursByNomCours(String java);
 
-    public List getCoursValid1EnAttente();
+    public List getCoursValid1EnAttente(int idCoach)  throws SQLException;
 
     public List getCoursValid2EnAttente();
 

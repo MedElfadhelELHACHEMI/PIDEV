@@ -274,6 +274,7 @@ public class AddCourseFXMLController implements Initializable {
              //add course
         ICoursDAO coursDAO = DAOFactory.getCoursDAO();
         Cours cours = new Cours();
+        cours.setIdFormateur(CurrentUser.getId());
         cours.setVideo(courseVideoTF.getText());
         cours.setIdFormateur(CurrentUser.getId());
         cours.setNomCours(courseTitleTF.getText());
