@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="737.0" prefWidth="708.0" style="-fx-background-color: white;" stylesheets="@../styles/inscriptionapprenantv2fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fxml.InscriptionApprenantV2FXMLController">
+   <children>
+      <Pane prefHeight="63.0" prefWidth="708.0" style="-fx-background-color: #0aa89e;">
+         <children>
+            <Label layoutX="26.0" layoutY="23.0" prefHeight="17.0" prefWidth="192.0" text="CREATE A LEARNER ACCOUNT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXTextField fx:id="t1" focusColor="#0aa89e" layoutX="17.0" layoutY="99.0" maxWidth="334.0" minWidth="284.0" onMouseClicked="#l1Action" prefHeight="31.0" prefWidth="334.0" />
+      <JFXTextField fx:id="t2" focusColor="#0aa89e" layoutX="371.0" layoutY="99.0" maxWidth="309.0" minWidth="284.0" onMouseClicked="#l2Action" prefHeight="31.0" prefWidth="344.0" />
+      <JFXTextField fx:id="t3" focusColor="#0aa89e" layoutX="17.0" layoutY="173.0" maxWidth="334.0" minWidth="284.0" onMouseClicked="#l3Action" prefHeight="31.0" prefWidth="334.0" />
+      <JFXTextField fx:id="t5" focusColor="#0aa89e" layoutX="17.0" layoutY="252.0" maxWidth="658.0" minWidth="658.0" onMouseClicked="#l5Action" prefHeight="31.0" prefWidth="642.0" />
+      <JFXTextField fx:id="t10" disable="true" editable="false" focusColor="#0aa89e" layoutX="135.0" layoutY="612.0" maxWidth="658.0" minWidth="533.0" onMouseClicked="#l10Action" prefHeight="31.0" prefWidth="533.0" />
+      <JFXTextField fx:id="t6" focusColor="#0aa89e" layoutX="17.0" layoutY="326.0" maxWidth="658.0" minWidth="658.0" onMouseClicked="#l6Action" prefHeight="31.0" prefWidth="642.0" />
+      <JFXTextField fx:id="t7" focusColor="#0aa89e" layoutX="22.0" layoutY="402.0" maxWidth="658.0" minWidth="658.0" onMouseClicked="#l7Action" prefHeight="31.0" prefWidth="642.0" />
+      <Label fx:id="l1" layoutX="22.0" layoutY="76.0" text="Firstname" textFill="#e5e6e6" />
+      <Label fx:id="l3" layoutX="22.0" layoutY="156.0" text="Phone" textFill="#e5e6e6" />
+      <Label fx:id="l8" layoutX="28.0" layoutY="448.0" text="Password" textFill="#e5e6e6" />
+      <Label fx:id="l9" layoutX="28.0" layoutY="518.0" text="Repassword" textFill="#e5e6e6" />
+      <Label fx:id="l7" layoutX="28.0" layoutY="373.0" text="Username" textFill="#e5e6e6" />
+      <Label fx:id="l6" layoutX="22.0" layoutY="301.0" text="Mail" textFill="#e5e6e6" />
+      <Label fx:id="l4" layoutX="378.0" layoutY="154.0" text="Birthday" textFill="#e5e6e6" />
+      <Label fx:id="l5" layoutX="22.0" layoutY="223.0" text="Address" textFill="#e5e6e6" />
+      <Label fx:id="l2" layoutX="378.0" layoutY="78.0" text="Lastname" textFill="#e5e6e6" />
+      <Button fx:id="bt_s" layoutX="532.0" layoutY="688.0" mnemonicParsing="false" onAction="#saveAction" onMouseEntered="#hover" onMouseExited="#nohover" prefHeight="31.0" prefWidth="139.0" style="-fx-background-color: transparent; -fx-text-fill: #0aa89e;" styleClass="mainFxmlClass" stylesheets="@../styles/inscriptionapprenantv2fxml.css" text="CREATE ACCOUNT">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="t4" layoutX="378.0" layoutY="176.0" onMouseClicked="#l4Action" prefHeight="25.0" prefWidth="295.0" />
+      <JFXPasswordField fx:id="t8" focusColor="#0aa89e" layoutX="26.0" layoutY="473.0" maxWidth="648.0" minWidth="648.0" onMouseClicked="#l8Action" prefHeight="31.0" prefWidth="642.0" />
+      <JFXPasswordField fx:id="t9" focusColor="#0aa89e" layoutX="23.0" layoutY="546.0" maxWidth="648.0" minWidth="648.0" onMouseClicked="#l9Action" prefHeight="31.0" prefWidth="642.0" />
+      <Button fx:id="file" layoutX="33.0" layoutY="609.0" mnemonicParsing="false" onAction="#pckPicture" prefHeight="31.0" prefWidth="97.0" text="FILE" />
+   </children>
+</AnchorPane>

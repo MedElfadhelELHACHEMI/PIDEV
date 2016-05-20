@@ -42,7 +42,7 @@ public class ImplAppreantDAO implements IApprenantDAO {
         ps.setString(7, apprenant.getAdresse());
         ps.setString(8, ArrayToString.EnumToArray(Role.APR));
         ps.setString(9, apprenant.getMail());
-        ps.setString(10, apprenant.getPhoto());
+        ps.setString(10, apprenant.getPhoto().substring(apprenant.getPhoto().lastIndexOf("\\")+1));
         ps.setInt(11, apprenant.getScore());
 
         ps.setString(12, apprenant.getNomUtilisateur());
