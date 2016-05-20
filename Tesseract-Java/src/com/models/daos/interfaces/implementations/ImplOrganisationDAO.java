@@ -9,6 +9,7 @@ import com.models.daos.interfaces.IOrganisationDAO;
 import com.database.DataSource;
 import com.models.entities.Challenge;
 import com.models.entities.Organisation;
+import com.views.controllers.InscriptionOrganizationV2FXMLController;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -34,7 +35,7 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
     @Override
     public boolean addOrganisation(Organisation org) {
-        String query = "insert into organisation( nom, adress,email,matricule , photo ) values ( ?, ?, ?, ? ,? )";
+        String query = "insert into organisation( nom, adress,email,matricule , photo ,enabled) values ( ?, ?, ?, ? ,? ,0)";
         try {
             PreparedStatement pSt = connection.prepareStatement(query);
             System.out.println(org);
@@ -46,7 +47,9 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
             pSt.execute();
             return true;
         } catch (SQLException ex) {
-
+ex.getStackTrace();
+        Logger.getLogger(ImplOrganisationDAO.class.getName()).log(Level.SEVERE, null, ex);
+    
             return false;
         }
     }
@@ -58,7 +61,7 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, idOrg);
             ps.executeUpdate();
-         
+
             return true;
         } catch (SQLException ex) {
             System.out.println("erreur lors de la suppression " + ex.getMessage());
@@ -102,7 +105,7 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
     @Override
     public Organisation getOrganisationByid(int id) {
-      
+
         String query = "select * from organisation where id =?";
 
         try {
@@ -111,13 +114,13 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
             ResultSet resultat = statement.executeQuery();
             while (resultat.next()) {
                 Organisation og = new Organisation();
-             og.setIdOrganisation(resultat.getInt(1));
+                og.setIdOrganisation(resultat.getInt(1));
                 og.setNom(resultat.getString(2));
                 og.setAdresse(resultat.getString(3));
                 og.seteMail(resultat.getString(4));
                 og.setMatricule(resultat.getString(5));
                 og.setPhoto(resultat.getString(6));
-             
+
                 return og;
             }
 
@@ -131,7 +134,31 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
     @Override
     public Organisation getOrganisationByNom(String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "select * from organisation where matricule =?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, nom);
+            ResultSet resultat = statement.executeQuery();
+            while (resultat.next()) {
+                Organisation og = new Organisation();
+                og.setIdOrganisation(resultat.getInt(1));
+                og.setNom(resultat.getString(2));
+                og.setAdresse(resultat.getString(3));
+                og.seteMail(resultat.getString(4));
+                og.setMatricule(resultat.getString(5));
+                og.setPhoto(resultat.getString(6));
+
+                return og;
+            }
+
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors du chargement des Logs " + ex.getMessage());
+            return new Organisation();
+        }
+        return new Organisation();
+
     }
 
     @Override
@@ -145,44 +172,42 @@ public class ImplOrganisationDAO implements IOrganisationDAO {
 
         try {
             String query = "select count(*) from utilisateur where id_organisation = ?";
-            
+
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, idOrganisation);
             ResultSet resultat = statement.executeQuery();
-            while (resultat.next()) {                
+            while (resultat.next()) {
                 return resultat.getInt(1);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(ImplOrganisationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-         return 0 ;
+        return 0;
     }
 
     @Override
     public Organisation getOrganisationByName(String nom) throws SQLException {
-     Organisation og = new Organisation();
+        Organisation og = new Organisation();
 
         String query = "select * from Organisation where nom=?";
 
-     PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, nom);
-            ResultSet resultat = ps.executeQuery();
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setString(1, nom);
+        ResultSet resultat = ps.executeQuery();
 
-            while (resultat.next()) {
-                
-                og.setIdOrganisation(resultat.getInt(1));
-                og.setNom(resultat.getString(2));
-                og.setAdresse(resultat.getString(3));
-                og.seteMail(resultat.getString(4));
-                og.setMatricule(resultat.getString(5));
-                og.setPhoto(resultat.getString(6));
+        while (resultat.next()) {
 
-              
-            }
-            return og;
-       
+            og.setIdOrganisation(resultat.getInt(1));
+            og.setNom(resultat.getString(2));
+            og.setAdresse(resultat.getString(3));
+            og.seteMail(resultat.getString(4));
+            og.setMatricule(resultat.getString(5));
+            og.setPhoto(resultat.getString(6));
+
+        }
+        return og;
+
     }
-
 
 }

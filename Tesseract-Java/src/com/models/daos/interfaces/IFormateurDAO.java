@@ -52,4 +52,6 @@ public interface IFormateurDAO {
 
     public void accRefFormateur(Formateur f, int i);
 
+    public boolean ajouterFormateurWithOrganization(Formateur formateur, Object object)throws SQLException;;
+
 }

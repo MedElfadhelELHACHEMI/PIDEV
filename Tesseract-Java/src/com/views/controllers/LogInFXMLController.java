@@ -187,6 +187,16 @@ public class LogInFXMLController implements Initializable {
 
     @FXML
     private void org(ActionEvent event) {
+                try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionOrganizationV2FXML.fxml"));
+            Scene s = new Scene(root);
+            Stage stage = new Stage();
+            ((Node) event.getSource()).getScene().getWindow().hide();
+            stage.setScene(s);
+            stage.show();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(LogInFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

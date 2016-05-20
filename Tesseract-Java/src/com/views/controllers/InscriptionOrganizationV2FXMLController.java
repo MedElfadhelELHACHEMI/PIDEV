@@ -12,8 +12,11 @@ import com.exceptions.InvalidMailException;
 import com.exceptions.InvalidePasswordException;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.models.daos.interfaces.DAOFactory;
+import com.models.daos.interfaces.IOrganisationDAO;
 import com.models.entities.Apprenant;
 import com.models.entities.Formateur;
+import com.models.entities.Organisation;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +27,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,15 +41,18 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
  *
  * @author haikal
  */
-public class InscriptionFormateurV2FXMLController implements Initializable {
+public class InscriptionOrganizationV2FXMLController implements Initializable {
 
     @FXML
     private JFXTextField t1;
@@ -90,6 +97,7 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
     private Button file;
     @FXML
     private Button bt_s;
+    Organisation o;
     private static String s;
     InscriptionUtilisateurs inscriptionUtilisateurs = new InscriptionUtilisateurs();
     @FXML
@@ -97,6 +105,29 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
     @FXML
     private JFXTextField t11;
     static String s1;
+    @FXML
+    private JFXTextField t12;
+    @FXML
+    private JFXTextField t13;
+    @FXML
+    private JFXTextField t14;
+    @FXML
+    private JFXTextField t15;
+    @FXML
+    private Label l10;
+    @FXML
+    private Label l11;
+    @FXML
+    private Label l12;
+    @FXML
+    private Label l13;
+    @FXML
+    private Button bt_s1;
+    Formateur apprenant;
+    @FXML
+    private AnchorPane pane1;
+    @FXML
+    private Pane pane2;
 
     /**
      * Initializes the controller class.
@@ -249,6 +280,10 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
 
     @FXML
     private void l10Action(MouseEvent event) {
+        l10.setStyle("-fx-text-fill: #0aa89e");
+        l11.setStyle("-fx-text-fill: #e5e6e6");
+        l12.setStyle("-fx-text-fill: #e5e6e6");
+        l13.setStyle("-fx-text-fill: #e5e6e6");
     }
 
     @FXML
@@ -273,7 +308,7 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
         try {
             Files.copy(new File(ch).toPath(), new File("C:\\wamp\\www\\symf\\Tesseract-Symfony\\Tesseract-Symfony\\web\\uploads\\pictures\\" + s).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
-            Logger.getLogger(InscriptionFormateurV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InscriptionOrganizationV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -294,7 +329,7 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
     @FXML
     private void saveAction(ActionEvent event) {
         System.out.println(s);
-        Formateur apprenant = new Formateur();
+        apprenant = new Formateur();
 
         String nom = t1.getText();
         String prenom = t2.getText();
@@ -306,9 +341,9 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
         String password = t8.getText();
         String password1 = t9.getText();
         String file = t10.getText();
-        String file1 = t11.getText();
+
         try {
-            if (t1.getText().equals("") || t2.getText().equals("") || t3.getText().equals("") || t4.getValue().toString().equals("") || t5.getText().equals("") || t6.getText().equals("") || t7.getText().equals("") || t8.getText().equals("") || t9.getText().equals("") || t10.getText().equals("")|| t11.getText().equals("") ) {
+            if (t1.getText().equals("") || t2.getText().equals("") || t3.getText().equals("") || t4.getValue().toString().equals("") || t5.getText().equals("") || t6.getText().equals("") || t7.getText().equals("") || t8.getText().equals("") || t9.getText().equals("") || t10.getText().equals("")) {
 
                 throw new FormulaireException("Champ vide");
 
@@ -328,20 +363,13 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
             apprenant.setPhoto(s);
             apprenant.setTel(new Integer(phone));
             apprenant.setDateNaissance(d);
-            apprenant.setCv(s1);
 
-            if (inscriptionUtilisateurs.inscriptionFormateur(apprenant)) {
-
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Sign up with succes", ButtonType.FINISH);
-                alert.show();
-
-                // redirectionStrategy.redirectAuthentification(birth);
-                Parent parent = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
-                Stage stage = new Stage();
-                Scene s = new Scene(parent);
-                stage.setScene(s);
-                // birth.getScene().getWindow().hide();
-            }
+            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), pane1);
+            tt.setAutoReverse(true);
+            tt.setCycleCount(1);
+            tt.setFromX(0);
+            tt.setToX(-745);
+            tt.play();
 
         } catch (FormulaireException fe) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Empty data", ButtonType.OK);
@@ -356,18 +384,15 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Numero invalide", ButtonType.OK);
             alert.show();
         } catch (NullPointerException npe) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Empty data", ButtonType.OK);
-            alert.show();
-        } catch (SQLException sql) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Mail or username exist", ButtonType.OK);
-            alert.show();
+            Logger.getLogger(InscriptionOrganizationV2FXMLController.class.getName()).log(Level.SEVERE, null, npe);
+            npe.getStackTrace();
 
-        } catch (IOException ex) {
-            Logger.getLogger(InscriptionFormateurV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Empty data.", ButtonType.OK);
+            alert.show();
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
             alert.show();
-            Logger.getLogger(InscriptionFormateurV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InscriptionOrganizationV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -385,7 +410,7 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
         );
         File file = fc.showOpenDialog(null);
 
-        t11.setText(file.getAbsolutePath());
+        t15.setText(file.getAbsolutePath());
         String ch = file.getAbsolutePath();
         //  String[] t =  ch.split("\\");
         System.out.println("\\");
@@ -394,7 +419,111 @@ public class InscriptionFormateurV2FXMLController implements Initializable {
         try {
             Files.copy(new File(ch).toPath(), new File("C:\\wamp\\www\\symf\\Tesseract-Symfony\\Tesseract-Symfony\\web\\uploads\\pictures\\" + s1).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
-            Logger.getLogger(InscriptionFormateurV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InscriptionOrganizationV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void l11Action(MouseEvent event) {
+        l10.setStyle("-fx-text-fill: #e5e6e6");
+        l11.setStyle("-fx-text-fill: #0aa89e");
+        l12.setStyle("-fx-text-fill: #e5e6e6");
+        l13.setStyle("-fx-text-fill: #e5e6e6");
+    }
+
+    @FXML
+    private void l12Action(MouseEvent event) {
+        l10.setStyle("-fx-text-fill: #e5e6e6");
+        l11.setStyle("-fx-text-fill: #e5e6e6");
+        l12.setStyle("-fx-text-fill: #0aa89e");
+        l13.setStyle("-fx-text-fill: #e5e6e6");
+    }
+
+    @FXML
+    private void l13Action(MouseEvent event) {
+        l10.setStyle("-fx-text-fill: #e5e6e6");
+        l11.setStyle("-fx-text-fill: #e5e6e6");
+        l12.setStyle("-fx-text-fill: #e5e6e6");
+        l13.setStyle("-fx-text-fill: #0aa89e");
+    }
+
+    @FXML
+    private void savefinalAction(ActionEvent event) {
+        o = new Organisation();
+
+        String nom = t11.getText();
+
+        String adresse = t12.getText();
+        String mail = t13.getText();
+        String UserName = t14.getText();
+
+        String file = t15.getText();
+
+        try {
+            if (t1.getText().equals("") || t12.getText().equals("") || t13.getText().equals("") || t14.getText().equals("") || t15.getText().equals("")) {
+
+                throw new FormulaireException("Champ vide");
+
+            }
+
+            if (mail.contains("@") == false) {
+                throw new InvalidMailException("Mail invalide");
+            }
+            o.setNom(nom);
+
+            o.setAdresse(adresse);
+            o.seteMail(mail);
+            o.setMatricule(UserName);
+
+            o.setPhoto(s1);
+         boolean result =inscriptionUtilisateurs.inscriptionOrganisation(o);
+            IOrganisationDAO dqo = DAOFactory.getOrganisationDAO();
+            
+            System.out.println(result);
+            if (result) {
+               Organisation id = dqo.getOrganisationByName(UserName);
+               apprenant.setIdOrganisationn(id.getIdOrganisation());
+                    if (inscriptionUtilisateurs.inscriptionFormateurWithOrganization(apprenant)) {
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Thank you, wait for you validation", ButtonType.FINISH);
+                alert.show();
+
+                // redirectionStrategy.redirectAuthentification(birth);
+                Parent parent = FXMLLoader.load(getClass().getResource("/com/fxml/LogInFXML.fxml"));
+                Stage stage = new Stage();
+                Scene s = new Scene(parent);
+                stage.setScene(s);
+                // birth.getScene().getWindow().hide();
+            }
+                
+            };
+
+//            TranslateTransition tt = new TranslateTransition(Duration.millis(1000), pane1);
+//            tt.setAutoReverse(true);
+//            tt.setCycleCount(1);
+//            tt.setFromX(0);
+//            tt.setToX(-740);
+//            tt.play();
+
+        } catch (FormulaireException fe) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Empty data", ButtonType.OK);
+            alert.show();
+        } catch (InvalidMailException im) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid mail", ButtonType.OK);
+            alert.show();
+        } catch (NumberFormatException ip) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Numero invalide", ButtonType.OK);
+            alert.show();
+        } catch (NullPointerException npe) {
+            Logger.getLogger(InscriptionOrganizationV2FXMLController.class.getName()).log(Level.SEVERE, null, npe);
+            npe.getStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Empty data.", ButtonType.OK);
+            alert.show();
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
+            alert.show();
+            Logger.getLogger(InscriptionOrganizationV2FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

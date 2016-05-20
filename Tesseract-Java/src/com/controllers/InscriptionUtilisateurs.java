@@ -100,4 +100,11 @@ public class InscriptionUtilisateurs {
         formateur.setMotDePass(pwd);
         return formateurDAO.ajouterFormateur(formateur,null);
     }
+
+    public boolean inscriptionFormateurWithOrganization(Formateur formateur) throws Exception {
+       IFormateurDAO formateurDAO = DAOFactory.getFormateurDAO();
+        String pwd =CryptographieMOOC.getCryptage().encrypt(formateur.getMotDePass());
+        formateur.setMotDePass(pwd);
+        return formateurDAO.ajouterFormateurWithOrganization(formateur,null);
+    }
 }

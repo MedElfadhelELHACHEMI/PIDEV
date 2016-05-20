@@ -516,4 +516,38 @@ public class ImplFormateurDAO implements IFormateurDAO {
         }
 
     }
+
+    @Override
+    public boolean ajouterFormateurWithOrganization(Formateur formateur, Object object) throws SQLException {
+      Connection connection = DataSource.getInstance().getConnection();
+
+        String requete = "insert into utilisateur (pseudo,mdp,nom,prenom,date_naissance,telephone,adresse,mail,photo,roles,cv,etat,username_canonical,email_canonical,enabled,salt,locked,expired,credentials_expired,id_organisation) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement ps = connection.prepareStatement(requete);
+
+        ps.setString(1, formateur.getNomUtilisateur());
+        ps.setString(2, formateur.getMotDePass() + "{nosalt}");
+        ps.setString(3, formateur.getNom());
+        ps.setString(4, formateur.getPrenom());
+        ps.setDate(5, formateur.getDateNaissance());
+        ps.setInt(6, formateur.getTel());
+        ps.setString(7, formateur.getAdresse());
+
+        ps.setString(8, formateur.getMail());
+        ps.setString(9, formateur.getPhoto().substring(formateur.getPhoto().lastIndexOf("\\") + 1));
+        ps.setString(10, String.valueOf(ArrayToString.EnumToArray(Role.FOR)));
+
+        ps.setString(11, formateur.getCv());
+        ps.setString(12, String.valueOf(Etat.ATT));
+        ps.setString(13, formateur.getNomUtilisateur());
+        ps.setString(14, formateur.getMail());
+        ps.setInt(15, 1);
+        ps.setString(16, "nosalt");
+        ps.setInt(17, 0);
+        ps.setInt(18, 0);
+        ps.setInt(19, 0);
+  ps.setInt(20, formateur.getIdOrganisationn());
+        int resultat = ps.executeUpdate();
+        ps.close();
+        return resultat == 1;
+    }
 }
