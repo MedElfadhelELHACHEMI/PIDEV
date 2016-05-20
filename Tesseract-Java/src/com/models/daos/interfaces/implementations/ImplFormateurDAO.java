@@ -54,7 +54,7 @@ public class ImplFormateurDAO implements IFormateurDAO {
         ps.setString(7, formateur.getAdresse());
 
         ps.setString(8, formateur.getMail());
-        ps.setString(9, formateur.getPhoto());
+        ps.setString(9, formateur.getPhoto().substring(formateur.getPhoto().lastIndexOf("\\") + 1));
         ps.setString(10, String.valueOf(ArrayToString.EnumToArray(Role.FOR)));
 
         ps.setString(11, formateur.getCv());
@@ -280,7 +280,7 @@ public class ImplFormateurDAO implements IFormateurDAO {
             ResultSet result = ps.executeQuery();
             Formateur f = null;
             while (result.next()) {
-                 f = new Formateur();
+                f = new Formateur();
                 f.setIdUtilisateur(result.getInt(1));
                 f.setIdOrganisationn(result.getInt(2));
                 f.setNomUtilisateur(result.getString(3));

@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -152,6 +153,40 @@ public class LogInFXMLController implements Initializable {
         stage.setScene(s);
         stage.show();
 
+    }
+
+    @FXML
+    private void appr(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionApprenantV2FXML.fxml"));
+            Scene s = new Scene(root);
+            Stage stage = new Stage();
+            ((Node) event.getSource()).getScene().getWindow().hide();
+            stage.setScene(s);
+            stage.show();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(LogInFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void fot(ActionEvent event) {
+            try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/fxml/InscriptionFormateurV2FXML.fxml"));
+            Scene s = new Scene(root);
+            Stage stage = new Stage();
+            ((Node) event.getSource()).getScene().getWindow().hide();
+            stage.setScene(s);
+            stage.show();
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(LogInFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void org(ActionEvent event) {
     }
 
 }
