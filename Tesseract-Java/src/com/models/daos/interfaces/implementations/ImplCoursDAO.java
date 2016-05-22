@@ -38,7 +38,7 @@ public class ImplCoursDAO implements ICoursDAO {
 
     @Override
     public boolean AjouterCours(Cours c1) throws SQLException {
-        
+
         String req = "insert into cours (nom,description,id_matiere,badge,affiche,video,validation1,validation2) values (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setString(1, c1.getNomCours());
@@ -48,8 +48,8 @@ public class ImplCoursDAO implements ICoursDAO {
         ps.setString(4, c1.getBadge());
         ps.setString(5, c1.getAffiche());
         ps.setString(6, c1.getVideo());
-        ps.setString(7, String.valueOf( Etat.ATT));
-        ps.setString(8, String.valueOf( Etat.ATT) );
+        ps.setString(7, String.valueOf(Etat.ATT));
+        ps.setString(8, String.valueOf(Etat.ATT));
         int ajout = ps.executeUpdate();
         ps.close();
         return (ajout == 1);
@@ -200,13 +200,7 @@ public class ImplCoursDAO implements ICoursDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
-
-    @Override
-    public List getCoursValid2EnAttente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+  
     @Override
     public List<Cours> listCoursCosulterParCoach(int id) {
         try {
@@ -548,25 +542,44 @@ public class ImplCoursDAO implements ICoursDAO {
     }
 
     @Override
-    public List<Cours> getCoursValid1EnAttente(int idCoach)  throws SQLException{
+    public List<Cours> getCoursValid1EnAttente(int idCoach) throws SQLException {
         List courses = new ArrayList();
-        Cours cours ;
-        String req= "select * from cours where id_utilisateur = ? and validation1 like 'ATT' ";
+        Cours cours;
+        String req = "select * from cours where id_utilisateur = ? and validation1 like 'ATT' ";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1, idCoach);
         ResultSet resultat = ps.executeQuery();
-        
+
         while (resultat.next()) {
             cours = new Cours();
             cours.setIdCours(resultat.getInt(1));
             cours.setNomCours(resultat.getString(4));
             cours.setVideo(resultat.getString(9));
             courses.add(cours);
-      
+
         }
         return courses;
-    
-    
-    
+
     }
+
+    @Override
+    public List<Cours> getCoursValid2EnAttente(int idCoach) throws SQLException {
+        List courses = new ArrayList();
+        Cours cours;
+        String req = "select * from cours where id_utilisateur = ? and validation1 like 'ACC' and validation2 like 'ATT' ";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, idCoach);
+        ResultSet resultat = ps.executeQuery();
+
+        while (resultat.next()) {
+            cours = new Cours();
+            cours.setIdCours(resultat.getInt(1));
+            cours.setNomCours(resultat.getString(4));
+            courses.add(cours);
+
+        }
+        return courses;
+
+    }
+
 }

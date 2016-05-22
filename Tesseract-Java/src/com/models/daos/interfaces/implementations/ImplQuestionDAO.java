@@ -34,7 +34,7 @@ public class ImplQuestionDAO implements IQuestionDAO{
     @Override
     public boolean createQuestion(Question question) {
         try {
-            String request="insert into questions(question, id_epreuve) values (?,?)";
+            String request="insert into question(question, id_epreuve) values (?,?)";
             pst = connection.prepareStatement(request);
             pst.setString(1, question.getQuestion());
             pst.setInt(2, question.getIdEpreuve());
@@ -49,10 +49,32 @@ public class ImplQuestionDAO implements IQuestionDAO{
         return false;
     }
 
+    
+    
+    @Override
+        public Question findQuestionByQuestion (String  q) throws SQLException {
+     Question question = new Question();
+        String requete = "select * from question where question=?";
+
+        PreparedStatement ps = connection.prepareStatement(requete);
+        ps.setString(1, q);
+        ResultSet resultat = ps.executeQuery();
+        while (resultat.next()) {
+            question.setId(resultat.getInt(1));
+            question.setIdEpreuve(resultat.getInt(2));
+            question.setQuestion(resultat.getString(3));
+        }
+        if (Objects.nonNull(question)) {
+            return question;
+        }
+
+        throw new UnsupportedOperationException();
+
+    }
     @Override
     public boolean deleteQuestion(int id) {
         try {
-            String request = "delete from questions where id="+id;
+            String request = "delete from question where id="+id;
             int result= pst.executeUpdate(request);
             pst.close();
             return (result==1);
@@ -84,7 +106,7 @@ public class ImplQuestionDAO implements IQuestionDAO{
     public Question searchQuestion(int id) {
         Question question = new Question();
         try {
-            String request ="select * from questions where id=?";
+            String request ="select * from question where id=?";
             rS = pst.executeQuery(request);
             rS.next();
             question.setId(rS.getInt("id"));
@@ -96,6 +118,9 @@ public class ImplQuestionDAO implements IQuestionDAO{
         return question;
     }
 
+      
+  
+    
     @Override
     public List<Question> displayQuestion() {
         List<Question> questions = new ArrayList<>();

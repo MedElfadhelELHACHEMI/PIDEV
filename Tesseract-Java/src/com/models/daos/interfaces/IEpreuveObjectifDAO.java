@@ -14,12 +14,19 @@ import java.util.List;
  * @author Bacem
  */
 public interface IEpreuveObjectifDAO {
+
     boolean createEpreuveObjectif(EpreuveObjectif epreuveObjectif);
+
     boolean deleteEpreuveObjectif(int id);
+
     boolean updateEpreuveObjectif(EpreuveObjectif epreuveObjectif, int id);
+
     EpreuveObjectif searchEpreuveObjectif(int id);
+
+    EpreuveObjectif searchEpreuveObjectifByObjId(int id) throws SQLException;
+
     List<EpreuveObjectif> displayEpreuveObjectif();
 
     public List<EpreuveObjectif> searchEpreuveOBJByObj(int idobj) throws SQLException;
-    
+
 }

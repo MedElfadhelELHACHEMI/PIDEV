@@ -883,6 +883,13 @@ public class MOOCAccueilGUI extends Stage {
             }
         });
         WaitingForValidation2 = new Button("Waiting for Validation2", null);
+        WaitingForValidation2.setOnAction((ActionEvent event) -> {
+            try {
+                setMain(loadNode("/com/fxml/WaitingForValidation2FXML.fxml"));
+            } catch (IOException ex) {
+                Logger.getLogger(MOOCAccueilGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         addCourse = new Button("Add course", null);
         addCourse.setOnAction((ActionEvent event) -> {
             try {

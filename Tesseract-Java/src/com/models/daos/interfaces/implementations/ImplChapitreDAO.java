@@ -25,27 +25,27 @@ import javafx.collections.ObservableList;
  *
  * @author haikal
  */
-public class ImplChapitreDAO implements IChapitreDAO{
+public class ImplChapitreDAO implements IChapitreDAO {
 
     private Connection cnx;
-    
-    public ImplChapitreDAO(){
+
+    public ImplChapitreDAO() {
         cnx = DataSource.getInstance().getConnection();
     }
+
     @Override
     public boolean addChapitre(Chapitre c) {
-        String request ="INSERT INTO chapitre (id_cours, nom, numero, description, resume) VALUES(?,?,?,?,?)";
+        String request = "INSERT INTO chapitre (id_cours, nom,  description, resume) VALUES(?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(request);
-            System.out.println(c.getIdCours());
+
             ps.setInt(1, c.getIdCours());
             ps.setString(2, c.getNom());
-            ps.setInt(3, c.getNumero());
-            ps.setString(4, c.getDescription());
-            ps.setString(5, c.getResume());
+            ps.setString(3, c.getDescription());
+            ps.setString(4, c.getResume());
             int add = ps.executeUpdate();
             ps.close();
-            return add==1;
+            return add == 1;
         } catch (SQLException ex) {
             Logger.getLogger(ImplChapitreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -79,7 +79,7 @@ public class ImplChapitreDAO implements IChapitreDAO{
             ps.setString(4, c.getResume());
             int add = ps.executeUpdate();
             ps.close();
-            return add==1;
+            return add == 1;
         } catch (SQLException ex) {
             Logger.getLogger(ImplChapitreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,7 +94,7 @@ public class ImplChapitreDAO implements IChapitreDAO{
             PreparedStatement ps = cnx.prepareStatement(request);
             ps.setInt(1, idCours);
             ResultSet res = ps.executeQuery();
-            while(res.next()){
+            while (res.next()) {
                 Chapitre c = new Chapitre();
                 c.setId(res.getInt(1));
                 c.setIdCours(res.getInt(2));
@@ -119,8 +119,8 @@ public class ImplChapitreDAO implements IChapitreDAO{
             ps = cnx.prepareStatement(request);
             ps.setInt(1, idCours);
             ps.setString(2, nom);
-            ResultSet res=ps.executeQuery();
-            while (res.next()){
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
                 c.setId(res.getInt(1));
                 c.setIdCours(res.getInt(2));
                 c.setNom(res.getString(3));
@@ -132,7 +132,7 @@ public class ImplChapitreDAO implements IChapitreDAO{
         } catch (SQLException ex) {
             Logger.getLogger(ImplChapitreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return c;
     }
 
@@ -145,8 +145,8 @@ public class ImplChapitreDAO implements IChapitreDAO{
             ps = cnx.prepareStatement(request);
             ps.setInt(1, idCours);
             ps.setInt(2, number);
-            ResultSet res=ps.executeQuery();
-            while (res.next()){
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
                 c.setId(res.getInt(1));
                 c.setIdCours(res.getInt(2));
                 c.setNom(res.getString(3));
@@ -163,25 +163,26 @@ public class ImplChapitreDAO implements IChapitreDAO{
 
     @Override
     public List<Chapitre> findChapitreByIdCours(int idCours) throws SQLException {
-   List<Chapitre> listeChapitre = new ArrayList<>();
-   String requete = "select * from chapitre where id_cours=?";  
-    PreparedStatement ps = cnx.prepareStatement(requete);
+        List<Chapitre> listeChapitre = new ArrayList<>();
+        String requete = "select * from chapitre where id_cours=?";
+        PreparedStatement ps = cnx.prepareStatement(requete);
         ps.setInt(1, idCours);
         ResultSet resultat = ps.executeQuery();
         while (resultat.next()) {
             Chapitre c = new Chapitre();
-          c.setId(resultat.getInt(1));
-                c.setIdCours(resultat.getInt(2));
-                c.setNom(resultat.getString(3));
-                c.setNumero(resultat.getInt(4));
-                c.setDescription(resultat.getString(5));
-                c.setResume(resultat.getString(6));
-              listeChapitre.add(c);
+            c.setId(resultat.getInt(1));
+            c.setIdCours(resultat.getInt(2));
+            c.setNom(resultat.getString(3));
+            c.setNumero(resultat.getInt(4));
+            c.setDescription(resultat.getString(5));
+            c.setResume(resultat.getString(6));
+            listeChapitre.add(c);
         }
-       if (Objects.nonNull(listeChapitre)) {
+        if (Objects.nonNull(listeChapitre)) {
             return listeChapitre;
         }
 
-        throw new UnsupportedOperationException();  }
+        throw new UnsupportedOperationException();
+    }
 
 }

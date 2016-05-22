@@ -29,7 +29,7 @@ public interface ICoursDAO {
 
     public List getCoursValid1EnAttente(int idCoach)  throws SQLException;
 
-    public List getCoursValid2EnAttente();
+    public List getCoursValid2EnAttente(int idCoach)  throws SQLException;
 
     public List<Cours> listCoursCosulterParCoach(int id);
 

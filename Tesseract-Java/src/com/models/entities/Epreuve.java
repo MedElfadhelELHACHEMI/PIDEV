@@ -12,6 +12,24 @@ package com.models.entities;
 public abstract class Epreuve {
     
     private int id;
+
+    public int getIdCours() {
+        return idCours;
+    }
+
+    public void setIdCours(int idCours) {
+        this.idCours = idCours;
+    }
+
+    public int getIdChapitre() {
+        return idChapitre;
+    }
+
+    public void setIdChapitre(int idChapitre) {
+        this.idChapitre = idChapitre;
+    }
+    private int idCours;
+    private int idChapitre;
     private String difficulte;
 
     public Epreuve(int id, String difficulte) {

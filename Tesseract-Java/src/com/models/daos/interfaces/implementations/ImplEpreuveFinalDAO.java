@@ -35,11 +35,11 @@ public class ImplEpreuveFinalDAO implements IEpreuveFinalDAO {
     @Override
     public boolean createEpreuveFinal(EpreuveFinal epreuveFinal) {
         try {
-            String request="insert into epreuves(difficulte, duree,type) values (?,?,?)";
+            String request="insert into epreuves(id_cours ,type) values (?,?)";
             pst = connection.prepareStatement(request);
-            pst.setString(1, epreuveFinal.getDifficulte());
-            pst.setInt(2, epreuveFinal.getDureeExamen());
-            pst.setString(3, TYPE);
+          
+            pst.setInt(1, epreuveFinal.getIdCours());
+            pst.setString(2, TYPE);
             
             int result = pst.executeUpdate();
             pst.close();

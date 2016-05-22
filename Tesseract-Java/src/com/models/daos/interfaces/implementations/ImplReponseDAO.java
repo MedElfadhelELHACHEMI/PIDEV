@@ -36,7 +36,7 @@ public class ImplReponseDAO implements IReponseDAO{
     @Override
     public boolean createReponse(Reponse reponse) {
         try {
-            String request="insert into reponses(reponse, justification, etat, id_question) values(?,?,?,?)";
+            String request="insert into reponse(reponse, justification, etat, id_question) values(?,?,?,?)";
             pst = connection.prepareStatement(request);
             pst.setString(1, reponse.getReponse());
             pst.setString(2, reponse.getJustification());
